@@ -1,67 +1,143 @@
 #!/usr/bin/env python3
 """
-Gerador de DOCX para peças jurídicas — formatação ABNT forense.
+Gerador de DOCX para peças jurídicas.
+Usa os modelos de "Modelos jus/" como template base, preservando fontes,
+estilos (Manuale / Alegreya Sans), margens e numeração de página já configurados.
 
 Uso:
-    python3 gerar_docx.py entrada.txt saida.docx
+    python3 gerar_docx.py entrada.txt saida.docx [template.docx]
 
-Marcadores no arquivo de entrada:
-    @CENTRO      linha centralizada em negrito (endereçamento, nome da peça)
-    @TITULO      capítulo romano (negrito, centralizado, caixa alta)
-    @SUBTITULO   subseção (negrito, alinhado à esquerda)
-    @CITACAO     início de bloco de citação longa (recuo 4cm, 10pt)
-    @FIM         fim de bloco de citação longa
-    @ASSINATURA  início do bloco de assinatura (centralizado)
-    @AVISO       ignorado — avisos de IA não constam nas peças
-    linhas normais → parágrafo justificado com recuo de 1ª linha
-    a), b), c)... → item de lista com recuo
+    Se template.docx for omitido, usa "Modelos jus/1._INICIAL.docx" como padrão.
+
+────────────────────────────────────────────────────────────────────────────────
+MARCADORES DO ARQUIVO DE ENTRADA
+────────────────────────────────────────────────────────────────────────────────
+@CENTRO       linha centralizada em negrito  (endereçamento, nome da ação)
+@TITULO       capítulo (negrito, centralizado — estilo "1. Título" do template)
+@SUBTITULO    subseção primária  (estilo "2. Subtítulo" / "3 Subtítulo")
+@SUBTITULO2   subseção secundária
+@CITACAO      início de bloco de citação  (estilo "4. Citação")
+@FIM          fecha bloco de citação, linha do tempo, tabela ou bullets
+
+@LINHA_DO_TEMPO
+Data | Fato | Documento | Observação
+12/10/2025 | Diagnóstico confirmado | Laudo — Anexo 1 | Início do quadro
+@FIM
+
+@TABELA_QUESTOES          ← 2 colunas: questão | resposta (header automático)
+Gratuidade | Renda comprometida
+@FIM
+
+@TABELA_PROVAS            ← 3 colunas: fato | documento | anexo (header automático)
+Prescrição | Parecer médico | Anexo 1
+@FIM
+
+@TABELA_URGENCIA Título   ← 2 colunas: item | referência (header colorido)
+Risco de progressão tumoral | Anexo 1
+@FIM
+
+@TABELA_LIVRE N_COLUNAS   ← tabela genérica; 1ª linha = cabeçalho
+Col1 | Col2 | Col3
+Dado | Dado | Dado
+@FIM
+
+@BULLETS                  ← lista com marcador
+Item um
+Item dois
+@FIM
+
+@LISTA_ALFA               ← lista a) b) c)  (estilo "5. Lista alfabética")
+Primeiro item
+Segundo item
+@FIM
+
+@IMAGEM caminho/para/imagem.png [largura_cm]   ← insere imagem (padrão: 15cm)
+@ESPACO N      ← N linhas em branco (padrão: 1)
+@LINHA         ← linha horizontal separadora
+@ASSINATURA    ← bloco de assinatura centralizado (após @ASSINATURA)
+@AVISO         ← IGNORADO — avisos de IA não constam nas peças processuais
+────────────────────────────────────────────────────────────────────────────────
 """
 
 import sys
 import re
 from pathlib import Path
+from copy import deepcopy
+
 from docx import Document
-from docx.shared import Pt, Cm
+from docx.shared import Pt, Cm, RGBColor
 from docx.enum.text import WD_ALIGN_PARAGRAPH
 from docx.oxml.ns import qn
 from docx.oxml import OxmlElement
 
 
-# ── Configurações ABNT ────────────────────────────────────────────────────────
-FONTE          = 'Times New Roman'
-FONTE_PT       = 12
-FONTE_CITACAO  = 10
-ENTRELINHA     = 1.5       # múltiplo de linha (LINE_SPACING_RULE_MULTIPLE)
-RECUO_1A_LINHA = Cm(1.25)
-RECUO_CITACAO  = Cm(4.0)
-ESPACO_DEPOIS  = Pt(6)
-ESPACO_ANTES   = Pt(0)
+# ── Cores das tabelas (extraídas dos modelos) ─────────────────────────────────
+COR_HEADER    = 'D9D9D9'   # cinza médio — cabeçalho de tabela
+COR_LINHA_A   = 'F8F8F6'   # creme muito claro — linhas pares
+COR_LINHA_B   = 'FFFFFF'   # branco — linhas ímpares
+COR_DESTAQUE  = 'F1F1EB'   # bege — células de destaque / sub-header
 
 
-# ── Helpers de formatação ─────────────────────────────────────────────────────
-def set_spacing(para, before=ESPACO_ANTES, after=ESPACO_DEPOIS, line=ENTRELINHA):
-    from docx.oxml.ns import qn
-    from docx.shared import Pt
-    pPr = para._p.get_or_add_pPr()
-    spacing = OxmlElement('w:spacing')
-    spacing.set(qn('w:before'), str(int(before.pt * 20)))
-    spacing.set(qn('w:after'),  str(int(after.pt  * 20)))
-    spacing.set(qn('w:line'),   str(int(line * 240)))
-    spacing.set(qn('w:lineRule'), 'auto')
-    pPr.append(spacing)
+# ── Mapa de estilos do template ───────────────────────────────────────────────
+# Nomes exatos dos estilos presentes nos modelos "Modelos jus/"
+STYLE_TITULO     = '1. Título'
+STYLE_SUBTITULO  = '3 Subtítulo'
+STYLE_SUBTITULO2 = '3 Subtítulo secundário'
+STYLE_CORPO      = '3 Corpo do texto'
+STYLE_CITACAO    = '4. Citação'
+STYLE_LISTA_ALFA = '5. Lista alfabética'
+STYLE_BULLETS    = '6 Bullets'
 
 
-def add_run(para, texto, bold=False, italic=False, size=FONTE_PT):
-    run = para.add_run(texto)
-    run.font.name  = FONTE
-    run.font.size  = Pt(size)
-    run.font.bold  = bold
-    run.font.italic = italic
-    return run
+# ── Helpers XML ───────────────────────────────────────────────────────────────
+def set_cell_color(cell, hex_color: str):
+    tc = cell._tc
+    tcPr = tc.get_or_add_tcPr()
+    shd = OxmlElement('w:shd')
+    shd.set(qn('w:val'), 'clear')
+    shd.set(qn('w:color'), 'auto')
+    shd.set(qn('w:fill'), hex_color)
+    tcPr.append(shd)
 
 
-def parse_inline(texto):
-    """Divide o texto em segmentos com marcação **bold** e *italic*."""
+def set_cell_bold(cell, bold: bool = True):
+    for para in cell.paragraphs:
+        for run in para.runs:
+            run.font.bold = bold
+
+
+def add_table_border(table):
+    """Borda simples em todas as células."""
+    tbl = table._tbl
+    tblPr = tbl.find(qn('w:tblPr'))
+    if tblPr is None:
+        tblPr = OxmlElement('w:tblPr')
+        tbl.insert(0, tblPr)
+    borders = OxmlElement('w:tblBorders')
+    for side in ('top', 'left', 'bottom', 'right', 'insideH', 'insideV'):
+        el = OxmlElement(f'w:{side}')
+        el.set(qn('w:val'), 'single')
+        el.set(qn('w:sz'), '4')
+        el.set(qn('w:space'), '0')
+        el.set(qn('w:color'), 'AAAAAA')
+        borders.append(el)
+    tblPr.append(borders)
+
+
+def table_full_width(table):
+    tbl = table._tbl
+    tblPr = tbl.find(qn('w:tblPr'))
+    if tblPr is None:
+        tblPr = OxmlElement('w:tblPr')
+        tbl.insert(0, tblPr)
+    tblW = OxmlElement('w:tblW')
+    tblW.set(qn('w:w'), '5000')
+    tblW.set(qn('w:type'), 'pct')
+    tblPr.append(tblW)
+
+
+# ── Inline markdown (bold / italic) ──────────────────────────────────────────
+def parse_inline(texto: str):
     partes = []
     pattern = re.compile(r'\*\*(.*?)\*\*|\*(.*?)\*')
     pos = 0
@@ -69,7 +145,7 @@ def parse_inline(texto):
         if m.start() > pos:
             partes.append({'t': texto[pos:m.start()], 'b': False, 'i': False})
         if m.group(1) is not None:
-            partes.append({'t': m.group(1), 'b': True, 'i': False})
+            partes.append({'t': m.group(1), 'b': True,  'i': False})
         else:
             partes.append({'t': m.group(2), 'b': False, 'i': True})
         pos = m.end()
@@ -78,169 +154,364 @@ def parse_inline(texto):
     return partes
 
 
-def fill_para(para, texto, bold=False, size=FONTE_PT):
-    """Preenche um parágrafo interpretando marcação inline."""
+def fill_para(para, texto: str, bold: bool = False):
     for seg in parse_inline(texto):
-        add_run(para, seg['t'], bold=bold or seg['b'], italic=seg['i'], size=size)
+        run = para.add_run(seg['t'])
+        run.font.bold   = bold or seg['b']
+        run.font.italic = seg['i']
 
 
-def set_margins(doc):
-    """Margens ABNT: sup 3cm, inf 2cm, esq 3cm, dir 2cm."""
-    for section in doc.sections:
-        section.top_margin    = Cm(3)
-        section.bottom_margin = Cm(2)
-        section.left_margin   = Cm(3)
-        section.right_margin  = Cm(2)
+def fill_cell(cell, texto: str, bold: bool = False, center: bool = False):
+    para = cell.paragraphs[0]
+    if center:
+        para.alignment = WD_ALIGN_PARAGRAPH.CENTER
+    fill_para(para, texto.strip(), bold=bold)
 
 
-def add_page_number(doc):
-    """Numeração de página no canto superior direito (Header)."""
-    section = doc.sections[0]
-    section.different_first_page_header_footer = True  # sem número na p.1
-
-    header = section.header
-    para = header.paragraphs[0] if header.paragraphs else header.add_paragraph()
-    para.alignment = WD_ALIGN_PARAGRAPH.RIGHT
-    para.clear()
-
-    run = para.add_run()
-    run.font.name = FONTE
-    run.font.size = Pt(FONTE_PT)
-
-    fldChar1 = OxmlElement('w:fldChar')
-    fldChar1.set(qn('w:fldCharType'), 'begin')
-    instrText = OxmlElement('w:instrText')
-    instrText.text = 'PAGE'
-    fldChar2 = OxmlElement('w:fldChar')
-    fldChar2.set(qn('w:fldCharType'), 'end')
-
-    run._r.append(fldChar1)
-    run._r.append(instrText)
-    run._r.append(fldChar2)
+# ── Abertura do template ──────────────────────────────────────────────────────
+def abrir_template(template_path: Path) -> Document:
+    """Abre o template e limpa o conteúdo preservando estilos e seções."""
+    doc = Document(str(template_path))
+    body = doc.element.body
+    # Guarda o último sectPr (controla margens, cabeçalho, rodapé)
+    sect_pr = body.find(qn('w:sectPr'))
+    # Remove tudo menos sectPr
+    for child in list(body):
+        if child is not sect_pr:
+            body.remove(child)
+    # Garante um parágrafo inicial vazio (python-docx exige)
+    p = OxmlElement('w:p')
+    body.insert(0, p)
+    return doc
 
 
-# ── Geração do documento ──────────────────────────────────────────────────────
-def gerar(entrada: Path, saida: Path):
-    doc = Document()
-    set_margins(doc)
-    add_page_number(doc)
+def style_exists(doc: Document, name: str) -> bool:
+    return any(s.name == name for s in doc.styles)
 
-    # Remove parágrafo em branco inicial do python-docx
-    if doc.paragraphs:
-        p = doc.paragraphs[0]._element
-        p.getparent().remove(p)
 
-    linhas = entrada.read_text(encoding='utf-8').splitlines()
+def safe_style(doc: Document, preferred: str, fallback: str = 'Normal') -> str:
+    return preferred if style_exists(doc, preferred) else fallback
+
+
+# ── Tabelas ───────────────────────────────────────────────────────────────────
+def build_linha_do_tempo(doc: Document, linhas: list[str]):
+    """4 colunas: Data | Fato | Documento | Observação"""
+    headers = ['Data', 'Fato', 'Documento', 'Observação']
+    table = doc.add_table(rows=1, cols=4)
+    table_full_width(table)
+    add_table_border(table)
+    # Cabeçalho
+    hrow = table.rows[0]
+    for i, h in enumerate(headers):
+        cell = hrow.cells[i]
+        set_cell_color(cell, COR_HEADER)
+        fill_cell(cell, h, bold=True, center=True)
+    # Dados
+    for ri, linha in enumerate(linhas):
+        cols = [c.strip() for c in linha.split('|')]
+        while len(cols) < 4:
+            cols.append('')
+        row = table.add_row()
+        cor = COR_LINHA_A if ri % 2 == 0 else COR_LINHA_B
+        for ci, val in enumerate(cols[:4]):
+            set_cell_color(row.cells[ci], cor)
+            fill_cell(row.cells[ci], val)
+    doc.add_paragraph()
+
+
+def build_tabela_questoes(doc: Document, linhas: list[str]):
+    """2 colunas: Questão processual | Resposta"""
+    table = doc.add_table(rows=1, cols=2)
+    table_full_width(table)
+    add_table_border(table)
+    hrow = table.rows[0]
+    set_cell_color(hrow.cells[0], COR_HEADER)
+    set_cell_color(hrow.cells[1], COR_HEADER)
+    fill_cell(hrow.cells[0], 'Questão processual', bold=True, center=True)
+    fill_cell(hrow.cells[1], 'Posição da parte', bold=True, center=True)
+    for ri, linha in enumerate(linhas):
+        cols = [c.strip() for c in linha.split('|')]
+        while len(cols) < 2:
+            cols.append('')
+        row = table.add_row()
+        cor = COR_LINHA_A if ri % 2 == 0 else COR_LINHA_B
+        set_cell_color(row.cells[0], cor)
+        set_cell_color(row.cells[1], COR_LINHA_B)
+        fill_cell(row.cells[0], cols[0], bold=True)
+        fill_cell(row.cells[1], cols[1])
+    doc.add_paragraph()
+
+
+def build_tabela_provas(doc: Document, linhas: list[str]):
+    """3 colunas: Fato alegado | Documento | Anexo"""
+    table = doc.add_table(rows=1, cols=3)
+    table_full_width(table)
+    add_table_border(table)
+    hrow = table.rows[0]
+    for ci, h in enumerate(['Fato alegado', 'Documento', 'Anexo']):
+        set_cell_color(hrow.cells[ci], COR_HEADER)
+        fill_cell(hrow.cells[ci], h, bold=True, center=True)
+    for ri, linha in enumerate(linhas):
+        cols = [c.strip() for c in linha.split('|')]
+        while len(cols) < 3:
+            cols.append('')
+        row = table.add_row()
+        cor = COR_LINHA_A if ri % 2 == 0 else COR_LINHA_B
+        for ci in range(3):
+            set_cell_color(row.cells[ci], cor)
+            fill_cell(row.cells[ci], cols[ci] if ci < len(cols) else '')
+    doc.add_paragraph()
+
+
+def build_tabela_urgencia(doc: Document, titulo: str, linhas: list[str]):
+    """2 colunas com sub-header colorido: item | referência"""
+    table = doc.add_table(rows=1, cols=2)
+    table_full_width(table)
+    add_table_border(table)
+    # Sub-header (merge)
+    hrow = table.rows[0]
+    hrow.cells[0].merge(hrow.cells[1])
+    set_cell_color(hrow.cells[0], COR_DESTAQUE)
+    fill_cell(hrow.cells[0], titulo, bold=True, center=True)
+    for ri, linha in enumerate(linhas):
+        cols = [c.strip() for c in linha.split('|')]
+        while len(cols) < 2:
+            cols.append('')
+        row = table.add_row()
+        cor = COR_LINHA_A if ri % 2 == 0 else COR_LINHA_B
+        set_cell_color(row.cells[0], cor)
+        set_cell_color(row.cells[1], cor)
+        fill_cell(row.cells[0], cols[0])
+        fill_cell(row.cells[1], cols[1] if len(cols) > 1 else '')
+    doc.add_paragraph()
+
+
+def build_tabela_livre(doc: Document, n_cols: int, linhas: list[str]):
+    """Tabela genérica: primeira linha = cabeçalho."""
+    if not linhas:
+        return
+    table = doc.add_table(rows=0, cols=n_cols)
+    table_full_width(table)
+    add_table_border(table)
+    for ri, linha in enumerate(linhas):
+        cols = [c.strip() for c in linha.split('|')]
+        while len(cols) < n_cols:
+            cols.append('')
+        row = table.add_row()
+        is_header = ri == 0
+        cor = COR_HEADER if is_header else (COR_LINHA_A if ri % 2 == 0 else COR_LINHA_B)
+        for ci in range(n_cols):
+            set_cell_color(row.cells[ci], cor)
+            fill_cell(row.cells[ci], cols[ci] if ci < len(cols) else '',
+                      bold=is_header, center=is_header)
+    doc.add_paragraph()
+
+
+# ── Parser principal ──────────────────────────────────────────────────────────
+def parse(doc: Document, texto: str):
+    linhas = texto.splitlines()
     i = 0
-    modo_citacao    = False
-    modo_assinatura = False
-    modo_aviso      = False
+    modo        = None   # None | citacao | assinatura | aviso | tabela_*
+    buf_tabela  = []
+    tab_titulo  = ''
+    tab_ncols   = 2
 
     while i < len(linhas):
         linha = linhas[i].rstrip()
+        stripped = linha.strip()
 
-        # ── Diretivas de modo ──────────────────────────────────────────────
-        if linha.strip() == '@CITACAO':
-            modo_citacao = True;  i += 1;  continue
-        if linha.strip() == '@FIM':
-            modo_citacao = False; i += 1;  continue
-        if linha.strip() == '@ASSINATURA':
-            modo_assinatura = True
-            doc.add_paragraph()   # espaço para assinatura manuscrita (≈ 2 linhas)
-            doc.add_paragraph()
-            i += 1; continue
-        if linha.strip() == '@AVISO':
-            modo_aviso = True;    i += 1;  continue
+        # ── Fechamento de bloco ──────────────────────────────────────────────
+        if stripped == '@FIM':
+            if modo == 'linha_do_tempo':
+                build_linha_do_tempo(doc, buf_tabela)
+            elif modo == 'tabela_questoes':
+                build_tabela_questoes(doc, buf_tabela)
+            elif modo == 'tabela_provas':
+                build_tabela_provas(doc, buf_tabela)
+            elif modo == 'tabela_urgencia':
+                build_tabela_urgencia(doc, tab_titulo, buf_tabela)
+            elif modo == 'tabela_livre':
+                build_tabela_livre(doc, tab_ncols, buf_tabela)
+            elif modo in ('bullets', 'lista_alfa'):
+                pass  # já adicionado linha a linha
+            modo = None
+            buf_tabela = []
+            i += 1
+            continue
 
-        # Linha em branco
-        if linha.strip() == '':
-            if not modo_aviso:
+        # ── Dentro de bloco de tabela/lista ─────────────────────────────────
+        if modo in ('linha_do_tempo', 'tabela_questoes', 'tabela_provas',
+                    'tabela_urgencia', 'tabela_livre'):
+            if stripped:
+                buf_tabela.append(stripped)
+            i += 1
+            continue
+
+        if modo == 'citacao':
+            if stripped:
+                p = doc.add_paragraph(style=safe_style(doc, STYLE_CITACAO))
+                fill_para(p, stripped)
+            i += 1
+            continue
+
+        if modo == 'aviso':
+            i += 1
+            continue
+
+        if modo == 'bullets':
+            if stripped:
+                p = doc.add_paragraph(style=safe_style(doc, STYLE_BULLETS))
+                fill_para(p, stripped)
+            i += 1
+            continue
+
+        if modo == 'lista_alfa':
+            if stripped:
+                p = doc.add_paragraph(style=safe_style(doc, STYLE_LISTA_ALFA))
+                fill_para(p, stripped)
+            i += 1
+            continue
+
+        if modo == 'assinatura':
+            if stripped == '':
+                doc.add_paragraph()
+            else:
+                bold = not re.match(r'^OAB/', stripped)
                 p = doc.add_paragraph()
-                set_spacing(p, after=Pt(0))
-            i += 1; continue
+                p.alignment = WD_ALIGN_PARAGRAPH.CENTER
+                fill_para(p, stripped, bold=bold)
+            i += 1
+            continue
 
-        # Separador ---
-        if re.match(r'^-{3,}$', linha.strip()):
-            i += 1; continue
+        # ── Abertura de blocos ───────────────────────────────────────────────
+        if stripped == '@CITACAO':
+            modo = 'citacao';  i += 1;  continue
+        if stripped == '@BULLETS':
+            modo = 'bullets';  i += 1;  continue
+        if stripped == '@LISTA_ALFA':
+            modo = 'lista_alfa';  i += 1;  continue
+        if stripped == '@ASSINATURA':
+            modo = 'assinatura'
+            doc.add_paragraph()
+            doc.add_paragraph()
+            i += 1;  continue
+        if stripped == '@AVISO':
+            modo = 'aviso';  i += 1;  continue
+        if stripped == '@LINHA_DO_TEMPO':
+            modo = 'linha_do_tempo';  buf_tabela = [];  i += 1;  continue
+        if stripped == '@TABELA_QUESTOES':
+            modo = 'tabela_questoes';  buf_tabela = [];  i += 1;  continue
+        if stripped == '@TABELA_PROVAS':
+            modo = 'tabela_provas';  buf_tabela = [];  i += 1;  continue
+        m = re.match(r'^@TABELA_URGENCIA\s*(.*)', stripped)
+        if m:
+            modo = 'tabela_urgencia'
+            tab_titulo = m.group(1).strip()
+            buf_tabela = [];  i += 1;  continue
+        m = re.match(r'^@TABELA_LIVRE\s*(\d+)', stripped)
+        if m:
+            modo = 'tabela_livre'
+            tab_ncols = int(m.group(1))
+            buf_tabela = [];  i += 1;  continue
 
-        # ── Modo aviso — ignorado ──────────────────────────────────────────
-        if modo_aviso:
-            i += 1; continue
+        # ── Diretivas de parágrafo único ─────────────────────────────────────
+        if stripped == '':
+            doc.add_paragraph()
+            i += 1;  continue
 
-        # ── Modo citação ───────────────────────────────────────────────────
-        if modo_citacao:
+        if re.match(r'^-{3,}$', stripped):
+            i += 1;  continue
+
+        if stripped == '@LINHA':
             p = doc.add_paragraph()
-            p.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
-            pf = p.paragraph_format
-            pf.left_indent       = RECUO_CITACAO
-            pf.first_line_indent = Cm(0)
-            set_spacing(p, after=Pt(6))
-            fill_para(p, linha.strip(), size=FONTE_CITACAO)
-            i += 1; continue
+            from docx.oxml import OxmlElement
+            pPr = p._p.get_or_add_pPr()
+            pBdr = OxmlElement('w:pBdr')
+            bottom = OxmlElement('w:bottom')
+            bottom.set(qn('w:val'), 'single')
+            bottom.set(qn('w:sz'), '6')
+            bottom.set(qn('w:space'), '1')
+            bottom.set(qn('w:color'), 'AAAAAA')
+            pBdr.append(bottom)
+            pPr.append(pBdr)
+            i += 1;  continue
 
-        # ── Modo assinatura ────────────────────────────────────────────────
-        if modo_assinatura:
-            bold = not re.match(r'^OAB/', linha.strip())
+        m = re.match(r'^@ESPACO\s*(\d*)', stripped)
+        if m:
+            n = int(m.group(1)) if m.group(1) else 1
+            for _ in range(n):
+                doc.add_paragraph()
+            i += 1;  continue
+
+        m = re.match(r'^@IMAGEM\s+(\S+)(?:\s+([\d.]+))?', stripped)
+        if m:
+            img_path = Path(m.group(1))
+            largura  = float(m.group(2)) if m.group(2) else 15.0
+            if img_path.exists():
+                doc.add_picture(str(img_path), width=Cm(largura))
+            else:
+                p = doc.add_paragraph(f'[IMAGEM NÃO ENCONTRADA: {img_path}]')
+            i += 1;  continue
+
+        if stripped.startswith('@CENTRO'):
+            conteudo = stripped[7:].strip()
             p = doc.add_paragraph()
             p.alignment = WD_ALIGN_PARAGRAPH.CENTER
-            set_spacing(p, after=Pt(2))
-            fill_para(p, linha.strip(), bold=bold)
-            i += 1; continue
+            fill_para(p, conteudo, bold=True)
+            i += 1;  continue
 
-        # ── Diretiva @CENTRO ───────────────────────────────────────────────
-        if linha.startswith('@CENTRO'):
-            conteudo = linha[7:].strip()
-            p = doc.add_paragraph()
+        if stripped.startswith('@TITULO'):
+            conteudo = stripped[7:].strip().upper()
+            p = doc.add_paragraph(style=safe_style(doc, STYLE_TITULO))
             p.alignment = WD_ALIGN_PARAGRAPH.CENTER
-            set_spacing(p, after=Pt(6))
             fill_para(p, conteudo, bold=True)
-            i += 1; continue
+            i += 1;  continue
 
-        # ── Diretiva @TITULO ───────────────────────────────────────────────
-        if linha.startswith('@TITULO'):
-            conteudo = linha[7:].strip().upper()
-            p = doc.add_paragraph()
-            p.alignment = WD_ALIGN_PARAGRAPH.CENTER
-            set_spacing(p, before=Pt(12), after=Pt(6))
+        if stripped.startswith('@SUBTITULO2'):
+            conteudo = stripped[11:].strip()
+            p = doc.add_paragraph(style=safe_style(doc, STYLE_SUBTITULO2, STYLE_SUBTITULO))
+            fill_para(p, conteudo)
+            i += 1;  continue
+
+        if stripped.startswith('@SUBTITULO'):
+            conteudo = stripped[10:].strip()
+            p = doc.add_paragraph(style=safe_style(doc, STYLE_SUBTITULO))
             fill_para(p, conteudo, bold=True)
-            i += 1; continue
+            i += 1;  continue
 
-        # ── Diretiva @SUBTITULO ────────────────────────────────────────────
-        if linha.startswith('@SUBTITULO'):
-            conteudo = linha[10:].strip()
-            p = doc.add_paragraph()
-            p.alignment = WD_ALIGN_PARAGRAPH.LEFT
-            set_spacing(p, before=Pt(6), after=Pt(3))
-            fill_para(p, conteudo, bold=True)
-            i += 1; continue
+        # Item de lista avulso a) b) c)
+        if re.match(r'^[a-z]\)', stripped):
+            p = doc.add_paragraph(style=safe_style(doc, STYLE_LISTA_ALFA))
+            fill_para(p, stripped)
+            i += 1;  continue
 
-        # ── Item de lista a), b), c)... ────────────────────────────────────
-        if re.match(r'^[a-z]\)', linha.strip()):
-            p = doc.add_paragraph()
-            p.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
-            pf = p.paragraph_format
-            pf.left_indent       = RECUO_1A_LINHA
-            pf.first_line_indent = Cm(0)
-            set_spacing(p, after=Pt(6))
-            fill_para(p, linha.strip())
-            i += 1; continue
-
-        # ── Parágrafo normal ───────────────────────────────────────────────
-        p = doc.add_paragraph()
-        p.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
-        pf = p.paragraph_format
-        pf.first_line_indent = RECUO_1A_LINHA
-        set_spacing(p, after=Pt(6))
-        fill_para(p, linha.strip())
+        # Parágrafo normal
+        p = doc.add_paragraph(style=safe_style(doc, STYLE_CORPO))
+        fill_para(p, stripped)
         i += 1
 
+
+# ── Entry point ───────────────────────────────────────────────────────────────
+def gerar(entrada: Path, saida: Path, template: Path):
+    doc = abrir_template(template)
+    texto = entrada.read_text(encoding='utf-8')
+    parse(doc, texto)
     doc.save(str(saida))
     print(f'DOCX gerado: {saida}')
 
 
-# ── CLI ───────────────────────────────────────────────────────────────────────
 if __name__ == '__main__':
     if len(sys.argv) < 3:
-        print('Uso: python3 gerar_docx.py entrada.txt saida.docx')
+        print(__doc__)
         sys.exit(1)
-    gerar(Path(sys.argv[1]), Path(sys.argv[2]))
+
+    entrada  = Path(sys.argv[1])
+    saida    = Path(sys.argv[2])
+    base     = Path(__file__).parent.parent   # raiz do projeto
+    template = Path(sys.argv[3]) if len(sys.argv) > 3 else base / 'Modelos jus' / '1._INICIAL.docx'
+
+    if not template.exists():
+        print(f'Template não encontrado: {template}')
+        sys.exit(1)
+
+    gerar(entrada, saida, template)
