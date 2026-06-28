@@ -4,6 +4,6 @@
 
 ---
 
-- [Status do projeto](project_status.md) — fase atual, o que está feito, o que está pendente
+- [Status do projeto](project_status.md) — fase atual, o que está feito, o que está pendente (atualizado 28/06/2026)
 - [Arquitetura do sistema](architecture.md) — estrutura técnica completa das fases planejadas
-- [Decisões e fundamentos](decisions.md) — decisões tomadas, por que foram tomadas
+- [Decisões e fundamentos](decisions.md) — decisões tomadas, por que foram tomadas (atualizado 28/06/2026)
