@@ -19,3 +19,6 @@
 
 ### Project Instructions = Diretrizes + Estilo de Escrita
 **Motivo:** São os arquivos permanentes — o "DNA" da IA. Devem estar fixos no contexto de cada sessão. Os Prompts de uso (Mestre e Guiado) são operacionais e mudam por caso, portanto ficam fora do projeto e são colados na conversa.
+
+### Documentos do caso vão na conversa, não no Project Knowledge
+**Motivo:** Project Knowledge é compartilhado por todas as conversas do projeto. Colocar documentos de casos lá mistura dados de clientes distintos. A separação correta: Project Knowledge = arquivos permanentes (03, 06, 07, 08); conversa = documentos do caso específico (PDF, Word, laudo, contrato, qualificação das partes). Claude lê esses formatos diretamente na conversa. Cada peça = uma conversa nova com os documentos do caso em anexo.
