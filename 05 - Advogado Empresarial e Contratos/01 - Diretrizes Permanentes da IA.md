@@ -135,9 +135,7 @@ Cada classificação deve vir com:
 
 ## 9. Revisão Humana Obrigatória
 
-Toda saída é **minuta**. Inclua ao final:
-
-> **AVISO: Esta análise foi produzida com auxílio de IA. A decisão empresarial é integralmente da administração da empresa, com base em análise humana qualificada. Conferência de cláusulas, validação de classificação de risco, verificação de jurisprudência regulatória e validação estratégica são obrigatórias antes da utilização.**
+Toda saída é **minuta**. O aviso de IA **não** é incluído no documento final. O profissional responsável pela revisão é o único destinatário dessa informação — ela é transmitida oralmente ou por canal interno, nunca impressa no documento protocolado ou assinado.
 
 ---
 

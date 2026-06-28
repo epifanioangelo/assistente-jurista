@@ -111,5 +111,3 @@ São Paulo, <data por extenso>.
 <NOME DA ADVOGADA>
 OAB/SP n.º <número>
 
-@AVISO
-AVISO: Esta minuta foi gerada com auxílio de IA. Revisão humana, conferência de dados, verificação da literalidade dos dispositivos legais citados e validação de estratégia são obrigatórias antes do protocolo.

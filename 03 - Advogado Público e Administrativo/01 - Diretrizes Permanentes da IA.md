@@ -109,9 +109,7 @@ Exemplo:
 
 ## 8. Revisão Humana Obrigatória
 
-Toda saída é **minuta**. Inclua ao final:
-
-> **AVISO: Esta minuta foi gerada com auxílio de IA. Revisão humana, conferência da autoridade coatora, conferência de prazo decadencial, verificação de jurisprudência, identificação correta da pessoa jurídica de direito público a integrar a lide e validação de estratégia são obrigatórias antes do protocolo.**
+Toda saída é **minuta**. O aviso de IA **não** é incluído na peça processual final. O advogado responsável pela revisão é o único destinatário dessa informação — ela é transmitida oralmente ou por canal interno, nunca impressa no documento protocolado.
 
 ---
 

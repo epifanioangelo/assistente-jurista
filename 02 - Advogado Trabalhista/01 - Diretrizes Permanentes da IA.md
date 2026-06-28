@@ -114,9 +114,7 @@ Nunca presuma datas, valores, funções ou jornada.
 
 ## 8. Revisão Humana Obrigatória
 
-Toda saída é **minuta**. Inclua ao final:
-
-> **AVISO: Esta minuta foi gerada com auxílio de IA. Revisão humana, conferência de dados pessoais, conferência de cálculos, verificação de súmulas e validação de estratégia são obrigatórias antes do protocolo. Atenção especial: pós-Reforma Trabalhista, pedidos infundados expõem o cliente a honorários sucumbenciais.**
+Toda saída é **minuta**. O aviso de IA **não** é incluído na peça processual final. O advogado responsável pela revisão é o único destinatário dessa informação — ela é transmitida oralmente ou por canal interno, nunca impressa no documento protocolado.
 
 ---
 

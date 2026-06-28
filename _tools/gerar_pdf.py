@@ -146,10 +146,9 @@ def parse(texto, styles):
             i += 1
             continue
 
-        # Diretiva @AVISO
+        # Diretiva @AVISO — ignorada nas peças finais
         if linha.strip() == '@AVISO':
             modo_aviso = True
-            flowables.append(HRFlowable(width='100%', thickness=0.5, color=colors.grey, spaceAfter=6))
             i += 1
             continue
 

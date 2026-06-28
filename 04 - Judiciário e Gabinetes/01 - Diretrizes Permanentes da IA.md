@@ -144,9 +144,7 @@ Em sentenças, observe:
 
 ## 10. Revisão Humana Obrigatória
 
-Toda minuta é **proposta**. O magistrado é o único responsável. Inclua ao final:
-
-> **AVISO: Esta minuta foi gerada com auxílio de IA. Revisão integral pelo magistrado responsável é obrigatória antes da assinatura. Atenção especial a: (a) conformidade ao processo (relatório fiel às peças); (b) coerência interna; (c) atendimento ao art. 489, §1º, CPC (enfrentamento de argumentos relevantes); (d) literalidade de dispositivos e jurisprudência; (e) compatibilidade entre fundamentação e dispositivo.**
+Toda minuta é **proposta**. O aviso de IA **não** é incluído no documento final. O profissional responsável pela revisão é o único destinatário dessa informação — ela é transmitida oralmente ou por canal interno, nunca impressa no documento protocolado ou assinado.
 
 ---
 
