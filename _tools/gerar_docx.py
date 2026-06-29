@@ -94,15 +94,19 @@ COR_LINHA_B   = 'FFFFFF'   # branco — linhas ímpares
 COR_DESTAQUE  = 'F1F1EB'   # bege — células de destaque / sub-header
 
 
-# ── Mapa de estilos do template ───────────────────────────────────────────────
-# Nomes exatos dos estilos presentes nos modelos "Modelos jus/"
-STYLE_TITULO     = '1. Título'
-STYLE_SUBTITULO  = '3 Subtítulo'
-STYLE_SUBTITULO2 = '3 Subtítulo secundário'
-STYLE_CORPO      = '3 Corpo do texto'
-STYLE_CITACAO    = '4. Citação'
-STYLE_LISTA_ALFA = '5. Lista alfabética'
-STYLE_BULLETS    = '6 Bullets'
+# ── Mapa de estilos do template AE (AGRAVO_INSTRUMENTO.docx) ─────────────────
+# Georgia 14pt navy centrado | Georgia 12pt navy esquerda | Georgia 11pt esquerda
+# Times 12pt justificado     | Times 11pt justificado     | Arial 9pt cinza
+# Times 12pt negrito         | Georgia 10pt ouro centrado
+STYLE_TITULO     = 'AE Título 1'      # seção principal — centro, navy, 14pt
+STYLE_SUBTITULO  = 'AE Título 2'      # subseção — esquerda, navy, 12pt
+STYLE_SUBTITULO2 = 'AE Título 3'      # subseção terciária — esquerda, 11pt
+STYLE_CORPO      = 'AE Corpo'         # parágrafo normal — Times 12pt justificado
+STYLE_CITACAO    = 'AE Citação'       # citação recuada — Times 11pt
+STYLE_LISTA_ALFA = 'AE Corpo'         # lista a) b) c) — usa corpo (sem estilo próprio)
+STYLE_BULLETS    = 'AE Corpo'         # bullets — usa corpo (sem estilo próprio)
+STYLE_ENDERECO   = 'AE Endereçamento' # endereçamento do juízo — Times 12pt negrito
+STYLE_ORNAMENTO  = 'AE Ornamento'     # ornamento ◆ — Georgia 10pt ouro centralizado
 
 
 # ── Helpers XML ───────────────────────────────────────────────────────────────
@@ -676,7 +680,7 @@ if __name__ == '__main__':
     entrada  = Path(sys.argv[1])
     saida    = Path(sys.argv[2])
     base     = Path(__file__).parent.parent   # raiz do projeto
-    template = Path(sys.argv[3]) if len(sys.argv) > 3 else base / 'Modelos jus' / '1._INICIAL.docx'
+    template = Path(sys.argv[3]) if len(sys.argv) > 3 else base / 'Modelos jus' / 'AGRAVO_INSTRUMENTO.docx'
 
     if not template.exists():
         print(f'Template não encontrado: {template}')
