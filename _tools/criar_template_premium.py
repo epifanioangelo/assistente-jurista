@@ -385,53 +385,89 @@ def _add_tab_stop(pPr, pos_twips: int, align: str):
     tabs.append(t)
 
 
-def _navy_par(footer, line_twips: int, is_content: bool = False):
-    """
-    Parágrafo navy com altura exata (w:lineRule=exact).
-    O shading preenche toda a linha definida por line_twips.
-    """
-    p = footer.add_paragraph()
-    pPr = p._p.get_or_add_pPr()
-
-    shd = OxmlElement("w:shd")
-    shd.set(qn("w:val"),   "clear")
-    shd.set(qn("w:color"), "auto")
-    shd.set(qn("w:fill"),  NAVY1)
-    pPr.append(shd)
-
-    ind = OxmlElement("w:ind")
-    ind.set(qn("w:left"),  "-1440")
-    ind.set(qn("w:right"), "-1260")
-    pPr.append(ind)
-
-    sp = OxmlElement("w:spacing")
-    sp.set(qn("w:before"),   "0")
-    sp.set(qn("w:after"),    "0")
-    sp.set(qn("w:line"),     str(line_twips))
-    sp.set(qn("w:lineRule"), "exact")
-    pPr.append(sp)
-
-    if is_content:
-        _add_tab_stop(pPr, 4536,  "center")
-        _add_tab_stop(pPr, 10300, "right")
-
-    return p
-
-
 def criar_rodape(section):
     """
-    Rodape: 3 paragrafos navy borda a borda.
-      p_top (380 twips) + p_mid/conteudo (280 twips) + p_bot (380 twips) = 1040 twips ~ 1.84cm
-    footer_distance=0 -> encosta na borda inferior.
-    w:lineRule=exact garante que o shading preenche cada altura definida.
+    Rodape: retangulo flutuante navy (wp:anchor, relativeFrom=page) posicionado
+    na base da pagina, sobre o qual aparece o paragrafo de conteudo.
+
+    Por que wp:anchor?
+    - Paragrafo w:shd so cobre a linha de texto, nao o espacamento
+    - Tabela clippa no limite direito da area de texto
+    - wp:anchor com relativeFrom="page" posiciona exatamente, repete em cada pagina
     """
     footer = section.footer
     for p in list(footer.paragraphs):
         p._element.getparent().remove(p._element)
 
-    _navy_par(footer, line_twips=380)
-    fp = _navy_par(footer, line_twips=280, is_content=True)
-    _navy_par(footer, line_twips=380)
+    # Dimensoes em EMU (1 cm = 360000 EMU)
+    cm     = 360000
+    PAGE_H = int(29.7 * cm)    # altura A4
+    PAGE_W = int(21.0 * cm)    # largura A4
+    BAR_H  = int(2.0  * cm)    # altura da faixa = margem inferior
+    BAR_Y  = PAGE_H - BAR_H    # posicao Y do topo da faixa
+
+    WP  = "http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing"
+    A_NS= "http://schemas.openxmlformats.org/drawingml/2006/main"
+    WPS = "http://schemas.microsoft.com/office/word/2010/wordprocessingShape"
+    W   = "http://schemas.openxmlformats.org/wordprocessingml/2006/main"
+
+    # Retangulo navy: cobre toda a base da pagina (borda a borda, 2 cm de altura)
+    rect_xml = f"""<w:p xmlns:w="{W}" xmlns:wp="{WP}" xmlns:a="{A_NS}" xmlns:wps="{WPS}">
+  <w:pPr><w:spacing w:before="0" w:after="0"/></w:pPr>
+  <w:r><w:drawing>
+    <wp:anchor distT="0" distB="0" distL="0" distR="0"
+               simplePos="0" relativeHeight="251658240"
+               behindDoc="1" locked="1" layoutInCell="1" allowOverlap="0">
+      <wp:simplePos x="0" y="0"/>
+      <wp:positionH relativeFrom="page"><wp:posOffset>0</wp:posOffset></wp:positionH>
+      <wp:positionV relativeFrom="page"><wp:posOffset>{BAR_Y}</wp:posOffset></wp:positionV>
+      <wp:extent cx="{PAGE_W}" cy="{BAR_H}"/>
+      <wp:effectExtent l="0" t="0" r="0" b="0"/>
+      <wp:wrapNone/>
+      <wp:docPr id="20" name="FooterBar"/>
+      <wp:cNvGraphicFramePr/>
+      <a:graphic>
+        <a:graphicData uri="{WPS}">
+          <wps:wsp>
+            <wps:cNvSpPr txBx="0"><a:spLocks noChangeArrowheads="1"/></wps:cNvSpPr>
+            <wps:spPr>
+              <a:xfrm><a:off x="0" y="0"/><a:ext cx="{PAGE_W}" cy="{BAR_H}"/></a:xfrm>
+              <a:prstGeom prst="rect"><a:avLst/></a:prstGeom>
+              <a:solidFill><a:srgbClr val="{NAVY1}"/></a:solidFill>
+              <a:ln><a:noFill/></a:ln>
+            </wps:spPr>
+            <wps:bodyPr/>
+          </wps:wsp>
+        </a:graphicData>
+      </a:graphic>
+    </wp:anchor>
+  </w:drawing></w:r>
+</w:p>"""
+
+    rect_el = etree.fromstring(rect_xml)
+    footer._element.append(rect_el)
+
+    # Paragrafo de conteudo (texto branco sobre o retangulo)
+    fp = footer.add_paragraph()
+    pPr = fp._p.get_or_add_pPr()
+
+    # Recuo negativo: alinha o texto com as bordas da pagina
+    ind = OxmlElement("w:ind")
+    ind.set(qn("w:left"),  "-1440")
+    ind.set(qn("w:right"), "-1260")
+    pPr.append(ind)
+
+    # before=500: posiciona o texto ~1cm acima da borda inferior (centro do bar)
+    sp = OxmlElement("w:spacing")
+    sp.set(qn("w:before"),   "500")
+    sp.set(qn("w:after"),    "0")
+    sp.set(qn("w:line"),     "240")
+    sp.set(qn("w:lineRule"), "auto")
+    pPr.append(sp)
+
+    # Tab stops: centro da pagina e borda direita
+    _add_tab_stop(pPr, 4536,  "center")
+    _add_tab_stop(pPr, 10300, "right")
 
     def _r(txt, size, color, bold=False, spacing=0):
         r = fp.add_run(txt)
