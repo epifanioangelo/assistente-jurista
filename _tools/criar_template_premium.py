@@ -409,60 +409,61 @@ def criar_rodape(section):
     shd.set(qn("w:fill"),  NAVY1)
     pPr.append(shd)
 
-    # ── Recuo negativo — estende até as bordas da página ─────────────────────
-    # margem esq = 2.5cm = 1417 twips | margem dir = 2.0cm = 1134 twips
+    # ── Recuo negativo — cobre toda a largura da página ──────────────────────
+    # Margens reais do documento: esq=2.5cm, dir=2.0cm
+    # Usamos valores ligeiramente maiores para garantir cobertura completa
+    # (Word arredonda internamente e pode deixar 1-2px de gap)
     ind = OxmlElement("w:ind")
-    ind.set(qn("w:left"),  "-1417")   # entra na margem esquerda
-    ind.set(qn("w:right"), "-1134")   # entra na margem direita
+    ind.set(qn("w:left"),  "-1440")   # -2.54cm — garante cobertura total à esq
+    ind.set(qn("w:right"), "-1260")   # -2.22cm — garante cobertura total à dir
     pPr.append(ind)
 
-    # ── Espaçamento interno (padding vertical) ────────────────────────────────
+    # ── Espaçamento vertical — controla a altura da faixa ────────────────────
+    # 300 twips before + 300 after + 12pt linha ≈ 1.5cm de altura total
     sp = OxmlElement("w:spacing")
-    sp.set(qn("w:before"),   "100")
-    sp.set(qn("w:after"),    "100")
+    sp.set(qn("w:before"),   "300")
+    sp.set(qn("w:after"),    "300")
     sp.set(qn("w:line"),     "240")
     sp.set(qn("w:lineRule"), "auto")
     pPr.append(sp)
 
-    # ── Tab stops ─────────────────────────────────────────────────────────────
-    # Área total (com margens negativas) = 21 cm = 11906 twips
-    # Conteúdo começa em x=0 (borda esq da página = -1417 do texto)
-    # Centro da página = 11906 / 2 - 1417 = 4536 twips do início do texto
-    # Borda direita = 11906 - 1417 - 1134 + 1134 = 9355 + 1134 = 10489 twips do texto
+    # ── Tab stops (em twips a partir da margem esquerda da área de texto) ────
+    # Margem esq real = 1417 twips | Área texto = 9355 twips | Margem dir = 1134
+    # Página total = 11906 twips
+    # Centro da página em coord. texto = 11906/2 - 1417 = 4536
+    # Borda dir da página em coord. texto = 9355 + 1134 = 10489
     _add_tab_stop(pPr, 4536,  "center")   # centro da página
-    _add_tab_stop(pPr, 10489, "right")    # borda direita da página
+    _add_tab_stop(pPr, 10300, "right")    # ~3mm antes da borda direita
 
-    # ── Conteúdo: esquerda ────────────────────────────────────────────────────
+    # ── Conteúdo ─────────────────────────────────────────────────────────────
     def _r(txt, size, color, bold=False, spacing=0):
         r = fp.add_run(txt)
-        r.font.name  = "Arial"
-        r.font.size  = Pt(size)
+        r.font.name      = "Arial"
+        r.font.size      = Pt(size)
         r.font.color.rgb = color
-        r.font.bold  = bold
+        r.font.bold      = bold
         if spacing:
             add_run_spacing(r, spacing)
         return r
 
-    # Pequeno recuo interno à esquerda (padding)
-    _r("  ", 8, C_WHITE)  # espaço de padding esquerdo
+    # Padding esquerdo interno (empurra "AE" ~4mm da borda da página)
+    _r("   ", 9, C_WHITE)          # non-breaking spaces
     _r("AE", 10, C_WHITE, bold=True, spacing=50)
     _r("  |  ", 9, C_GOLD)
     _r("ANGELO EPIFANIO ADVOCACIA", 7, C_WHITE, spacing=20)
 
-    # ── Centro ────────────────────────────────────────────────────────────────
+    # Centro (tab + contato)
     fp.add_run("\t")
     _r(f"{SITE}  |  {EMAIL}  |  {CIDADE}", 6.5, RGBColor(160, 185, 210))
 
-    # ── Direita: número de página ─────────────────────────────────────────────
+    # Direita (tab + número de página + padding direito)
     fp.add_run("\t")
     rr = fp.add_run()
-    rr.font.name  = "Arial"
-    rr.font.bold  = True
-    rr.font.size  = Pt(9)
+    rr.font.name      = "Arial"
+    rr.font.bold      = True
+    rr.font.size      = Pt(9)
     rr.font.color.rgb = C_WHITE
     add_page_field(rr)
-    # Pequeno recuo interno à direita
-    _r("  ", 8, C_WHITE)
 
 
 # ═══════════════════════════════════════════════════════════════════════════════
