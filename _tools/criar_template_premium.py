@@ -385,57 +385,54 @@ def _add_tab_stop(pPr, pos_twips: int, align: str):
     tabs.append(t)
 
 
-def criar_rodape(section):
+def _navy_par(footer, line_twips: int, is_content: bool = False):
     """
-    Rodapé: parágrafo com recuo negativo + shading navy — cobre TODA a largura
-    da página (margens esq e dir incluídas). Conteúdo posicionado com tab stops.
-
-    Por que parágrafo em vez de tabela?
-    Word clippa tabelas no limite direito da área de texto mesmo com tblW maior;
-    o shading de parágrafo com w:ind negativo estende o fundo corretamente
-    até as bordas físicas da página.
+    Parágrafo navy com altura exata (w:lineRule=exact).
+    O shading preenche toda a linha definida por line_twips.
     """
-    footer = section.footer
-    for p in list(footer.paragraphs):
-        p._element.getparent().remove(p._element)
+    p = footer.add_paragraph()
+    pPr = p._p.get_or_add_pPr()
 
-    fp = footer.add_paragraph()
-    pPr = fp._p.get_or_add_pPr()
-
-    # ── Shading navy ──────────────────────────────────────────────────────────
     shd = OxmlElement("w:shd")
     shd.set(qn("w:val"),   "clear")
     shd.set(qn("w:color"), "auto")
     shd.set(qn("w:fill"),  NAVY1)
     pPr.append(shd)
 
-    # ── Recuo negativo — cobre toda a largura da página ──────────────────────
-    # Margens reais do documento: esq=2.5cm, dir=2.0cm
-    # Usamos valores ligeiramente maiores para garantir cobertura completa
-    # (Word arredonda internamente e pode deixar 1-2px de gap)
     ind = OxmlElement("w:ind")
-    ind.set(qn("w:left"),  "-1440")   # -2.54cm — garante cobertura total à esq
-    ind.set(qn("w:right"), "-1260")   # -2.22cm — garante cobertura total à dir
+    ind.set(qn("w:left"),  "-1440")
+    ind.set(qn("w:right"), "-1260")
     pPr.append(ind)
 
-    # ── Espaçamento vertical — controla a altura da faixa ────────────────────
-    # 300 twips before + 300 after + 12pt linha ≈ 1.5cm de altura total
     sp = OxmlElement("w:spacing")
-    sp.set(qn("w:before"),   "300")
-    sp.set(qn("w:after"),    "300")
-    sp.set(qn("w:line"),     "240")
-    sp.set(qn("w:lineRule"), "auto")
+    sp.set(qn("w:before"),   "0")
+    sp.set(qn("w:after"),    "0")
+    sp.set(qn("w:line"),     str(line_twips))
+    sp.set(qn("w:lineRule"), "exact")
     pPr.append(sp)
 
-    # ── Tab stops (em twips a partir da margem esquerda da área de texto) ────
-    # Margem esq real = 1417 twips | Área texto = 9355 twips | Margem dir = 1134
-    # Página total = 11906 twips
-    # Centro da página em coord. texto = 11906/2 - 1417 = 4536
-    # Borda dir da página em coord. texto = 9355 + 1134 = 10489
-    _add_tab_stop(pPr, 4536,  "center")   # centro da página
-    _add_tab_stop(pPr, 10300, "right")    # ~3mm antes da borda direita
+    if is_content:
+        _add_tab_stop(pPr, 4536,  "center")
+        _add_tab_stop(pPr, 10300, "right")
 
-    # ── Conteúdo ─────────────────────────────────────────────────────────────
+    return p
+
+
+def criar_rodape(section):
+    """
+    Rodape: 3 paragrafos navy borda a borda.
+      p_top (380 twips) + p_mid/conteudo (280 twips) + p_bot (380 twips) = 1040 twips ~ 1.84cm
+    footer_distance=0 -> encosta na borda inferior.
+    w:lineRule=exact garante que o shading preenche cada altura definida.
+    """
+    footer = section.footer
+    for p in list(footer.paragraphs):
+        p._element.getparent().remove(p._element)
+
+    _navy_par(footer, line_twips=380)
+    fp = _navy_par(footer, line_twips=280, is_content=True)
+    _navy_par(footer, line_twips=380)
+
     def _r(txt, size, color, bold=False, spacing=0):
         r = fp.add_run(txt)
         r.font.name      = "Arial"
@@ -446,17 +443,14 @@ def criar_rodape(section):
             add_run_spacing(r, spacing)
         return r
 
-    # Padding esquerdo interno (empurra "AE" ~4mm da borda da página)
-    _r("   ", 9, C_WHITE)          # non-breaking spaces
+    _r("   ", 9, C_WHITE)
     _r("AE", 10, C_WHITE, bold=True, spacing=50)
     _r("  |  ", 9, C_GOLD)
     _r("ANGELO EPIFANIO ADVOCACIA", 7, C_WHITE, spacing=20)
 
-    # Centro (tab + contato)
     fp.add_run("\t")
     _r(f"{SITE}  |  {EMAIL}  |  {CIDADE}", 6.5, RGBColor(160, 185, 210))
 
-    # Direita (tab + número de página + padding direito)
     fp.add_run("\t")
     rr = fp.add_run()
     rr.font.name      = "Arial"
@@ -464,7 +458,6 @@ def criar_rodape(section):
     rr.font.size      = Pt(9)
     rr.font.color.rgb = C_WHITE
     add_page_field(rr)
-
 
 # ═══════════════════════════════════════════════════════════════════════════════
 # BARRA LATERAL (linha dourada + texto vertical)
@@ -821,7 +814,7 @@ def criar_template(tipo_peca: str = "AGRAVO DE INSTRUMENTO"):
     section.left_margin          = Cm(2.5)
     section.right_margin         = Cm(2.0)
     section.header_distance      = Cm(0.5)
-    section.footer_distance      = Cm(0.5)
+    section.footer_distance      = Cm(0.0)
     section.different_first_page_header_footer = False
 
     # Estilos
