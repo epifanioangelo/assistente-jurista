@@ -387,56 +387,147 @@ def _add_tab_stop(pPr, pos_twips: int, align: str):
 
 def criar_rodape(section):
     """
-    Rodape: retangulo flutuante navy (wp:anchor, relativeFrom=page) posicionado
-    na base da pagina, sobre o qual aparece o paragrafo de conteudo.
-
-    Por que wp:anchor?
-    - Paragrafo w:shd so cobre a linha de texto, nao o espacamento
-    - Tabela clippa no limite direito da area de texto
-    - wp:anchor com relativeFrom="page" posiciona exatamente, repete em cada pagina
+    Rodape: caixa de texto flutuante (wp:anchor + wps:wsp txBx=1) com fill navy,
+    posicionada na base da pagina via relativeFrom=page.
+    Largura = 21cm, altura = 2cm, fill solid navy, texto branco centralizado.
     """
     footer = section.footer
     for p in list(footer.paragraphs):
         p._element.getparent().remove(p._element)
 
-    # Dimensoes em EMU (1 cm = 360000 EMU)
-    cm     = 360000
-    PAGE_H = int(29.7 * cm)    # altura A4
-    PAGE_W = int(21.0 * cm)    # largura A4
-    BAR_H  = int(2.0  * cm)    # altura da faixa = margem inferior
-    BAR_Y  = PAGE_H - BAR_H    # posicao Y do topo da faixa
+    cm     = 360000          # 1 cm em EMU
+    PAGE_H = int(29.7 * cm)  # altura A4
+    PAGE_W = int(21.0 * cm)  # largura A4
+    BAR_H  = int(2.0  * cm)  # altura da faixa
+    BAR_Y  = PAGE_H - BAR_H  # Y do topo da faixa (da borda sup da pagina)
+
+    # Padding interno da caixa de texto (em EMU)
+    L_INS = 91440   # 0.1 inch ~ 2.5mm
+    R_INS = 91440
+    T_INS = 0
+    B_INS = 0
+
+    # Tab stops dentro da caixa (em twips, relativos ao left interno da caixa)
+    # Caixa: 21cm = 11907 twips; l_ins = 91440 EMU = 144 twips
+    # Centro = (11907 - 144) / 2 = 5881; direita = 11907 - 144 - 200 padding = 11563
+    TAB_CENTER = 5881
+    TAB_RIGHT  = 11400
+
+    # Cores e contato
+    site   = "www.angeloepifanio.com.br"
+    email  = "contato@angeloepifanio.com.br"
+    cidade = "Sao Jose dos Campos/SP"
 
     WP  = "http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing"
-    A_NS= "http://schemas.openxmlformats.org/drawingml/2006/main"
+    A_N = "http://schemas.openxmlformats.org/drawingml/2006/main"
     WPS = "http://schemas.microsoft.com/office/word/2010/wordprocessingShape"
     W   = "http://schemas.openxmlformats.org/wordprocessingml/2006/main"
 
-    # Retangulo navy: cobre toda a base da pagina (borda a borda, 2 cm de altura)
-    rect_xml = f"""<w:p xmlns:w="{W}" xmlns:wp="{WP}" xmlns:a="{A_NS}" xmlns:wps="{WPS}">
+    box_xml = f"""<w:p xmlns:w="{W}" xmlns:wp="{WP}" xmlns:a="{A_N}" xmlns:wps="{WPS}">
   <w:pPr><w:spacing w:before="0" w:after="0"/></w:pPr>
   <w:r><w:drawing>
     <wp:anchor distT="0" distB="0" distL="0" distR="0"
-               simplePos="0" relativeHeight="251658240"
-               behindDoc="1" locked="1" layoutInCell="1" allowOverlap="0">
+               simplePos="0" relativeHeight="251659264"
+               behindDoc="0" locked="1" layoutInCell="1" allowOverlap="0">
       <wp:simplePos x="0" y="0"/>
       <wp:positionH relativeFrom="page"><wp:posOffset>0</wp:posOffset></wp:positionH>
       <wp:positionV relativeFrom="page"><wp:posOffset>{BAR_Y}</wp:posOffset></wp:positionV>
       <wp:extent cx="{PAGE_W}" cy="{BAR_H}"/>
       <wp:effectExtent l="0" t="0" r="0" b="0"/>
       <wp:wrapNone/>
-      <wp:docPr id="20" name="FooterBar"/>
+      <wp:docPr id="21" name="FooterBox"/>
       <wp:cNvGraphicFramePr/>
       <a:graphic>
         <a:graphicData uri="{WPS}">
           <wps:wsp>
-            <wps:cNvSpPr txBx="0"><a:spLocks noChangeArrowheads="1"/></wps:cNvSpPr>
+            <wps:cNvSpPr txBx="1"><a:spLocks noChangeArrowheads="1"/></wps:cNvSpPr>
             <wps:spPr>
               <a:xfrm><a:off x="0" y="0"/><a:ext cx="{PAGE_W}" cy="{BAR_H}"/></a:xfrm>
               <a:prstGeom prst="rect"><a:avLst/></a:prstGeom>
-              <a:solidFill><a:srgbClr val="{NAVY1}"/></a:solidFill>
+              <a:solidFill><a:srgbClr val="0B2341"/></a:solidFill>
               <a:ln><a:noFill/></a:ln>
             </wps:spPr>
-            <wps:bodyPr/>
+            <wps:txbx>
+              <w:txbxContent>
+                <w:p>
+                  <w:pPr>
+                    <w:spacing w:before="0" w:after="0" w:line="360" w:lineRule="auto"/>
+                    <w:jc w:val="left"/>
+                    <w:tabs>
+                      <w:tab w:val="center" w:pos="{TAB_CENTER}"/>
+                      <w:tab w:val="right"  w:pos="{TAB_RIGHT}"/>
+                    </w:tabs>
+                  </w:pPr>
+                  <w:r>
+                    <w:rPr>
+                      <w:rFonts w:ascii="Arial" w:hAnsi="Arial"/>
+                      <w:b/>
+                      <w:color w:val="FFFFFF"/>
+                      <w:sz w:val="20"/>
+                      <w:spacing w:val="50"/>
+                    </w:rPr>
+                    <w:t xml:space="preserve">AE</w:t>
+                  </w:r>
+                  <w:r>
+                    <w:rPr>
+                      <w:rFonts w:ascii="Arial" w:hAnsi="Arial"/>
+                      <w:color w:val="B69A54"/>
+                      <w:sz w:val="18"/>
+                    </w:rPr>
+                    <w:t xml:space="preserve">  |  </w:t>
+                  </w:r>
+                  <w:r>
+                    <w:rPr>
+                      <w:rFonts w:ascii="Arial" w:hAnsi="Arial"/>
+                      <w:color w:val="FFFFFF"/>
+                      <w:sz w:val="14"/>
+                      <w:spacing w:val="20"/>
+                    </w:rPr>
+                    <w:t>ANGELO EPIFANIO ADVOCACIA</w:t>
+                  </w:r>
+                  <w:r><w:tab/></w:r>
+                  <w:r>
+                    <w:rPr>
+                      <w:rFonts w:ascii="Arial" w:hAnsi="Arial"/>
+                      <w:color w:val="A0B9D2"/>
+                      <w:sz w:val="13"/>
+                    </w:rPr>
+                    <w:t>{site}  |  {email}  |  {cidade}</w:t>
+                  </w:r>
+                  <w:r><w:tab/></w:r>
+                  <w:r>
+                    <w:rPr>
+                      <w:rFonts w:ascii="Arial" w:hAnsi="Arial"/>
+                      <w:b/>
+                      <w:color w:val="FFFFFF"/>
+                      <w:sz w:val="18"/>
+                    </w:rPr>
+                    <w:fldChar w:fldCharType="begin"/>
+                  </w:r>
+                  <w:r>
+                    <w:rPr>
+                      <w:rFonts w:ascii="Arial" w:hAnsi="Arial"/>
+                      <w:b/>
+                      <w:color w:val="FFFFFF"/>
+                      <w:sz w:val="18"/>
+                    </w:rPr>
+                    <w:instrText xml:space="preserve"> PAGE </w:instrText>
+                  </w:r>
+                  <w:r>
+                    <w:rPr>
+                      <w:rFonts w:ascii="Arial" w:hAnsi="Arial"/>
+                      <w:b/>
+                      <w:color w:val="FFFFFF"/>
+                      <w:sz w:val="18"/>
+                    </w:rPr>
+                    <w:fldChar w:fldCharType="end"/>
+                  </w:r>
+                </w:p>
+              </w:txbxContent>
+            </wps:txbx>
+            <wps:bodyPr lIns="{L_INS}" tIns="{T_INS}" rIns="{R_INS}" bIns="{B_INS}"
+                        anchor="ctr" anchorCtr="0"
+                        wrap="square" vertOverflow="clip" horzOverflow="clip"/>
           </wps:wsp>
         </a:graphicData>
       </a:graphic>
@@ -444,56 +535,16 @@ def criar_rodape(section):
   </w:drawing></w:r>
 </w:p>"""
 
-    rect_el = etree.fromstring(rect_xml)
-    footer._element.append(rect_el)
+    box_el = etree.fromstring(box_xml)
+    footer._element.append(box_el)
 
-    # Paragrafo de conteudo (texto branco sobre o retangulo)
-    fp = footer.add_paragraph()
-    pPr = fp._p.get_or_add_pPr()
-
-    # Recuo negativo: alinha o texto com as bordas da pagina
-    ind = OxmlElement("w:ind")
-    ind.set(qn("w:left"),  "-1440")
-    ind.set(qn("w:right"), "-1260")
-    pPr.append(ind)
-
-    # before=500: posiciona o texto ~1cm acima da borda inferior (centro do bar)
-    sp = OxmlElement("w:spacing")
-    sp.set(qn("w:before"),   "500")
-    sp.set(qn("w:after"),    "0")
-    sp.set(qn("w:line"),     "240")
-    sp.set(qn("w:lineRule"), "auto")
-    pPr.append(sp)
-
-    # Tab stops: centro da pagina e borda direita
-    _add_tab_stop(pPr, 4536,  "center")
-    _add_tab_stop(pPr, 10300, "right")
-
-    def _r(txt, size, color, bold=False, spacing=0):
-        r = fp.add_run(txt)
-        r.font.name      = "Arial"
-        r.font.size      = Pt(size)
-        r.font.color.rgb = color
-        r.font.bold      = bold
-        if spacing:
-            add_run_spacing(r, spacing)
-        return r
-
-    _r("   ", 9, C_WHITE)
-    _r("AE", 10, C_WHITE, bold=True, spacing=50)
-    _r("  |  ", 9, C_GOLD)
-    _r("ANGELO EPIFANIO ADVOCACIA", 7, C_WHITE, spacing=20)
-
-    fp.add_run("\t")
-    _r(f"{SITE}  |  {EMAIL}  |  {CIDADE}", 6.5, RGBColor(160, 185, 210))
-
-    fp.add_run("\t")
-    rr = fp.add_run()
-    rr.font.name      = "Arial"
-    rr.font.bold      = True
-    rr.font.size      = Pt(9)
-    rr.font.color.rgb = C_WHITE
-    add_page_field(rr)
+    # Paragrafo vazio obrigatorio no footer (Word exige pelo menos um)
+    ep = footer.add_paragraph()
+    ep_pPr = ep._p.get_or_add_pPr()
+    ep_sp = OxmlElement("w:spacing")
+    ep_sp.set(qn("w:before"), "0")
+    ep_sp.set(qn("w:after"),  "0")
+    ep_pPr.append(ep_sp)
 
 # ═══════════════════════════════════════════════════════════════════════════════
 # BARRA LATERAL (linha dourada + texto vertical)
