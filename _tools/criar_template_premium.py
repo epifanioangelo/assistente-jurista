@@ -404,116 +404,77 @@ def _run(p, txt, size, color, bold=False, spacing=0):
 
 def criar_rodape(section):
     """
-    Rodape baseado no HTML do usuario:
-      - Tabela 1 linha x 3 colunas, shading navy
-      - w:trHeight hRule=exact → altura garantida independente de paragrafo
-      - Celulas: AE | ANGELO EPIFANIO / website | email / cidade
+    Rodape: paragrafo com indent negativo (esq + dir) para cobertura total da pagina.
+    Altura = 2 linhas × 567 twips/linha = 1134 twips = 2cm com lineRule=exact.
+    Layout: AE (esq) | nome+site (centro) | email+cidade (dir) via tab stops.
     """
     footer = section.footer
     for p in list(footer.paragraphs):
         p._element.getparent().remove(p._element)
 
-    # Medidas (twips: 1 cm = 567 twips)
-    # Texto: 16.5 cm = 9355 | Esq: 2.5 cm = 1417 | Dir: 2.0 cm = 1134
-    # Tabela cobre largura total da pagina A4 = 21 cm = 11906 twips
-    TEXT_W   = 9355
-    LEFT_MG  = 1417
-    RIGHT_MG = 1134
-    TAB_W    = TEXT_W + LEFT_MG + RIGHT_MG   # 11906 = A4 completo
+    # Medidas em twips (1cm = 567 twips)
+    LEFT_MG  = 1417   # margem esquerda 2.5cm
+    RIGHT_MG = 1134   # margem direita  2.0cm
+    TEXT_W   = 9355   # area de texto   16.5cm
+    PAGE_W   = TEXT_W + LEFT_MG + RIGHT_MG  # 11906 twips = 21cm
 
-    # Altura exata da faixa: 2 cm = 1134 twips
-    ROW_H   = 1134
+    # ── Paragrafo principal ───────────────────────────────────────────────────
+    fp  = footer.add_paragraph()
+    pPr = fp._p.get_or_add_pPr()
 
-    # Larguras das 3 colunas (somam TAB_W = 11906)
-    CW = [1700, 6800, 3406]   # AE | centro | direita
+    # Shading navy
+    shd = OxmlElement("w:shd")
+    shd.set(qn("w:val"), "clear"); shd.set(qn("w:color"), "auto")
+    shd.set(qn("w:fill"), NAVY1)
+    pPr.append(shd)
 
-    # ── Criar tabela ──────────────────────────────────────────────────────────
-    tab = footer.add_table(1, 3, width=Cm(21.0))   # A4 width
-    set_table_no_borders(tab)
+    # Indent negativo em ambos os lados → cobre toda a largura da pagina
+    ind = OxmlElement("w:ind")
+    ind.set(qn("w:left"),  str(-LEFT_MG))
+    ind.set(qn("w:right"), str(-RIGHT_MG))
+    pPr.append(ind)
 
-    # Configurar tblPr: largura absoluta, indent negativo, layout fixo
-    tbl   = tab._tbl
-    tblPr = tbl.find(qn("w:tblPr"))
-    if tblPr is None:
-        tblPr = OxmlElement("w:tblPr"); tbl.insert(0, tblPr)
+    # 2 linhas × 567 twips = 1134 twips (2cm) de altura total
+    sp = OxmlElement("w:spacing")
+    sp.set(qn("w:before"), "0"); sp.set(qn("w:after"), "0")
+    sp.set(qn("w:line"), "567"); sp.set(qn("w:lineRule"), "exact")
+    pPr.append(sp)
 
-    for tag in [qn("w:tblW"), qn("w:tblInd"), qn("w:tblLayout"), qn("w:jc")]:
-        for old in list(tblPr.findall(tag)): tblPr.remove(old)
+    # Tab stops medidos a partir da borda esquerda da area de texto (pos=0)
+    # Centro da pagina:  -LEFT_MG + PAGE_W/2 = -1417 + 5953 = 4536
+    # Direita c/ padding: PAGE_W - LEFT_MG - 270 = 11906 - 1417 - 270 = 10219
+    tabs = OxmlElement("w:tabs")
+    for pos, align in [(4536, "center"), (10219, "right")]:
+        t = OxmlElement("w:tab")
+        t.set(qn("w:val"), align); t.set(qn("w:pos"), str(pos))
+        tabs.append(t)
+    pPr.append(tabs)
 
-    tblW = OxmlElement("w:tblW")
-    tblW.set(qn("w:w"), str(TAB_W)); tblW.set(qn("w:type"), "dxa")
-    tblPr.append(tblW)
+    # Helper local
+    def ar(txt, size, color, bold=False, spacing=0):
+        r = fp.add_run(txt)
+        r.font.name = "Arial"; r.font.size = Pt(size)
+        r.font.color.rgb = color; r.font.bold = bold
+        if spacing: add_run_spacing(r, spacing)
+        return r
 
-    tblInd = OxmlElement("w:tblInd")
-    tblInd.set(qn("w:w"), str(-LEFT_MG)); tblInd.set(qn("w:type"), "dxa")
-    tblPr.append(tblInd)
+    # ── LINHA 1: AE  |  ANGELO EPIFANIO ADVOCACIA  |  contato@... ────────────
+    ar("   AE", 16, C_WHITE, bold=True, spacing=80)
+    ar("\t", 7, C_WHITE)
+    ar("ANGELO EPIFANIO ADVOCACIA", 8, C_WHITE, bold=True, spacing=15)
+    ar("\t", 7, C_WHITE)
+    ar(EMAIL + "  ", 7, RGBColor(160, 185, 210))
 
-    tblLayout = OxmlElement("w:tblLayout")
-    tblLayout.set(qn("w:type"), "fixed")
-    tblPr.append(tblLayout)
+    # Quebra de linha suave (soft return dentro do mesmo paragrafo)
+    br_r = fp.add_run()
+    br_r._r.append(OxmlElement("w:br"))
 
-    # tblGrid: deve corresponder exatamente a CW
-    tblGrid = tbl.find(qn("w:tblGrid"))
-    if tblGrid is not None: tbl.remove(tblGrid)
-    tblGrid = OxmlElement("w:tblGrid")
-    for w in CW:
-        gc = OxmlElement("w:gridCol"); gc.set(qn("w:w"), str(w)); tblGrid.append(gc)
-    tbl.insert(list(tbl).index(tblPr) + 1, tblGrid)
-
-    # ── Altura exata da linha ─────────────────────────────────────────────────
-    tr   = tab.rows[0]._tr
-    trPr = tr.get_or_add_trPr()
-    trH  = OxmlElement("w:trHeight")
-    trH.set(qn("w:val"),   str(ROW_H))
-    trH.set(qn("w:hRule"), "exact")
-    trPr.append(trH)
-
-    # ── Células ───────────────────────────────────────────────────────────────
-    lc, cc, rc = tab.cell(0,0), tab.cell(0,1), tab.cell(0,2)
-
-    # Padding horizontal: 270 twips ≈ 18px (igual ao padding do HTML)
-    # Padding vertical: 80 twips (controle pela altura exata da linha)
-    PAD_H = 270   # lados esq/dir
-    PAD_V = 80    # topo/fundo
-
-    for cell, w in zip([lc, cc, rc], CW):
-        set_cell_color(cell, NAVY1)
-        set_cell_no_borders(cell)
-        set_cell_vert_align(cell, "center")
-        tcPr = cell._tc.get_or_add_tcPr()
-        for old in list(tcPr.findall(qn("w:tcW"))): tcPr.remove(old)
-        tcW = OxmlElement("w:tcW")
-        tcW.set(qn("w:w"), str(w)); tcW.set(qn("w:type"), "dxa")
-        tcPr.append(tcW)
-        tcMar = OxmlElement("w:tcMar")
-        for side, val in [("top", PAD_V), ("left", PAD_H), ("bottom", PAD_V), ("right", PAD_H)]:
-            m = OxmlElement(f"w:{side}")
-            m.set(qn("w:w"), str(val)); m.set(qn("w:type"), "dxa")
-            tcMar.append(m)
-        tcPr.append(tcMar)
-
-    # Célula esquerda: AE
-    lp = lc.paragraphs[0]
-    _set_para(lp, WD_ALIGN_PARAGRAPH.CENTER)
-    _run(lp, "AE", 18, C_WHITE, bold=True, spacing=80)
-
-    # Célula central: nome + website
-    cp1 = cc.paragraphs[0]
-    _set_para(cp1, WD_ALIGN_PARAGRAPH.CENTER)
-    _run(cp1, "ANGELO EPIFANIO ADVOCACIA", 8.5, C_WHITE, bold=True, spacing=20)
-
-    cp2 = cc.add_paragraph()
-    _set_para(cp2, WD_ALIGN_PARAGRAPH.CENTER)
-    _run(cp2, SITE, 7, RGBColor(160, 185, 210))
-
-    # Célula direita: email + cidade (sem numero de pagina por enquanto)
-    rp1 = rc.paragraphs[0]
-    _set_para(rp1, WD_ALIGN_PARAGRAPH.RIGHT)
-    _run(rp1, EMAIL, 7, RGBColor(160, 185, 210))
-
-    rp2 = rc.add_paragraph()
-    _set_para(rp2, WD_ALIGN_PARAGRAPH.RIGHT)
-    _run(rp2, CIDADE, 7, RGBColor(160, 185, 210))
+    # ── LINHA 2: (vazio)  |  www.site.com  |  São José dos Campos/SP ─────────
+    ar("", 7, C_WHITE)
+    ar("\t", 7, C_WHITE)
+    ar(SITE, 7, RGBColor(160, 185, 210))
+    ar("\t", 7, C_WHITE)
+    ar(CIDADE + "  ", 7, RGBColor(160, 185, 210))
 
 # ═══════════════════════════════════════════════════════════════════════════════
 # BARRA LATERAL (linha dourada + texto vertical)
