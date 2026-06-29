@@ -374,79 +374,95 @@ def _set_table_xml(table, page_w_twips: int, indent_twips: int,
         tcPr.append(tcW)
 
 
+def _add_tab_stop(pPr, pos_twips: int, align: str):
+    tabs = pPr.find(qn("w:tabs"))
+    if tabs is None:
+        tabs = OxmlElement("w:tabs")
+        pPr.append(tabs)
+    t = OxmlElement("w:tab")
+    t.set(qn("w:val"), align)
+    t.set(qn("w:pos"), str(pos_twips))
+    tabs.append(t)
+
+
 def criar_rodape(section):
     """
-    Rodapé: faixa azul escura, largura total da página, texto branco.
-    Usa XML direto em twips para evitar conflito de unidades.
+    Rodapé: parágrafo com recuo negativo + shading navy — cobre TODA a largura
+    da página (margens esq e dir incluídas). Conteúdo posicionado com tab stops.
+
+    Por que parágrafo em vez de tabela?
+    Word clippa tabelas no limite direito da área de texto mesmo com tblW maior;
+    o shading de parágrafo com w:ind negativo estende o fundo corretamente
+    até as bordas físicas da página.
     """
     footer = section.footer
     for p in list(footer.paragraphs):
         p._element.getparent().remove(p._element)
 
-    # Medidas em twips  (1 cm ≈ 566.9 twips; arredondamos para 567)
-    # A4: 21cm = 11906 twips | margem esq: 2.5cm = 1417 | margem dir: 2cm = 1134
-    PAGE_W  = 11906
-    LEFT_MG = 1417
+    fp = footer.add_paragraph()
+    pPr = fp._p.get_or_add_pPr()
 
-    # Células: 7.5cm + 10.5cm + 3.0cm = 21.0cm = 11906 twips
-    CW = [4252, 5953, 1701]  # soma = 11906
+    # ── Shading navy ──────────────────────────────────────────────────────────
+    shd = OxmlElement("w:shd")
+    shd.set(qn("w:val"),   "clear")
+    shd.set(qn("w:color"), "auto")
+    shd.set(qn("w:fill"),  NAVY1)
+    pPr.append(shd)
 
-    tab = footer.add_table(1, 3, width=Cm(21.0))
-    set_table_no_borders(tab)
-    _set_table_xml(tab, PAGE_W, -LEFT_MG, CW)
+    # ── Recuo negativo — estende até as bordas da página ─────────────────────
+    # margem esq = 2.5cm = 1417 twips | margem dir = 2.0cm = 1134 twips
+    ind = OxmlElement("w:ind")
+    ind.set(qn("w:left"),  "-1417")   # entra na margem esquerda
+    ind.set(qn("w:right"), "-1134")   # entra na margem direita
+    pPr.append(ind)
 
-    lc = tab.cell(0, 0)
-    cc = tab.cell(0, 1)
-    rc = tab.cell(0, 2)
+    # ── Espaçamento interno (padding vertical) ────────────────────────────────
+    sp = OxmlElement("w:spacing")
+    sp.set(qn("w:before"),   "100")
+    sp.set(qn("w:after"),    "100")
+    sp.set(qn("w:line"),     "240")
+    sp.set(qn("w:lineRule"), "auto")
+    pPr.append(sp)
 
-    for cell in (lc, cc, rc):
-        set_cell_no_borders(cell)
-        set_cell_color(cell, NAVY1)
-        set_cell_vert_align(cell, "center")
+    # ── Tab stops ─────────────────────────────────────────────────────────────
+    # Área total (com margens negativas) = 21 cm = 11906 twips
+    # Conteúdo começa em x=0 (borda esq da página = -1417 do texto)
+    # Centro da página = 11906 / 2 - 1417 = 4536 twips do início do texto
+    # Borda direita = 11906 - 1417 - 1134 + 1134 = 9355 + 1134 = 10489 twips do texto
+    _add_tab_stop(pPr, 4536,  "center")   # centro da página
+    _add_tab_stop(pPr, 10489, "right")    # borda direita da página
 
-    # ── Célula esquerda: AE + linha dourada + nome ────────────────────────────
-    lp = lc.paragraphs[0]
-    lp.alignment = WD_ALIGN_PARAGRAPH.LEFT
-    set_para_spacing(lp, before_pt=6, after_pt=6, line_rule="auto", line=240)
+    # ── Conteúdo: esquerda ────────────────────────────────────────────────────
+    def _r(txt, size, color, bold=False, spacing=0):
+        r = fp.add_run(txt)
+        r.font.name  = "Arial"
+        r.font.size  = Pt(size)
+        r.font.color.rgb = color
+        r.font.bold  = bold
+        if spacing:
+            add_run_spacing(r, spacing)
+        return r
 
-    r_ae = lp.add_run("AE")
-    r_ae.font.name  = "Georgia"
-    r_ae.font.bold  = True
-    r_ae.font.size  = Pt(11)
-    r_ae.font.color.rgb = C_WHITE
-    add_run_spacing(r_ae, 60)
+    # Pequeno recuo interno à esquerda (padding)
+    _r("  ", 8, C_WHITE)  # espaço de padding esquerdo
+    _r("AE", 10, C_WHITE, bold=True, spacing=50)
+    _r("  |  ", 9, C_GOLD)
+    _r("ANGELO EPIFANIO ADVOCACIA", 7, C_WHITE, spacing=20)
 
-    # Separador dourado "|"
-    r_sep = lp.add_run("  |  ")
-    r_sep.font.name  = "Georgia"
-    r_sep.font.size  = Pt(9)
-    r_sep.font.color.rgb = C_GOLD
+    # ── Centro ────────────────────────────────────────────────────────────────
+    fp.add_run("\t")
+    _r(f"{SITE}  |  {EMAIL}  |  {CIDADE}", 6.5, RGBColor(160, 185, 210))
 
-    r_nm = lp.add_run("ANGELO EPIFANIO ADVOCACIA")
-    r_nm.font.name  = "Arial"
-    r_nm.font.size  = Pt(7)
-    r_nm.font.color.rgb = C_WHITE
-    add_run_spacing(r_nm, 30)
-
-    # ── Célula central: contato ───────────────────────────────────────────────
-    cp = cc.paragraphs[0]
-    cp.alignment = WD_ALIGN_PARAGRAPH.CENTER
-    set_para_spacing(cp, before_pt=6, after_pt=6, line_rule="auto", line=240)
-    r_ct = cp.add_run(f"{SITE}  |  {EMAIL}  |  {CIDADE}")
-    r_ct.font.name  = "Arial"
-    r_ct.font.size  = Pt(6.5)
-    r_ct.font.color.rgb = RGBColor(160, 185, 210)
-
-    # ── Célula direita: número de página ─────────────────────────────────────
-    rp = rc.paragraphs[0]
-    rp.alignment = WD_ALIGN_PARAGRAPH.RIGHT
-    set_para_spacing(rp, before_pt=6, after_pt=6, line_rule="auto", line=240)
-    rr = rp.add_run()
+    # ── Direita: número de página ─────────────────────────────────────────────
+    fp.add_run("\t")
+    rr = fp.add_run()
     rr.font.name  = "Arial"
     rr.font.bold  = True
     rr.font.size  = Pt(9)
     rr.font.color.rgb = C_WHITE
     add_page_field(rr)
+    # Pequeno recuo interno à direita
+    _r("  ", 8, C_WHITE)
 
 
 # ═══════════════════════════════════════════════════════════════════════════════
