@@ -51,6 +51,19 @@ Primeiro item
 Segundo item
 @FIM
 
+@TITULO_PECA              ← título da peça (grande, centralizado, com ◆ abaixo)
+AGRAVO DE INSTRUMENTO
+COM PEDIDO DE TUTELA RECURSAL
+@FIM
+
+@SECAO_DESTAQUE Texto     ← seção estilizada com ◆ abaixo (ex: JUSTIFICATIVA DA REFORMA)
+
+@TABELA_SUMARIO Título1 | Título2   ← 2 colunas com cabeçalhos navy
+Conteúdo esquerda          ← linhas da coluna esquerda
+@COLUNA
+Conteúdo direita           ← linhas da coluna direita
+@FIM
+
 @IMAGEM caminho/para/imagem.png [largura_cm]   ← insere imagem (padrão: 15cm)
 @ESPACO N      ← N linhas em branco (padrão: 1)
 @LINHA         ← linha horizontal separadora
@@ -69,6 +82,9 @@ from docx.shared import Pt, Cm, RGBColor
 from docx.enum.text import WD_ALIGN_PARAGRAPH
 from docx.oxml.ns import qn
 from docx.oxml import OxmlElement
+
+NAVY_RGB  = RGBColor(13, 35, 64)
+NAVY2_RGB = RGBColor(26, 58, 92)
 
 
 # ── Cores das tabelas (extraídas dos modelos) ─────────────────────────────────
@@ -286,6 +302,110 @@ def build_tabela_urgencia(doc: Document, titulo: str, linhas: list[str]):
     doc.add_paragraph()
 
 
+def set_run_spacing(run, half_pts: int):
+    """Define espaçamento entre caracteres (letter-spacing) em meio-pontos."""
+    rPr = run._r.get_or_add_rPr()
+    sp  = OxmlElement('w:spacing')
+    sp.set(qn('w:val'), str(half_pts))
+    rPr.append(sp)
+
+
+def build_titulo_peca(doc: Document, linhas: list[str]):
+    """Título da peça processual — grande, centralizado, negrito, com ◆ abaixo."""
+    for linha in linhas:
+        if not linha.strip():
+            continue
+        p = doc.add_paragraph()
+        p.alignment = WD_ALIGN_PARAGRAPH.CENTER
+        r = p.add_run(linha.strip().upper())
+        r.font.bold  = True
+        r.font.size  = Pt(16)
+        r.font.name  = 'Times New Roman'
+        r.font.color.rgb = NAVY_RGB
+    # ◆ abaixo do título
+    p2 = doc.add_paragraph()
+    p2.alignment = WD_ALIGN_PARAGRAPH.CENTER
+    r2 = p2.add_run('◆')
+    r2.font.size = Pt(10)
+    r2.font.color.rgb = NAVY_RGB
+    doc.add_paragraph()
+
+
+def add_secao_destaque(doc: Document, texto: str):
+    """Seção de destaque — ex: JUSTIFICATIVA DA REFORMA — com ◆ abaixo."""
+    p = doc.add_paragraph()
+    p.alignment = WD_ALIGN_PARAGRAPH.CENTER
+    r = p.add_run(texto.strip().upper())
+    r.font.bold  = False
+    r.font.size  = Pt(11)
+    r.font.name  = 'Times New Roman'
+    r.font.color.rgb = NAVY_RGB
+    set_run_spacing(r, 80)   # ~4 pt de letter-spacing
+    # ◆
+    p2 = doc.add_paragraph()
+    p2.alignment = WD_ALIGN_PARAGRAPH.CENTER
+    r2 = p2.add_run('◆')
+    r2.font.size = Pt(8)
+    r2.font.color.rgb = NAVY_RGB
+    doc.add_paragraph()
+
+
+def _header_cell_navy(cell, texto: str):
+    """Preenche célula com header estilizado: texto tracked + ◆ abaixo."""
+    set_cell_color(cell, '0D2340')
+    p = cell.paragraphs[0]
+    p.alignment = WD_ALIGN_PARAGRAPH.CENTER
+    pPr = p._p.get_or_add_pPr()
+    sp  = OxmlElement('w:spacing')
+    sp.set(qn('w:before'), '60')
+    sp.set(qn('w:after'),  '40')
+    pPr.append(sp)
+    r = p.add_run(texto.strip().upper())
+    r.font.bold  = False
+    r.font.size  = Pt(9)
+    r.font.color.rgb = RGBColor(255, 255, 255)
+    set_run_spacing(r, 80)
+    # ◆ em parágrafo próprio dentro da célula
+    p2 = cell.add_paragraph()
+    p2.alignment = WD_ALIGN_PARAGRAPH.CENTER
+    pPr2 = p2._p.get_or_add_pPr()
+    sp2  = OxmlElement('w:spacing')
+    sp2.set(qn('w:before'), '0')
+    sp2.set(qn('w:after'),  '60')
+    pPr2.append(sp2)
+    r2 = p2.add_run('◆')
+    r2.font.size = Pt(7)
+    r2.font.color.rgb = RGBColor(200, 210, 225)
+
+
+def build_tabela_sumario(doc: Document, titulo_esq: str, titulo_dir: str,
+                          linhas_esq: list[str], linhas_dir: list[str]):
+    """
+    2 colunas com cabeçalhos navy e losango.
+    Usado para DECISÃO RECORRIDA | PEDIDO e similares.
+    """
+    table = doc.add_table(rows=1, cols=2)
+    table_full_width(table)
+    add_table_border(table)
+
+    hrow = table.rows[0]
+    _header_cell_navy(hrow.cells[0], titulo_esq)
+    _header_cell_navy(hrow.cells[1], titulo_dir)
+
+    # Junta pares de linhas (esq e dir podem ter comprimentos diferentes)
+    max_rows = max(len(linhas_esq), len(linhas_dir))
+    for ri in range(max_rows):
+        row = table.add_row()
+        cor = 'F8F8F6' if ri % 2 == 0 else 'FFFFFF'
+        set_cell_color(row.cells[0], cor)
+        set_cell_color(row.cells[1], cor)
+        esq = linhas_esq[ri].strip() if ri < len(linhas_esq) else ''
+        dir_ = linhas_dir[ri].strip() if ri < len(linhas_dir) else ''
+        fill_cell(row.cells[0], esq)
+        fill_cell(row.cells[1], dir_)
+    doc.add_paragraph()
+
+
 def build_tabela_livre(doc: Document, n_cols: int, linhas: list[str]):
     """Tabela genérica: primeira linha = cabeçalho."""
     if not linhas:
@@ -311,10 +431,15 @@ def build_tabela_livre(doc: Document, n_cols: int, linhas: list[str]):
 def parse(doc: Document, texto: str):
     linhas = texto.splitlines()
     i = 0
-    modo        = None   # None | citacao | assinatura | aviso | tabela_*
-    buf_tabela  = []
-    tab_titulo  = ''
-    tab_ncols   = 2
+    modo           = None
+    buf_tabela     = []
+    tab_titulo     = ''
+    tab_ncols      = 2
+    tab_col_esq    = ''
+    tab_col_dir    = ''
+    buf_sumario_esq = []
+    buf_sumario_dir = []
+    _sumario_lado   = 'esq'
 
     while i < len(linhas):
         linha = linhas[i].rstrip()
@@ -332,10 +457,35 @@ def parse(doc: Document, texto: str):
                 build_tabela_urgencia(doc, tab_titulo, buf_tabela)
             elif modo == 'tabela_livre':
                 build_tabela_livre(doc, tab_ncols, buf_tabela)
+            elif modo == 'titulo_peca':
+                build_titulo_peca(doc, buf_tabela)
+            elif modo == 'tabela_sumario':
+                build_tabela_sumario(doc, tab_col_esq, tab_col_dir,
+                                      buf_sumario_esq, buf_sumario_dir)
             elif modo in ('bullets', 'lista_alfa'):
                 pass  # já adicionado linha a linha
             modo = None
             buf_tabela = []
+            i += 1
+            continue
+
+        # ── Separador de colunas da @TABELA_SUMARIO ─────────────────────────
+        if modo == 'tabela_sumario' and stripped == '@COLUNA':
+            _sumario_lado = 'dir'
+            i += 1
+            continue
+
+        if modo == 'tabela_sumario':
+            if stripped:
+                if _sumario_lado == 'esq':
+                    buf_sumario_esq.append(stripped)
+                else:
+                    buf_sumario_dir.append(stripped)
+            i += 1
+            continue
+
+        if modo == 'titulo_peca':
+            buf_tabela.append(linha)
             i += 1
             continue
 
@@ -413,6 +563,24 @@ def parse(doc: Document, texto: str):
             modo = 'tabela_livre'
             tab_ncols = int(m.group(1))
             buf_tabela = [];  i += 1;  continue
+
+        if stripped == '@TITULO_PECA':
+            modo = 'titulo_peca';  buf_tabela = [];  i += 1;  continue
+
+        m = re.match(r'^@TABELA_SUMARIO\s*(.+)', stripped)
+        if m:
+            partes = m.group(1).split('|')
+            tab_col_esq     = partes[0].strip() if len(partes) > 0 else ''
+            tab_col_dir     = partes[1].strip() if len(partes) > 1 else ''
+            buf_sumario_esq = []
+            buf_sumario_dir = []
+            _sumario_lado   = 'esq'
+            modo = 'tabela_sumario';  i += 1;  continue
+
+        m = re.match(r'^@SECAO_DESTAQUE\s*(.*)', stripped)
+        if m:
+            add_secao_destaque(doc, m.group(1))
+            i += 1;  continue
 
         # ── Diretivas de parágrafo único ─────────────────────────────────────
         if stripped == '':

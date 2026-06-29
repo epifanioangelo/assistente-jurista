@@ -1,0 +1,63 @@
+AO EXMO. SR. DESEMBARGADOR PRESIDENTE
+**Tribunal de Justiça do Estado de São Paulo**
+
+Autos de origem nº 1001234-55.2024.8.26.0001 — 3.ª Vara Cível da Comarca de São José dos Campos/SP
+
+**CARLOS EDUARDO MARTINS**, brasileiro, casado, engenheiro, RG nº 34.567.890-1 SSP/SP, CPF nº 345.678.901-23, residente na Rua das Palmeiras, nº 456, Vila Nova, CEP 04567-890, São José dos Campos/SP, por intermédio de seu advogado que esta subscreve, com fulcro nos arts. 1.015, I, e 1.019, I, do CPC/2015 e na Lei nº 11.340/2006, interpor
+
+@TITULO_PECA
+AGRAVO DE INSTRUMENTO
+COM PEDIDO DE TUTELA RECURSAL
+@FIM
+
+contra decisão proferida pelo juízo *a quo* nos autos em epígrafe, que move em face de **SAÚDE TOTAL OPERADORA DE PLANOS DE SAÚDE LTDA.**, já qualificada no processo originário, pelas razões de fato e de direito expostas, requerendo seja recebido e processado na forma da lei para, ao final, ser conhecido e provido.
+
+@TABELA_SUMARIO DECISÃO RECORRIDA | PEDIDO
+O juízo *a quo* deferiu parcialmente a tutela de urgência, autorizando o tratamento oncológico mas limitando a cobertura a 12 sessões de quimioterapia, sem amparo legal ou técnico para tal restrição quantitativa.
+@COLUNA
+Reforma integral da decisão para que a ré seja compelida a custear todas as sessões de quimioterapia prescritas pelo oncologista assistente, sem qualquer limitação de quantidade, enquanto necessário segundo indicação médica, sob pena de astreintes de R$ 5.000,00 por dia de descumprimento.
+@FIM
+
+@SECAO_DESTAQUE JUSTIFICATIVA DA REFORMA
+
+@BULLETS
+A Resolução Normativa ANS nº 465/2021 veda expressamente qualquer limitação quantitativa à cobertura de quimioterapia — a decisão recorrida contraria norma de ordem pública regulatória.
+O Superior Tribunal de Justiça pacificou, pela Súmula 302, que "É abusiva a cláusula contratual de plano de saúde que limita no tempo a internação hospitalar do segurado." O mesmo raciocínio se aplica, por analogia, à limitação de sessões de tratamento contínuo.
+A limitação imposta causa dano imediato e irreparável à saúde do recorrente — cada semana de tratamento incompleto reduz a eficácia terapêutica e aumenta o risco de progressão tumoral, conforme laudo pericial juntado aos autos (Anexo 3).
+O fumus boni iuris é inequívoco: prescrição médica documentada, procedimento no Rol ANS, ausência de fundamento técnico na limitação imposta. O periculum in mora decorre da natureza do quadro clínico oncológico.
+@FIM
+
+@TITULO I — DO CABIMENTO DO AGRAVO DE INSTRUMENTO
+
+O recurso é tempestivo, tendo em vista que a decisão agravada foi publicada em <data de publicação>, e o presente recurso é interposto no 15.º (décimo quinto) dia útil subsequente (art. 1.003, §5.º, do CPC).
+
+A decisão é agravável por força do art. 1.015, I, do CPC, por versar sobre tutela provisória de urgência — espécie de tutela provisória que se enquadra expressamente no inciso invocado.
+
+@TITULO II — DA TUTELA RECURSAL
+
+Presentes os requisitos do art. 1.019, I, c/c art. 300 do CPC, requer-se a concessão imediata de tutela recursal, *inaudita altera pars*, para que a ré seja compelida a autorizar e custear todas as sessões de quimioterapia necessárias, sem limitação quantitativa, até o julgamento do presente recurso.
+
+@TABELA_URGENCIA Requisitos da Tutela Recursal — art. 300 do CPC
+Probabilidade do direito | RN ANS 465/2021 + prescrição médica + ausência de fundamento técnico na decisão
+Perigo de dano irreparável | Progressão tumoral — cada sessão suprimida compromete a eficácia do protocolo oncológico
+Reversibilidade | Custear as sessões não gera dano irreparável à ré; negar gera dano irreparável e irreversível ao paciente
+@FIM
+
+@TITULO III — DOS PEDIDOS
+
+Ante o exposto, requer-se:
+
+@LISTA_ALFA
+o conhecimento e provimento do presente Agravo de Instrumento, com reforma integral da decisão agravada, determinando à ré a cobertura irrestrita e sem limitação quantitativa de todas as sessões de quimioterapia prescritas;
+a concessão imediata de tutela recursal, *inaudita altera pars*, sob pena de astreintes de R$ 5.000,00 (cinco mil reais) por dia de descumprimento, majoráveis na forma do art. 537, §1.º, do CPC;
+a intimação da parte agravada para, querendo, oferecer resposta no prazo de 15 (quinze) dias (art. 1.019, II, do CPC).
+@FIM
+
+Nestes termos,
+Pede deferimento.
+
+São José dos Campos, <data por extenso>.
+
+@ASSINATURA
+Vanildo Angelo Epifanio
+OAB/SP nº XXXXX

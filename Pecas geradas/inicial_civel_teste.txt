@@ -1,0 +1,132 @@
+@IMAGEM _assets/logo_documento.png 10
+
+@ESPACO 1
+
+@CENTRO EXCELENTÍSSIMO(A) SENHOR(A) DOUTOR(A) JUIZ(A) DE DIREITO DA <VARA CÍVEL COMPETENTE> DA COMARCA DE <COMARCA>/<UF>
+
+@ESPACO 1
+
+**CARLOS EDUARDO MARTINS**, brasileiro, casado, engenheiro, portador da Cédula de Identidade RG n.º 34.567.890-1 SSP/SP, inscrito no CPF/MF sob o n.º 345.678.901-23, residente e domiciliado na Rua das Palmeiras, n.º 456, Bairro Vila Nova, CEP 04567-890, São Paulo/SP, por intermédio de seu advogado que esta subscreve, conforme procuração anexa (doc. 01), com escritório profissional na <endereço do escritório>, onde recebe intimações, vem, respeitosamente, à presença de Vossa Excelência, com fundamento nos arts. 319 e seguintes do Código de Processo Civil, nos arts. 186 e 927 do Código Civil e nos arts. 6.º, 14 e 51 do Código de Defesa do Consumidor, propor a presente
+
+@CENTRO AÇÃO DE OBRIGAÇÃO DE FAZER C/C INDENIZAÇÃO POR DANOS MORAIS
+
+**com pedido de tutela de urgência**
+
+em face de
+
+**SAÚDE TOTAL OPERADORA DE PLANOS DE SAÚDE LTDA.**, pessoa jurídica de direito privado, inscrita no CNPJ/MF sob o n.º 12.345.678/0001-90, com sede na Avenida Paulista, n.º 1000, Bela Vista, CEP 01310-100, São Paulo/SP, pelos fatos e fundamentos a seguir expostos.
+
+@TABELA_QUESTOES
+Competência | Vara Cível — relação de consumo; foro do domicílio do consumidor (CDC art. 101, I)
+Gratuidade de justiça | <Informar se há pedido de gratuidade>
+Valor da causa | R$ <soma dos pedidos>
+Autocomposição | Autor não se opõe à audiência de conciliação
+Urgência | Risco à saúde e à vida — requer análise inaudita altera pars
+@FIM
+
+@TITULO I — DOS FATOS
+
+@SUBTITULO 1.1. Da relação contratual e da cobertura contratada
+
+O autor é beneficiário do plano de saúde administrado pela ré, modalidade **<tipo do plano>**, com apólice n.º <número>, vigente desde <data de adesão>, mediante o pagamento regular de mensalidade de R$ <valor> (doc. 02 — carteirinha e comprovantes de pagamento).
+
+O plano contratado prevê expressamente, em sua cláusula <número>, a cobertura de procedimentos oncológicos e tratamentos de alta complexidade indicados por médico assistente, sem limitação de quantidade ou prazo.
+
+@SUBTITULO 1.2. Do diagnóstico e da indicação médica
+
+Em <data do diagnóstico>, o autor recebeu diagnóstico de **<diagnóstico>**, confirmado por laudo médico do Dr. <nome do médico>, CRM/SP n.º <número> (doc. 03). O médico assistente indicou, com urgência, o início imediato do tratamento com **<nome do procedimento/medicamento>**, conforme prescrição médica detalhada (doc. 04).
+
+O procedimento indicado consta expressamente do **Rol de Procedimentos e Eventos em Saúde da ANS** (Resolução Normativa n.º 465/2021), sendo de cobertura obrigatória por todos os planos de saúde registrados na Agência Nacional de Saúde Suplementar.
+
+@SUBTITULO 1.3. Da negativa abusiva da ré
+
+@LINHA_DO_TEMPO
+<Data do diagnóstico> | Diagnóstico confirmado — laudo médico emitido | Laudo — Anexo 3 | Início do quadro clínico
+<Data da solicitação> | Solicitação de autorização do tratamento protocolada junto à ré | Protocolo n.º <número> — Anexo 5 | Demonstra boa-fé e tentativa administrativa
+<Data da negativa> | Negativa de cobertura emitida pela ré | Comunicado oficial — Anexo 6 | Fundamentada em cláusula abusiva
+<Data do recurso> | Recurso interno apresentado pelo autor com novos documentos | E-mails e protocolo — Anexo 7 | Postura colaborativa do autor
+<Data da manutenção> | Ré manteve a negativa sem nova fundamentação técnica | Resposta da ré — Anexo 8 | Resistência infundada — esgotamento da via administrativa
+@FIM
+
+A ré fundamentou a negativa na cláusula <número> do contrato, sob a alegação de <fundamento da negativa>. Tal fundamentação é manifestamente abusiva e contrária ao ordenamento jurídico vigente.
+
+@TITULO II — DO DIREITO
+
+@SUBTITULO 2.1. Da relação de consumo e do regime jurídico aplicável
+
+A relação entre o autor e a ré é inequivocamente de consumo. O autor enquadra-se no conceito de consumidor do art. 2.º do CDC — destinatário final do serviço — e a ré, como operadora de plano de saúde, é fornecedora nos termos do art. 3.º do mesmo diploma.
+
+A incidência do CDC ao contrato de plano de saúde é consolidada pelo Superior Tribunal de Justiça, que editou a Súmula 469: "Aplica-se o Código de Defesa do Consumidor aos contratos de plano de saúde."
+
+@SUBTITULO 2.2. Da abusividade da cláusula de exclusão
+
+A cláusula contratual invocada pela ré para negar a cobertura é nula de pleno direito, por força do art. 51, IV e XI, do Código de Defesa do Consumidor, que veda cláusulas que:
+
+@CITACAO
+"IV — estabeleçam obrigações consideradas iníquas, abusivas, que coloquem o consumidor em desvantagem exagerada, ou sejam incompatíveis com a boa-fé ou a equidade; [...] XI — autorizem o fornecedor a cancelar o contrato unilateralmente, sem que igual direito seja outorgado ao consumidor."
+@FIM
+
+O procedimento negado consta do Rol de Procedimentos da ANS (Resolução Normativa n.º 465/2021), sendo sua cobertura obrigatória. A negativa da ré contraria o art. 10 da Lei n.º 9.656/1998, que veda a exclusão de cobertura de procedimentos prescritos por médico assistente quando integrantes do Rol da ANS.
+
+@SUBTITULO 2.3. Dos danos morais
+
+A conduta da ré — negar cobertura a tratamento médico urgente prescrito por especialista — transcende o mero inadimplemento contratual. O autor, em estado de fragilidade decorrente do diagnóstico grave, viu-se privado de atendimento e submetido a angústia, medo e humilhação, caracterizando dano moral in re ipsa.
+
+A jurisprudência do Superior Tribunal de Justiça é firme no sentido de que a recusa indevida de cobertura por plano de saúde gera dano moral presumido, dispensando prova do abalo. Nesse sentido, o valor sugerido de R$ <valor dos danos morais> mostra-se adequado, considerando a gravidade da conduta e o caráter pedagógico da condenação.
+
+**JURISPRUDÊNCIA NÃO FORNECIDA — pesquisar no STJ: "plano de saúde negativa cobertura dano moral" para acórdãos específicos a inserir.**
+
+@SUBTITULO 2.4. Da tutela de urgência
+
+@TABELA_URGENCIA Fundamentos da tutela de urgência — art. 300 do CPC
+Probabilidade do direito | Prescrição médica documentada + procedimento no Rol ANS + negativa sem fundamento técnico válido
+Perigo de dano | Progressão da enfermidade — atraso no tratamento compromete a eficácia e coloca em risco a vida do autor
+Reversibilidade da medida | Autorizar o tratamento não gera dano irreparável à ré; negar gera dano irreparável ao autor
+Proporcionalidade | Direito à saúde (CF art. 196) prevalece sobre interesse econômico da operadora
+@FIM
+
+@TITULO III — DOS PEDIDOS
+
+Diante do exposto, requer-se a Vossa Excelência:
+
+@LISTA_ALFA
+a concessão **imediata e inaudita altera pars** de tutela de urgência para determinar à ré que autorize e custear o procedimento **<nome do procedimento>** prescrito pelo Dr. <nome>, no prazo de **48 (quarenta e oito) horas**, sob pena de multa diária (astreintes) de R$ <valor da multa> (art. 537 do CPC), a ser majorada em caso de descumprimento reiterado;
+o recebimento da presente petição inicial e seu regular processamento;
+a citação da parte ré, no endereço indicado, para, querendo, apresentar contestação no prazo legal, sob pena de revelia;
+a inversão do ônus da prova, com fundamento no art. 6.º, VIII, do CDC — verossimilhança das alegações e hipossuficiência técnica e informacional do autor;
+ao final, a procedência integral dos pedidos para:
+@FIM
+
+@LISTA_ALFA
+condenar a ré à obrigação de fazer consistente em autorizar e custear, de forma definitiva e sem limitações, o tratamento prescrito pelo médico assistente, enquanto necessário segundo indicação médica, sob pena de multa diária;
+condenar a ré ao pagamento de indenização por danos morais no valor de R$ <valor>, com correção monetária pelo IPCA a partir do arbitramento (Súmula 362/STJ) e juros de mora de 1% ao mês desde o evento danoso (Súmula 54/STJ);
+condenar a ré ao pagamento das custas processuais e dos honorários advocatícios sucumbenciais, fixados nos termos do art. 85, §2.º, do CPC.
+@FIM
+
+@TITULO IV — DO VALOR DA CAUSA
+
+Dá-se à causa o valor de R$ <soma de todos os pedidos econômicos>, nos termos do art. 292 do CPC.
+
+@TITULO V — DAS PROVAS
+
+@TABELA_PROVAS
+Relação contratual e adimplemento | Carteirinha do plano e comprovantes de pagamento | Anexo 2
+Diagnóstico médico | Laudo do Dr. <nome> | Anexo 3
+Indicação do procedimento | Prescrição médica detalhada | Anexo 4
+Protocolo de solicitação | Protocolo de pedido de autorização | Anexo 5
+Negativa de cobertura | Comunicado oficial da ré | Anexo 6
+Recurso interno e resposta | E-mails e documentação | Anexos 7 e 8
+Procedimento no Rol ANS | Resolução Normativa n.º 465/2021 | Anexo 9
+Documentos pessoais do autor | RG e CPF | Anexo 1
+@FIM
+
+Requer-se, ainda, a produção de todos os meios de prova em direito admitidos, especialmente prova documental, pericial médica e depoimento pessoal do representante legal da ré, sob pena de confissão.
+
+Nestes termos,
+Pede deferimento.
+
+<Comarca>, <data por extenso>.
+
+@ASSINATURA
+Vanildo Angelo Epifanio
+OAB/<UF> n.º <número>
