@@ -414,20 +414,21 @@ def criar_rodape(section):
         p._element.getparent().remove(p._element)
 
     # Medidas (twips: 1 cm = 567 twips)
-    # Texto: 16.5 cm = 9355 | Margem esq: 2.5 cm = 1417
-    # Tabela estende-se para a margem esquerda → 9355 + 1417 = 10772 twips
-    TEXT_W  = 9355
-    LEFT_MG = 1417
-    TAB_W   = TEXT_W + LEFT_MG   # 10772
+    # Texto: 16.5 cm = 9355 | Esq: 2.5 cm = 1417 | Dir: 2.0 cm = 1134
+    # Tabela cobre largura total da pagina A4 = 21 cm = 11906 twips
+    TEXT_W   = 9355
+    LEFT_MG  = 1417
+    RIGHT_MG = 1134
+    TAB_W    = TEXT_W + LEFT_MG + RIGHT_MG   # 11906 = A4 completo
 
     # Altura exata da faixa: 2 cm = 1134 twips
     ROW_H   = 1134
 
-    # Larguras das 3 colunas (somam TAB_W)
-    CW = [1500, 6200, 3072]   # AE | centro | direita — soma = 10772
+    # Larguras das 3 colunas (somam TAB_W = 11906)
+    CW = [1700, 6800, 3406]   # AE | centro | direita
 
     # ── Criar tabela ──────────────────────────────────────────────────────────
-    tab = footer.add_table(1, 3, width=Cm(18.93))   # width inicial = TAB_W em cm
+    tab = footer.add_table(1, 3, width=Cm(21.0))   # A4 width
     set_table_no_borders(tab)
 
     # Configurar tblPr: largura absoluta, indent negativo, layout fixo
@@ -470,6 +471,11 @@ def criar_rodape(section):
     # ── Células ───────────────────────────────────────────────────────────────
     lc, cc, rc = tab.cell(0,0), tab.cell(0,1), tab.cell(0,2)
 
+    # Padding horizontal: 270 twips ≈ 18px (igual ao padding do HTML)
+    # Padding vertical: 80 twips (controle pela altura exata da linha)
+    PAD_H = 270   # lados esq/dir
+    PAD_V = 80    # topo/fundo
+
     for cell, w in zip([lc, cc, rc], CW):
         set_cell_color(cell, NAVY1)
         set_cell_no_borders(cell)
@@ -479,11 +485,10 @@ def criar_rodape(section):
         tcW = OxmlElement("w:tcW")
         tcW.set(qn("w:w"), str(w)); tcW.set(qn("w:type"), "dxa")
         tcPr.append(tcW)
-        # Padding interno pequeno (110 twips ~ 2mm)
         tcMar = OxmlElement("w:tcMar")
-        for side in ["top","left","bottom","right"]:
+        for side, val in [("top", PAD_V), ("left", PAD_H), ("bottom", PAD_V), ("right", PAD_H)]:
             m = OxmlElement(f"w:{side}")
-            m.set(qn("w:w"), "110"); m.set(qn("w:type"), "dxa")
+            m.set(qn("w:w"), str(val)); m.set(qn("w:type"), "dxa")
             tcMar.append(m)
         tcPr.append(tcMar)
 
