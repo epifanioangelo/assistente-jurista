@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 540 88" width="540" height="88">
+  <defs>
+    <!-- Gradiente sutil no monograma -->
+    <linearGradient id="navyGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%"   stop-color="#0D2340"/>
+      <stop offset="100%" stop-color="#1A3A5C"/>
+    </linearGradient>
+  </defs>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- MONOGRAMA  [ AE ]                           -->
+  <!-- ═══════════════════════════════════════════ -->
+
+  <!-- Colchete esquerdo — traço superior, vertical, inferior -->
+  <g stroke="url(#navyGrad)" stroke-width="3.2" stroke-linecap="butt" fill="none">
+    <polyline points="36,10 14,10 14,78 36,78"/>
+  </g>
+  <!-- Serifas internas no colchete esquerdo -->
+  <g stroke="#0D2340" stroke-width="1.6" stroke-linecap="round" fill="none">
+    <line x1="14" y1="10" x2="22" y2="10"/>
+    <line x1="14" y1="78" x2="22" y2="78"/>
+  </g>
+
+  <!-- Letras AE -->
+  <text
+    x="78" y="68"
+    font-family="Georgia, 'Times New Roman', serif"
+    font-size="58"
+    font-weight="700"
+    fill="url(#navyGrad)"
+    text-anchor="middle"
+    letter-spacing="-3">AE</text>
+
+  <!-- Colchete direito -->
+  <g stroke="url(#navyGrad)" stroke-width="3.2" stroke-linecap="butt" fill="none">
+    <polyline points="120,10 142,10 142,78 120,78"/>
+  </g>
+  <!-- Serifas internas no colchete direito -->
+  <g stroke="#0D2340" stroke-width="1.6" stroke-linecap="round" fill="none">
+    <line x1="142" y1="10" x2="134" y2="10"/>
+    <line x1="142" y1="78" x2="134" y2="78"/>
+  </g>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- SEPARADOR VERTICAL                          -->
+  <!-- ═══════════════════════════════════════════ -->
+  <line x1="164" y1="16" x2="164" y2="72"
+        stroke="#0D2340" stroke-width="0.7" opacity="0.45"/>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- NOME E SUBTÍTULO                            -->
+  <!-- ═══════════════════════════════════════════ -->
+
+  <!-- Angelo Epifanio -->
+  <text
+    x="182" y="47"
+    font-family="Georgia, 'Times New Roman', serif"
+    font-size="27"
+    font-weight="700"
+    fill="#0D2340"
+    letter-spacing="0.3">Angelo Epifanio</text>
+
+  <!-- Linha divisória fina sob o nome -->
+  <line x1="182" y1="54" x2="532" y2="54"
+        stroke="#1A3A5C" stroke-width="0.5" opacity="0.35"/>
+
+  <!-- SOCIEDADE DE ADVOCACIA -->
+  <text
+    x="183" y="68"
+    font-family="'Helvetica Neue', 'Arial', sans-serif"
+    font-size="9"
+    font-weight="400"
+    fill="#1A3A5C"
+    letter-spacing="4.2">SOCIEDADE DE ADVOCACIA</text>
+</svg>
