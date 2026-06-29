@@ -385,166 +385,130 @@ def _add_tab_stop(pPr, pos_twips: int, align: str):
     tabs.append(t)
 
 
+def _set_para(p, align=WD_ALIGN_PARAGRAPH.LEFT, before=0, after=0):
+    p.alignment = align
+    p.paragraph_format.space_before = Pt(before)
+    p.paragraph_format.space_after  = Pt(after)
+
+
+def _run(p, txt, size, color, bold=False, spacing=0):
+    r = p.add_run(txt)
+    r.font.name      = "Arial"
+    r.font.size      = Pt(size)
+    r.font.color.rgb = color
+    r.font.bold      = bold
+    if spacing:
+        add_run_spacing(r, spacing)
+    return r
+
+
 def criar_rodape(section):
     """
-    Rodape: caixa de texto flutuante (wp:anchor + wps:wsp txBx=1) com fill navy,
-    posicionada na base da pagina via relativeFrom=page.
-    Largura = 21cm, altura = 2cm, fill solid navy, texto branco centralizado.
+    Rodape baseado no HTML do usuario:
+      - Tabela 1 linha x 3 colunas, shading navy
+      - w:trHeight hRule=exact → altura garantida independente de paragrafo
+      - Celulas: AE | ANGELO EPIFANIO / website | email / cidade
     """
     footer = section.footer
     for p in list(footer.paragraphs):
         p._element.getparent().remove(p._element)
 
-    cm     = 360000          # 1 cm em EMU
-    PAGE_H = int(29.7 * cm)  # altura A4
-    PAGE_W = int(21.0 * cm)  # largura A4
-    BAR_H  = int(2.0  * cm)  # altura da faixa
-    BAR_Y  = PAGE_H - BAR_H  # Y do topo da faixa (da borda sup da pagina)
+    # Medidas (twips: 1 cm = 567 twips)
+    # Texto: 16.5 cm = 9355 | Margem esq: 2.5 cm = 1417
+    # Tabela estende-se para a margem esquerda → 9355 + 1417 = 10772 twips
+    TEXT_W  = 9355
+    LEFT_MG = 1417
+    TAB_W   = TEXT_W + LEFT_MG   # 10772
 
-    # Padding interno da caixa de texto (em EMU)
-    L_INS = 91440   # 0.1 inch ~ 2.5mm
-    R_INS = 91440
-    T_INS = 0
-    B_INS = 0
+    # Altura exata da faixa: 2 cm = 1134 twips
+    ROW_H   = 1134
 
-    # Tab stops dentro da caixa (em twips, relativos ao left interno da caixa)
-    # Caixa: 21cm = 11907 twips; l_ins = 91440 EMU = 144 twips
-    # Centro = (11907 - 144) / 2 = 5881; direita = 11907 - 144 - 200 padding = 11563
-    TAB_CENTER = 5881
-    TAB_RIGHT  = 11400
+    # Larguras das 3 colunas (somam TAB_W)
+    CW = [1500, 6200, 3072]   # AE | centro | direita — soma = 10772
 
-    # Cores e contato
-    site   = "www.angeloepifanio.com.br"
-    email  = "contato@angeloepifanio.com.br"
-    cidade = "Sao Jose dos Campos/SP"
+    # ── Criar tabela ──────────────────────────────────────────────────────────
+    tab = footer.add_table(1, 3, width=Cm(18.93))   # width inicial = TAB_W em cm
+    set_table_no_borders(tab)
 
-    WP  = "http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing"
-    A_N = "http://schemas.openxmlformats.org/drawingml/2006/main"
-    WPS = "http://schemas.microsoft.com/office/word/2010/wordprocessingShape"
-    W   = "http://schemas.openxmlformats.org/wordprocessingml/2006/main"
+    # Configurar tblPr: largura absoluta, indent negativo, layout fixo
+    tbl   = tab._tbl
+    tblPr = tbl.find(qn("w:tblPr"))
+    if tblPr is None:
+        tblPr = OxmlElement("w:tblPr"); tbl.insert(0, tblPr)
 
-    box_xml = f"""<w:p xmlns:w="{W}" xmlns:wp="{WP}" xmlns:a="{A_N}" xmlns:wps="{WPS}">
-  <w:pPr><w:spacing w:before="0" w:after="0"/></w:pPr>
-  <w:r><w:drawing>
-    <wp:anchor distT="0" distB="0" distL="0" distR="0"
-               simplePos="0" relativeHeight="251659264"
-               behindDoc="0" locked="1" layoutInCell="1" allowOverlap="0">
-      <wp:simplePos x="0" y="0"/>
-      <wp:positionH relativeFrom="page"><wp:posOffset>0</wp:posOffset></wp:positionH>
-      <wp:positionV relativeFrom="page"><wp:posOffset>{BAR_Y}</wp:posOffset></wp:positionV>
-      <wp:extent cx="{PAGE_W}" cy="{BAR_H}"/>
-      <wp:effectExtent l="0" t="0" r="0" b="0"/>
-      <wp:wrapNone/>
-      <wp:docPr id="21" name="FooterBox"/>
-      <wp:cNvGraphicFramePr/>
-      <a:graphic>
-        <a:graphicData uri="{WPS}">
-          <wps:wsp>
-            <wps:cNvSpPr txBx="1"><a:spLocks noChangeArrowheads="1"/></wps:cNvSpPr>
-            <wps:spPr>
-              <a:xfrm><a:off x="0" y="0"/><a:ext cx="{PAGE_W}" cy="{BAR_H}"/></a:xfrm>
-              <a:prstGeom prst="rect"><a:avLst/></a:prstGeom>
-              <a:solidFill><a:srgbClr val="0B2341"/></a:solidFill>
-              <a:ln><a:noFill/></a:ln>
-            </wps:spPr>
-            <wps:txbx>
-              <w:txbxContent>
-                <w:p>
-                  <w:pPr>
-                    <w:spacing w:before="0" w:after="0" w:line="360" w:lineRule="auto"/>
-                    <w:jc w:val="left"/>
-                    <w:tabs>
-                      <w:tab w:val="center" w:pos="{TAB_CENTER}"/>
-                      <w:tab w:val="right"  w:pos="{TAB_RIGHT}"/>
-                    </w:tabs>
-                  </w:pPr>
-                  <w:r>
-                    <w:rPr>
-                      <w:rFonts w:ascii="Arial" w:hAnsi="Arial"/>
-                      <w:b/>
-                      <w:color w:val="FFFFFF"/>
-                      <w:sz w:val="20"/>
-                      <w:spacing w:val="50"/>
-                    </w:rPr>
-                    <w:t xml:space="preserve">AE</w:t>
-                  </w:r>
-                  <w:r>
-                    <w:rPr>
-                      <w:rFonts w:ascii="Arial" w:hAnsi="Arial"/>
-                      <w:color w:val="B69A54"/>
-                      <w:sz w:val="18"/>
-                    </w:rPr>
-                    <w:t xml:space="preserve">  |  </w:t>
-                  </w:r>
-                  <w:r>
-                    <w:rPr>
-                      <w:rFonts w:ascii="Arial" w:hAnsi="Arial"/>
-                      <w:color w:val="FFFFFF"/>
-                      <w:sz w:val="14"/>
-                      <w:spacing w:val="20"/>
-                    </w:rPr>
-                    <w:t>ANGELO EPIFANIO ADVOCACIA</w:t>
-                  </w:r>
-                  <w:r><w:tab/></w:r>
-                  <w:r>
-                    <w:rPr>
-                      <w:rFonts w:ascii="Arial" w:hAnsi="Arial"/>
-                      <w:color w:val="A0B9D2"/>
-                      <w:sz w:val="13"/>
-                    </w:rPr>
-                    <w:t>{site}  |  {email}  |  {cidade}</w:t>
-                  </w:r>
-                  <w:r><w:tab/></w:r>
-                  <w:r>
-                    <w:rPr>
-                      <w:rFonts w:ascii="Arial" w:hAnsi="Arial"/>
-                      <w:b/>
-                      <w:color w:val="FFFFFF"/>
-                      <w:sz w:val="18"/>
-                    </w:rPr>
-                    <w:fldChar w:fldCharType="begin"/>
-                  </w:r>
-                  <w:r>
-                    <w:rPr>
-                      <w:rFonts w:ascii="Arial" w:hAnsi="Arial"/>
-                      <w:b/>
-                      <w:color w:val="FFFFFF"/>
-                      <w:sz w:val="18"/>
-                    </w:rPr>
-                    <w:instrText xml:space="preserve"> PAGE </w:instrText>
-                  </w:r>
-                  <w:r>
-                    <w:rPr>
-                      <w:rFonts w:ascii="Arial" w:hAnsi="Arial"/>
-                      <w:b/>
-                      <w:color w:val="FFFFFF"/>
-                      <w:sz w:val="18"/>
-                    </w:rPr>
-                    <w:fldChar w:fldCharType="end"/>
-                  </w:r>
-                </w:p>
-              </w:txbxContent>
-            </wps:txbx>
-            <wps:bodyPr lIns="{L_INS}" tIns="{T_INS}" rIns="{R_INS}" bIns="{B_INS}"
-                        anchor="ctr" anchorCtr="0"
-                        wrap="square" vertOverflow="clip" horzOverflow="clip"/>
-          </wps:wsp>
-        </a:graphicData>
-      </a:graphic>
-    </wp:anchor>
-  </w:drawing></w:r>
-</w:p>"""
+    for tag in [qn("w:tblW"), qn("w:tblInd"), qn("w:tblLayout"), qn("w:jc")]:
+        for old in list(tblPr.findall(tag)): tblPr.remove(old)
 
-    box_el = etree.fromstring(box_xml)
-    footer._element.append(box_el)
+    tblW = OxmlElement("w:tblW")
+    tblW.set(qn("w:w"), str(TAB_W)); tblW.set(qn("w:type"), "dxa")
+    tblPr.append(tblW)
 
-    # Paragrafo vazio obrigatorio no footer (Word exige pelo menos um)
-    ep = footer.add_paragraph()
-    ep_pPr = ep._p.get_or_add_pPr()
-    ep_sp = OxmlElement("w:spacing")
-    ep_sp.set(qn("w:before"), "0")
-    ep_sp.set(qn("w:after"),  "0")
-    ep_pPr.append(ep_sp)
+    tblInd = OxmlElement("w:tblInd")
+    tblInd.set(qn("w:w"), str(-LEFT_MG)); tblInd.set(qn("w:type"), "dxa")
+    tblPr.append(tblInd)
+
+    tblLayout = OxmlElement("w:tblLayout")
+    tblLayout.set(qn("w:type"), "fixed")
+    tblPr.append(tblLayout)
+
+    # tblGrid: deve corresponder exatamente a CW
+    tblGrid = tbl.find(qn("w:tblGrid"))
+    if tblGrid is not None: tbl.remove(tblGrid)
+    tblGrid = OxmlElement("w:tblGrid")
+    for w in CW:
+        gc = OxmlElement("w:gridCol"); gc.set(qn("w:w"), str(w)); tblGrid.append(gc)
+    tbl.insert(list(tbl).index(tblPr) + 1, tblGrid)
+
+    # ── Altura exata da linha ─────────────────────────────────────────────────
+    tr   = tab.rows[0]._tr
+    trPr = tr.get_or_add_trPr()
+    trH  = OxmlElement("w:trHeight")
+    trH.set(qn("w:val"),   str(ROW_H))
+    trH.set(qn("w:hRule"), "exact")
+    trPr.append(trH)
+
+    # ── Células ───────────────────────────────────────────────────────────────
+    lc, cc, rc = tab.cell(0,0), tab.cell(0,1), tab.cell(0,2)
+
+    for cell, w in zip([lc, cc, rc], CW):
+        set_cell_color(cell, NAVY1)
+        set_cell_no_borders(cell)
+        set_cell_vert_align(cell, "center")
+        tcPr = cell._tc.get_or_add_tcPr()
+        for old in list(tcPr.findall(qn("w:tcW"))): tcPr.remove(old)
+        tcW = OxmlElement("w:tcW")
+        tcW.set(qn("w:w"), str(w)); tcW.set(qn("w:type"), "dxa")
+        tcPr.append(tcW)
+        # Padding interno pequeno (110 twips ~ 2mm)
+        tcMar = OxmlElement("w:tcMar")
+        for side in ["top","left","bottom","right"]:
+            m = OxmlElement(f"w:{side}")
+            m.set(qn("w:w"), "110"); m.set(qn("w:type"), "dxa")
+            tcMar.append(m)
+        tcPr.append(tcMar)
+
+    # Célula esquerda: AE
+    lp = lc.paragraphs[0]
+    _set_para(lp, WD_ALIGN_PARAGRAPH.CENTER)
+    _run(lp, "AE", 18, C_WHITE, bold=True, spacing=80)
+
+    # Célula central: nome + website
+    cp1 = cc.paragraphs[0]
+    _set_para(cp1, WD_ALIGN_PARAGRAPH.CENTER)
+    _run(cp1, "ANGELO EPIFANIO ADVOCACIA", 8.5, C_WHITE, bold=True, spacing=20)
+
+    cp2 = cc.add_paragraph()
+    _set_para(cp2, WD_ALIGN_PARAGRAPH.CENTER)
+    _run(cp2, SITE, 7, RGBColor(160, 185, 210))
+
+    # Célula direita: email + cidade (sem numero de pagina por enquanto)
+    rp1 = rc.paragraphs[0]
+    _set_para(rp1, WD_ALIGN_PARAGRAPH.RIGHT)
+    _run(rp1, EMAIL, 7, RGBColor(160, 185, 210))
+
+    rp2 = rc.add_paragraph()
+    _set_para(rp2, WD_ALIGN_PARAGRAPH.RIGHT)
+    _run(rp2, CIDADE, 7, RGBColor(160, 185, 210))
 
 # ═══════════════════════════════════════════════════════════════════════════════
 # BARRA LATERAL (linha dourada + texto vertical)
