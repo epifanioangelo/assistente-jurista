@@ -26,10 +26,7 @@
 
 ## O que está pendente (próxima sessão)
 
-- [ ] Criar repositório remoto no GitHub (`epifanioangelo/assistente-jurista`) e fazer push
-  - Ir em github.com → New repository → "assistente-jurista" → Public → Create
-  - `git remote add origin https://github.com/epifanioangelo/assistente-jurista.git`
-  - `git push -u origin main`
+- [x] Repositório remoto criado e push feito — github.com/epifanioangelo/assistente-jurista (29/06/2026)
 - [ ] Configurar os 5 projetos no claude.ai
   - Usar os arquivos prontos em `_setup/` para Project Instructions
   - Fazer upload dos arquivos 03, 06, 07, 08 de cada especialidade como Project Knowledge
