@@ -3,7 +3,7 @@
 > Arquivo gerado automaticamente por `pdf_para_md.py`.
 > Para buscar um tema: `grep -ri 'palavra-chave' _analises/`
 
-**Total de arquivos:** 51  
+**Total de arquivos:** 59  
 **Última atualização:** 2026-06-30
 
 ---
@@ -11,6 +11,10 @@
 ## Direito Canábico
 
 - [O CULTIVO DE CANNABIS SATIVA L. NO ORDENAMENTO JURÍDICO BRASILEIRO](canabico/1691.md)
+- [Advocacia Canábica — Checklist de Material de Apoio](canabico/Checklist.md)
+- [Advocacia Canábica — Fundamentos Jurídicos de Apoio](canabico/Fundamentos.md)
+- [Bônus Especial — Panorama Jurídico dos Psicodélicos](canabico/Panorama_Psicodélicos.md)
+- [Imersão Direito Canábico 2026 — Resumo Jurídico Aula 1](canabico/Resumo_Juridico_Aula1.md)
 
 ## Família
 
@@ -69,6 +73,10 @@
 
 ## Previdenciário
 
+- [Direito Previdenciário — Aula 1: Material da Aula (Prof. Frederico Martins)](previdencia/Aula_Prev_1_Material.md)
+- [Modelo de Requerimento Administrativo — Salário Maternidade Sem Carência](previdencia/Aula_Prev_1_Modelo_Salario_Maternidade.md)
+- [Direito Previdenciário — Aula 2: Material da Aula (Prof. Frederico Martins)](previdencia/Aula_Prev_2_Material.md)
+- [Direito Previdenciário — Aula 3: Material da Aula (Prof. Frederico Martins)](previdencia/Aula_Prev_3_Material.md)
 - [RECURSO ESPECIAL Nº 2066882 - RS (2023/0131936-8)](previdencia/Ebook - Tema Repetitivo 1235 40 Salários Minimos.pdf.md)
 
 ## Violência Doméstica
