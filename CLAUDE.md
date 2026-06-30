@@ -2,7 +2,7 @@
 
 ## O que é este projeto
 
-Sistema de IA jurídica para elaboração de peças processuais, análise de casos, pesquisa de jurisprudência e estratégia contenciosa. Estruturado em 5 especialidades, cada uma com seu próprio conjunto de diretrizes, prompts e modelos.
+Sistema de IA jurídica para elaboração de peças processuais, análise de casos, pesquisa de jurisprudência e estratégia contenciosa. Estruturado em 6 especialidades, cada uma com seu próprio conjunto de diretrizes, prompts e modelos.
 
 ## Estrutura de pastas
 
@@ -13,6 +13,7 @@ Assistente Jurista/
 ├── 03 - Advogado Público e Adm./     ← diretrizes + prompts área pública
 ├── 04 - Judiciário e Gabinetes/      ← diretrizes + prompts gabinetes
 ├── 05 - Advogado Empresarial/        ← diretrizes + prompts área empresarial
+├── 06 - Violência Doméstica e Penal/ ← diretrizes + prompts criminal/VD (criado 30/06/2026)
 ├── Modelos jus/                       ← templates .docx das peças
 ├── _memoria/                          ← memória do projeto (ler sempre ao iniciar)
 ├── ROADMAP.md                         ← algoritmo completo de desenvolvimento
