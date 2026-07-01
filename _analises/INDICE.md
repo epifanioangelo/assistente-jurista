@@ -3,7 +3,7 @@
 > Arquivo gerado automaticamente por `pdf_para_md.py`.
 > Para buscar um tema: `grep -ri 'palavra-chave' _analises/`
 
-**Total de arquivos:** 59  
+**Total de arquivos:** 65  
 **Última atualização:** 2026-06-30
 
 ---
@@ -77,7 +77,13 @@
 - [Modelo de Requerimento Administrativo — Salário Maternidade Sem Carência](previdencia/Aula_Prev_1_Modelo_Salario_Maternidade.md)
 - [Direito Previdenciário — Aula 2: Material da Aula (Prof. Frederico Martins)](previdencia/Aula_Prev_2_Material.md)
 - [Direito Previdenciário — Aula 3: Material da Aula (Prof. Frederico Martins)](previdencia/Aula_Prev_3_Material.md)
+- [Checklist Completo de Auxílio-Acidente (Prof. Frederico Martins)](previdencia/Checklist_Auxilio_Acidente_Frederico_Martins.md)
+- [Checklist Completo de Salário-Maternidade — Vias Administrativa e Judicial (Prof](previdencia/Checklist_Salario_Maternidade_Frederico_Martins.md)
 - [RECURSO ESPECIAL Nº 2066882 - RS (2023/0131936-8)](previdencia/Ebook - Tema Repetitivo 1235 40 Salários Minimos.pdf.md)
+- [Modelo de Petição — Aposentadoria Especial (Motorista e Cobrador)](previdencia/Modelo_Aposentadoria_Especial_Motorista_Cobrador.md)
+- [Modelo Petição Inicial — BPC Deficiente com Superação de Renda per Capita (Decre](previdencia/Modelo_BPC_Deficiente_Superacao_Renda.md)
+- [Modelo Mandado de Segurança — Cancelamento Arbitrário de Benefício pelo INSS](previdencia/Modelo_MS_Cancelamento_Arbitrario_INSS.md)
+- [PEDIDO DE REVISÃO ADMINISTRATIVA E REABERTURA DE TAREFA](previdencia/Modelo_Revisao_Administrativa_BPC.md)
 
 ## Violência Doméstica
 
