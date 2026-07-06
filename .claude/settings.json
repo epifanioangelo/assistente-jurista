@@ -1,0 +1,17 @@
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cmd=$(jq -r '.tool_input.command // empty'); if printf '%s' \"$cmd\" | grep -q 'gerar_docx.py'; then printf '%s' '{\"systemMessage\": \"Peça gerada em DOCX — rode clabs-verificador-citacoes antes de finalizar.\", \"hookSpecificOutput\": {\"hookEventName\": \"PostToolUse\", \"additionalContext\": \"LEMBRETE OBRIGATÓRIO: uma peça processual acabou de ser gerada via gerar_docx.py. Antes de encerrar a tarefa, use o Agent tool com subagent_type=clabs-verificador-citacoes para auditar todas as leis, súmulas e precedentes citados no texto gerado, classificando cada citação como VERIFICADA / NÃO ENCONTRADA / DIVERGENTE, e reporte o resultado ao usuário antes de considerar a peça pronta.\"}}'; fi",
+            "timeout": 15,
+            "statusMessage": "Verificando se é peça processual gerada..."
+          }
+        ]
+      }
+    ]
+  }
+}

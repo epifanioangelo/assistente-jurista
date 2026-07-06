@@ -46,3 +46,14 @@ Assistente Jurista/
 - Usar sempre DADOS INSUFICIENTES quando faltar informação essencial
 - Ao criar novos arquivos de diretrizes: seguir o padrão dos existentes em `01 - Advogado Cível/`
 - Commits frequentes — nada se perde
+
+## Antes de redigir qualquer peça ou dar parecer sobre um caso concreto
+
+Skills e agentes disparam sozinhos pela descrição do caso, mas o material de referência em `_analises/` (manuais, teses, ementários, checklists — convertidos de PDF para `.md`) é passivo: só é usado se alguém procurar por ele. Portanto, **antes de redigir a peça ou fundamentar a análise**, sempre:
+
+1. Identificar a área do caso (penal, vd, familia, previdencia, canabico, geral, ou outra pasta que exista em `_analises/`).
+2. Rodar `grep -ril 'palavra-chave' _analises/<área>/` (ou consultar `_analises/INDICE.md`) buscando pelo tipo penal, instituto ou tema específico do caso — não só em Penal, em **qualquer área** que tenha material salvo (cível, trabalhista, tributário, etc., conforme forem sendo adicionados).
+3. Se houver tese, súmula ou estratégia relevante no material encontrado, incorporar à análise/peça (citando a fonte), em vez de redigir só com conhecimento genérico.
+4. Se nada relevante for encontrado, seguir normalmente — mas não pular esta etapa silenciosamente.
+
+Isso vale tanto para peças penais quanto cíveis, trabalhistas, previdenciárias etc. — qualquer área em que exista (ou venha a existir) material salvo em `_analises/`.
