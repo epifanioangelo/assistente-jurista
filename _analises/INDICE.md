@@ -3,8 +3,8 @@
 > Arquivo gerado automaticamente por `pdf_para_md.py`.
 > Para buscar um tema: `grep -ri 'palavra-chave' _analises/`
 
-**Total de arquivos:** 65  
-**Última atualização:** 2026-06-30
+**Total de arquivos:** 66  
+**Última atualização:** 2026-07-05
 
 ---
 
@@ -69,6 +69,7 @@
 - [Caso Delegado Christian Zilmon x Advogada Áricka Cunha — HC Criminal TJGO](penal/1680.md)
 - [Aliciamento Digital de Menores — Grooming, Tipificação Penal e Competência Inves](penal/1681.md)
 - [Análise da Lei nº 15.397, de 30 de abril de 2026](penal/1708.md)
+- [Teses de Defesa — Furto, Roubo, Estelionato e Receptação (Prof. Alexandre Zambon](penal/Manual Direito Penal Zamboni.md)
 - [PODER JUDICIÁRIO DO ESTADO DO RIO DE JANEIRO](penal/decisao-absolvicao-reus-incendio-Ninho-do-Urubu.md)
 
 ## Previdenciário
