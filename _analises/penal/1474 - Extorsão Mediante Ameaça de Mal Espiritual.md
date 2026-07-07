@@ -2,14 +2,14 @@
 arquivo_original: 1474 - Extorsão Mediante Ameaça de Mal Espiritual.pdf
 area: Penal
 tema: Extorsão Mediante Ameaça de Mal Espiritual
-convertido_em: 2026-06-30
+convertido_em: 2026-07-06
 ---
 
 # Extorsão Mediante Ameaça de Mal Espiritual
 
 **Área:** Penal
 **Arquivo original:** `1474 - Extorsão Mediante Ameaça de Mal Espiritual.pdf`
-**Convertido em:** 2026-06-30
+**Convertido em:** 2026-07-06
 
 ---
 

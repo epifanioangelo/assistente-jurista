@@ -2,14 +2,14 @@
 arquivo_original: 1533_Estupro_Art_213_do_Código_Penal_Sem_Contato_Físico.pdf
 area: Penal
 tema: Estupro (Art. 213 do Código Penal) Sem Contato
-convertido_em: 2026-06-30
+convertido_em: 2026-07-06
 ---
 
 # Estupro (Art. 213 do Código Penal) Sem Contato
 
 **Área:** Penal
 **Arquivo original:** `1533_Estupro_Art_213_do_Código_Penal_Sem_Contato_Físico.pdf`
-**Convertido em:** 2026-06-30
+**Convertido em:** 2026-07-06
 
 ---
 

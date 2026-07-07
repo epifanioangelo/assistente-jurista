@@ -2,14 +2,14 @@
 arquivo_original: Ebook - Tema Repetitivo 1235 40 Salários Minimos.pdf.pdf
 area: Previdenciário
 tema: RECURSO ESPECIAL Nº 2066882 - RS (2023/0131936-8)
-convertido_em: 2026-06-30
+convertido_em: 2026-07-06
 ---
 
 # RECURSO ESPECIAL Nº 2066882 - RS (2023/0131936-8)
 
 **Área:** Previdenciário
 **Arquivo original:** `Ebook - Tema Repetitivo 1235 40 Salários Minimos.pdf.pdf`
-**Convertido em:** 2026-06-30
+**Convertido em:** 2026-07-06
 
 ---
 

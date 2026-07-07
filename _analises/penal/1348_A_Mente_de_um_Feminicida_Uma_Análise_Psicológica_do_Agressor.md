@@ -2,14 +2,14 @@
 arquivo_original: 1348_A_Mente_de_um_Feminicida_Uma_Análise_Psicológica_do_Agressor.pdf
 area: Penal
 tema: A Mente de um Feminicida: Uma Análise
-convertido_em: 2026-06-30
+convertido_em: 2026-07-06
 ---
 
 # A Mente de um Feminicida: Uma Análise
 
 **Área:** Penal
 **Arquivo original:** `1348_A_Mente_de_um_Feminicida_Uma_Análise_Psicológica_do_Agressor.pdf`
-**Convertido em:** 2026-06-30
+**Convertido em:** 2026-07-06
 
 ---
 

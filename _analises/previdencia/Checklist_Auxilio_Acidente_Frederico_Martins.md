@@ -1,15 +1,15 @@
 ---
 arquivo_original: Checklist_Auxilio_Acidente_Frederico_Martins.pdf
 area: Previdenciário
-tema: Checklist Completo de Auxílio-Acidente (Prof. Frederico Martins)
-convertido_em: 2026-06-30
+tema: Tabela do Auxílio-Acidente
+convertido_em: 2026-07-06
 ---
 
-# Checklist Completo de Auxílio-Acidente (Prof. Frederico Martins)
+# Tabela do Auxílio-Acidente
 
 **Área:** Previdenciário
 **Arquivo original:** `Checklist_Auxilio_Acidente_Frederico_Martins.pdf`
-**Convertido em:** 2026-06-30
+**Convertido em:** 2026-07-06
 
 ---
 

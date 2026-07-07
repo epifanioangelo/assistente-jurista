@@ -2,14 +2,14 @@
 arquivo_original: 1495_Recurso_de_Apelação_contra_Absolvição_no_Tribunal_do_Júri.pdf
 area: Penal
 tema: Recurso de Apelação contra Absolvição no
-convertido_em: 2026-06-30
+convertido_em: 2026-07-06
 ---
 
 # Recurso de Apelação contra Absolvição no
 
 **Área:** Penal
 **Arquivo original:** `1495_Recurso_de_Apelação_contra_Absolvição_no_Tribunal_do_Júri.pdf`
-**Convertido em:** 2026-06-30
+**Convertido em:** 2026-07-06
 
 ---
 

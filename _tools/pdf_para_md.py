@@ -35,6 +35,7 @@ AREAS = {
     "tributario":  "Tributário",
     "familia":     "Família",
     "empresarial": "Empresarial",
+    "religiao":    "Liberdade Religiosa",
 }
 
 

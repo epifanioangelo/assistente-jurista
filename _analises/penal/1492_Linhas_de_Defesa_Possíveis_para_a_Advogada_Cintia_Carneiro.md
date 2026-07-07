@@ -2,14 +2,14 @@
 arquivo_original: 1492_Linhas_de_Defesa_Possíveis_para_a_Advogada_Cintia_Carneiro.pdf
 area: Penal
 tema: Linhas de Defesa Possíveis para a Advogada
-convertido_em: 2026-06-30
+convertido_em: 2026-07-06
 ---
 
 # Linhas de Defesa Possíveis para a Advogada
 
 **Área:** Penal
 **Arquivo original:** `1492_Linhas_de_Defesa_Possíveis_para_a_Advogada_Cintia_Carneiro.pdf`
-**Convertido em:** 2026-06-30
+**Convertido em:** 2026-07-06
 
 ---
 

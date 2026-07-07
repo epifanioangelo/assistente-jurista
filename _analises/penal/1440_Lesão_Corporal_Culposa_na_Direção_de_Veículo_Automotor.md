@@ -2,14 +2,14 @@
 arquivo_original: 1440_Lesão_Corporal_Culposa_na_Direção_de_Veículo_Automotor.pdf
 area: Penal
 tema: Lesão Corporal Culposa na Direção de Veículo
-convertido_em: 2026-06-30
+convertido_em: 2026-07-06
 ---
 
 # Lesão Corporal Culposa na Direção de Veículo
 
 **Área:** Penal
 **Arquivo original:** `1440_Lesão_Corporal_Culposa_na_Direção_de_Veículo_Automotor.pdf`
-**Convertido em:** 2026-06-30
+**Convertido em:** 2026-07-06
 
 ---
 

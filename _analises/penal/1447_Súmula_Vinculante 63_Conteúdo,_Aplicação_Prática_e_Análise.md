@@ -2,14 +2,14 @@
 arquivo_original: 1447_Súmula_Vinculante 63_Conteúdo,_Aplicação_Prática_e_Análise.pdf
 area: Penal
 tema: Súmula Vinculante 63: Conteúdo, Aplicação
-convertido_em: 2026-06-30
+convertido_em: 2026-07-06
 ---
 
 # Súmula Vinculante 63: Conteúdo, Aplicação
 
 **Área:** Penal
 **Arquivo original:** `1447_Súmula_Vinculante 63_Conteúdo,_Aplicação_Prática_e_Análise.pdf`
-**Convertido em:** 2026-06-30
+**Convertido em:** 2026-07-06
 
 ---
 

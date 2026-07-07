@@ -2,14 +2,14 @@
 arquivo_original: 1478 - Possíveis Teses de Defesa no Caso Lucas Diez Bove.pdf
 area: Penal
 tema: Possíveis Teses de Defesa no Caso Lucas Diez
-convertido_em: 2026-06-30
+convertido_em: 2026-07-06
 ---
 
 # Possíveis Teses de Defesa no Caso Lucas Diez
 
 **Área:** Penal
 **Arquivo original:** `1478 - Possíveis Teses de Defesa no Caso Lucas Diez Bove.pdf`
-**Convertido em:** 2026-06-30
+**Convertido em:** 2026-07-06
 
 ---
 

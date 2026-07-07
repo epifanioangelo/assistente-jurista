@@ -2,14 +2,14 @@
 arquivo_original: 1461 - Análise Jurídica - Caso Ana Paula Veloso.pdf
 area: Penal
 tema: O caso de Ana Paula Veloso, estudante de Direito acusada de uma série de homicídios por envenenamento, transcende a crôn
-convertido_em: 2026-06-30
+convertido_em: 2026-07-06
 ---
 
 # O caso de Ana Paula Veloso, estudante de Direito acusada de uma série de homicídios por envenenamento, transcende a crôn
 
 **Área:** Penal
 **Arquivo original:** `1461 - Análise Jurídica - Caso Ana Paula Veloso.pdf`
-**Convertido em:** 2026-06-30
+**Convertido em:** 2026-07-06
 
 ---
 

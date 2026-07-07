@@ -2,14 +2,14 @@
 arquivo_original: 1483_Projeto_de_Lei_Antifacção_2025_–_Análise_Jurídica_e_Crítica.pdf
 area: Penal
 tema: Projeto de Lei Antifacção (2025) – Análise Jurídica e Crítica
-convertido_em: 2026-06-30
+convertido_em: 2026-07-06
 ---
 
 # Projeto de Lei Antifacção (2025) – Análise Jurídica e Crítica
 
 **Área:** Penal
 **Arquivo original:** `1483_Projeto_de_Lei_Antifacção_2025_–_Análise_Jurídica_e_Crítica.pdf`
-**Convertido em:** 2026-06-30
+**Convertido em:** 2026-07-06
 
 ---
 

@@ -2,14 +2,14 @@
 arquivo_original: 1460_Juiz_pode_destituir_advogado_particular_da_defesa_em_processo.pdf
 area: Penal
 tema: Juiz pode destituir advogado particular da defesa em processo penal?
-convertido_em: 2026-06-30
+convertido_em: 2026-07-06
 ---
 
 # Juiz pode destituir advogado particular da defesa em processo penal?
 
 **Área:** Penal
 **Arquivo original:** `1460_Juiz_pode_destituir_advogado_particular_da_defesa_em_processo.pdf`
-**Convertido em:** 2026-06-30
+**Convertido em:** 2026-07-06
 
 ---
 

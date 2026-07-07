@@ -2,14 +2,14 @@
 arquivo_original: Análise_Jurídica_da_Lei_nº_15_211_2025_–_Estatuto_Digital_da_Criança.pdf
 area: Família
 tema: Análise Jurídica da Lei nº 15.211/2025 – Estatuto
-convertido_em: 2026-06-30
+convertido_em: 2026-07-06
 ---
 
 # Análise Jurídica da Lei nº 15.211/2025 – Estatuto
 
 **Área:** Família
 **Arquivo original:** `Análise_Jurídica_da_Lei_nº_15_211_2025_–_Estatuto_Digital_da_Criança.pdf`
-**Convertido em:** 2026-06-30
+**Convertido em:** 2026-07-06
 
 ---
 

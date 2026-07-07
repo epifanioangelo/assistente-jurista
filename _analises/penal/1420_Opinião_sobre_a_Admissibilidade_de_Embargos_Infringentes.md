@@ -2,14 +2,14 @@
 arquivo_original: 1420_Opinião_sobre_a_Admissibilidade_de_Embargos_Infringentes.pdf
 area: Penal
 tema: OPINIÃO SOBRE A ADMISSIBILIDADE DE EMBARGOS INFRINGENTES NA
-convertido_em: 2026-06-30
+convertido_em: 2026-07-06
 ---
 
 # OPINIÃO SOBRE A ADMISSIBILIDADE DE EMBARGOS INFRINGENTES NA
 
 **Área:** Penal
 **Arquivo original:** `1420_Opinião_sobre_a_Admissibilidade_de_Embargos_Infringentes.pdf`
-**Convertido em:** 2026-06-30
+**Convertido em:** 2026-07-06
 
 ---
 

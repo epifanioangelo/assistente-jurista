@@ -2,14 +2,14 @@
 arquivo_original: 1472 - Contexto e Imputações do Caso.pdf
 area: Penal
 tema: Contexto e Imputações do Caso
-convertido_em: 2026-06-30
+convertido_em: 2026-07-06
 ---
 
 # Contexto e Imputações do Caso
 
 **Área:** Penal
 **Arquivo original:** `1472 - Contexto e Imputações do Caso.pdf`
-**Convertido em:** 2026-06-30
+**Convertido em:** 2026-07-06
 
 ---
 

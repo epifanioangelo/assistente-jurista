@@ -2,14 +2,14 @@
 arquivo_original: 1466_Principais_distinções_entre_crimes_militares_e_crimes_não.pdf
 area: Penal
 tema: Principais distinções entre crimes militares e crimes não militares
-convertido_em: 2026-06-30
+convertido_em: 2026-07-06
 ---
 
 # Principais distinções entre crimes militares e crimes não militares
 
 **Área:** Penal
 **Arquivo original:** `1466_Principais_distinções_entre_crimes_militares_e_crimes_não.pdf`
-**Convertido em:** 2026-06-30
+**Convertido em:** 2026-07-06
 
 ---
 

@@ -1,15 +1,15 @@
 ---
 arquivo_original: Checklist.pdf
 area: Direito Canábico
-tema: Advocacia Canábica — Checklist de Material de Apoio
-convertido_em: 2026-06-30
+tema: A D V O C A C I A  C A N Á B I C A  —  M A T E R I A L  D E  A P O I O
+convertido_em: 2026-07-06
 ---
 
-# Advocacia Canábica — Checklist de Material de Apoio
+# A D V O C A C I A  C A N Á B I C A  —  M A T E R I A L  D E  A P O I O
 
 **Área:** Direito Canábico
 **Arquivo original:** `Checklist.pdf`
-**Convertido em:** 2026-06-30
+**Convertido em:** 2026-07-06
 
 ---
 

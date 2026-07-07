@@ -2,14 +2,14 @@
 arquivo_original: 1477_Os_Traficantes_de_Drogas_não_são_Vítimas_dos_Usuários_Uma.pdf
 area: Penal
 tema: Os Traficantes de Drogas não são Vítimas dos
-convertido_em: 2026-06-30
+convertido_em: 2026-07-06
 ---
 
 # Os Traficantes de Drogas não são Vítimas dos
 
 **Área:** Penal
 **Arquivo original:** `1477_Os_Traficantes_de_Drogas_não_são_Vítimas_dos_Usuários_Uma.pdf`
-**Convertido em:** 2026-06-30
+**Convertido em:** 2026-07-06
 
 ---
 

@@ -2,14 +2,14 @@
 arquivo_original: 1484_Responsabilização_do_Estado_em_Caso_de_Prisão_Preventiva.pdf
 area: Penal
 tema: Responsabilização do Estado em Caso de Prisão
-convertido_em: 2026-06-30
+convertido_em: 2026-07-06
 ---
 
 # Responsabilização do Estado em Caso de Prisão
 
 **Área:** Penal
 **Arquivo original:** `1484_Responsabilização_do_Estado_em_Caso_de_Prisão_Preventiva.pdf`
-**Convertido em:** 2026-06-30
+**Convertido em:** 2026-07-06
 
 ---
 

@@ -2,14 +2,14 @@
 arquivo_original: 1476_Extinção_da_Punibilidade_por_Morte_do_Agente_com_Certidão.pdf
 area: Penal
 tema: Extinção da Punibilidade por Morte do Agente com Certidão de Óbito Falsa
-convertido_em: 2026-06-30
+convertido_em: 2026-07-06
 ---
 
 # Extinção da Punibilidade por Morte do Agente com Certidão de Óbito Falsa
 
 **Área:** Penal
 **Arquivo original:** `1476_Extinção_da_Punibilidade_por_Morte_do_Agente_com_Certidão.pdf`
-**Convertido em:** 2026-06-30
+**Convertido em:** 2026-07-06
 
 ---
 

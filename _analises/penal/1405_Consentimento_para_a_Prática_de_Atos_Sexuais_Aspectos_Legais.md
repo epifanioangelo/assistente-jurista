@@ -2,14 +2,14 @@
 arquivo_original: 1405_Consentimento_para_a_Prática_de_Atos_Sexuais_Aspectos_Legais.pdf
 area: Penal
 tema: Consentimento para a Prática de Atos Sexuais:
-convertido_em: 2026-06-30
+convertido_em: 2026-07-06
 ---
 
 # Consentimento para a Prática de Atos Sexuais:
 
 **Área:** Penal
 **Arquivo original:** `1405_Consentimento_para_a_Prática_de_Atos_Sexuais_Aspectos_Legais.pdf`
-**Convertido em:** 2026-06-30
+**Convertido em:** 2026-07-06
 
 ---
 

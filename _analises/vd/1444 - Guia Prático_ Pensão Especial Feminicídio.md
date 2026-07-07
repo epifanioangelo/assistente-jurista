@@ -2,14 +2,14 @@
 arquivo_original: 1444 - Guia Prático_ Pensão Especial Feminicídio.pdf
 area: Violência Doméstica
 tema: O PROCESSO DE CONCESSÃO PASSO A PASSO.
-convertido_em: 2026-06-30
+convertido_em: 2026-07-06
 ---
 
 # O PROCESSO DE CONCESSÃO PASSO A PASSO.
 
 **Área:** Violência Doméstica
 **Arquivo original:** `1444 - Guia Prático_ Pensão Especial Feminicídio.pdf`
-**Convertido em:** 2026-06-30
+**Convertido em:** 2026-07-06
 
 ---
 

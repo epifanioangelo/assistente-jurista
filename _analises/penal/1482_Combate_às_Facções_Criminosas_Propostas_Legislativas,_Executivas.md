@@ -2,14 +2,14 @@
 arquivo_original: 1482_Combate_às_Facções_Criminosas_Propostas_Legislativas,_Executivas.pdf
 area: Penal
 tema: Combate às Facções Criminosas: Propostas
-convertido_em: 2026-06-30
+convertido_em: 2026-07-06
 ---
 
 # Combate às Facções Criminosas: Propostas
 
 **Área:** Penal
 **Arquivo original:** `1482_Combate_às_Facções_Criminosas_Propostas_Legislativas,_Executivas.pdf`
-**Convertido em:** 2026-06-30
+**Convertido em:** 2026-07-06
 
 ---
 

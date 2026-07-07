@@ -2,14 +2,14 @@
 arquivo_original: 1488_Panorama_Jurídico_Internacional_sobre_Deslocamento_Forçado.pdf
 area: Geral
 tema: Panorama Jurídico Internacional sobre
-convertido_em: 2026-06-30
+convertido_em: 2026-07-06
 ---
 
 # Panorama Jurídico Internacional sobre
 
 **Área:** Geral
 **Arquivo original:** `1488_Panorama_Jurídico_Internacional_sobre_Deslocamento_Forçado.pdf`
-**Convertido em:** 2026-06-30
+**Convertido em:** 2026-07-06
 
 ---
 

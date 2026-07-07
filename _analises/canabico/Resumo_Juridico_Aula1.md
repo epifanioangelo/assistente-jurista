@@ -1,15 +1,15 @@
 ---
 arquivo_original: Resumo_Juridico_Aula1.pdf
 area: Direito Canábico
-tema: Imersão Direito Canábico 2026 — Resumo Jurídico Aula 1
-convertido_em: 2026-06-30
+tema: I M E R S Ã O  D I R E I T O  C A N Á B I C O  2 0 2 6
+convertido_em: 2026-07-06
 ---
 
-# Imersão Direito Canábico 2026 — Resumo Jurídico Aula 1
+# I M E R S Ã O  D I R E I T O  C A N Á B I C O  2 0 2 6
 
 **Área:** Direito Canábico
 **Arquivo original:** `Resumo_Juridico_Aula1.pdf`
-**Convertido em:** 2026-06-30
+**Convertido em:** 2026-07-06
 
 ---
 

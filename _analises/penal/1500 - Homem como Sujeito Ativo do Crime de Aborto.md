@@ -2,14 +2,14 @@
 arquivo_original: 1500 - Homem como Sujeito Ativo do Crime de Aborto.pdf
 area: Penal
 tema: Homem como Sujeito Ativo do Crime de Aborto
-convertido_em: 2026-06-30
+convertido_em: 2026-07-06
 ---
 
 # Homem como Sujeito Ativo do Crime de Aborto
 
 **Área:** Penal
 **Arquivo original:** `1500 - Homem como Sujeito Ativo do Crime de Aborto.pdf`
-**Convertido em:** 2026-06-30
+**Convertido em:** 2026-07-06
 
 ---
 

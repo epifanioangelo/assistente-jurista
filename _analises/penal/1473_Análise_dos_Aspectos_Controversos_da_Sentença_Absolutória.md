@@ -2,14 +2,14 @@
 arquivo_original: 1473_Análise_dos_Aspectos_Controversos_da_Sentença_Absolutória.pdf
 area: Penal
 tema: Análise dos Aspectos Controversos da Sentença
-convertido_em: 2026-06-30
+convertido_em: 2026-07-06
 ---
 
 # Análise dos Aspectos Controversos da Sentença
 
 **Área:** Penal
 **Arquivo original:** `1473_Análise_dos_Aspectos_Controversos_da_Sentença_Absolutória.pdf`
-**Convertido em:** 2026-06-30
+**Convertido em:** 2026-07-06
 
 ---
 

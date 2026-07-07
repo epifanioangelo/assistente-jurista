@@ -1,15 +1,15 @@
 ---
 arquivo_original: Panorama_Psicodélicos.pdf
 area: Direito Canábico
-tema: Bônus Especial — Panorama Jurídico dos Psicodélicos
-convertido_em: 2026-06-30
+tema: B Ô N U S  E S P E C I A L
+convertido_em: 2026-07-06
 ---
 
-# Bônus Especial — Panorama Jurídico dos Psicodélicos
+# B Ô N U S  E S P E C I A L
 
 **Área:** Direito Canábico
 **Arquivo original:** `Panorama_Psicodélicos.pdf`
-**Convertido em:** 2026-06-30
+**Convertido em:** 2026-07-06
 
 ---
 

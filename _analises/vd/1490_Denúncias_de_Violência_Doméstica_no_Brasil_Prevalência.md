@@ -2,14 +2,14 @@
 arquivo_original: 1490_Denúncias_de_Violência_Doméstica_no_Brasil_Prevalência.pdf
 area: Violência Doméstica
 tema: Denúncias de Violência Doméstica no Brasil:
-convertido_em: 2026-06-30
+convertido_em: 2026-07-06
 ---
 
 # Denúncias de Violência Doméstica no Brasil:
 
 **Área:** Violência Doméstica
 **Arquivo original:** `1490_Denúncias_de_Violência_Doméstica_no_Brasil_Prevalência.pdf`
-**Convertido em:** 2026-06-30
+**Convertido em:** 2026-07-06
 
 ---
 

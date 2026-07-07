@@ -1,15 +1,15 @@
 ---
 arquivo_original: Aula_Prev_1_Material.pdf
 area: Previdenciário
-tema: Direito Previdenciário — Aula 1: Material da Aula (Prof. Frederico Martins)
-convertido_em: 2026-06-30
+tema: Prof. Frederico Martins
+convertido_em: 2026-07-06
 ---
 
-# Direito Previdenciário — Aula 1: Material da Aula (Prof. Frederico Martins)
+# Prof. Frederico Martins
 
 **Área:** Previdenciário
 **Arquivo original:** `Aula_Prev_1_Material.pdf`
-**Convertido em:** 2026-06-30
+**Convertido em:** 2026-07-06
 
 ---
 

@@ -2,14 +2,14 @@
 arquivo_original: 1548_Por_que_Sul_e_Sudeste_dizem_que_“sustentam”_o_Nordeste_.pdf
 area: Geral
 tema: Por que Sul e Sudeste dizem que “sustentam” o
-convertido_em: 2026-06-30
+convertido_em: 2026-07-06
 ---
 
 # Por que Sul e Sudeste dizem que “sustentam” o
 
 **Área:** Geral
 **Arquivo original:** `1548_Por_que_Sul_e_Sudeste_dizem_que_“sustentam”_o_Nordeste_.pdf`
-**Convertido em:** 2026-06-30
+**Convertido em:** 2026-07-06
 
 ---
 

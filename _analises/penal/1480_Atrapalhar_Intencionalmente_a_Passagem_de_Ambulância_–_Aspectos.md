@@ -2,14 +2,14 @@
 arquivo_original: 1480_Atrapalhar_Intencionalmente_a_Passagem_de_Ambulância_–_Aspectos.pdf
 area: Penal
 tema: Atrapalhar Intencionalmente a Passagem de
-convertido_em: 2026-06-30
+convertido_em: 2026-07-06
 ---
 
 # Atrapalhar Intencionalmente a Passagem de
 
 **Área:** Penal
 **Arquivo original:** `1480_Atrapalhar_Intencionalmente_a_Passagem_de_Ambulância_–_Aspectos.pdf`
-**Convertido em:** 2026-06-30
+**Convertido em:** 2026-07-06
 
 ---
 

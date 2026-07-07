@@ -1,17 +1,15 @@
 ---
 arquivo_original: Manual Direito Penal Zamboni.pdf
 area: Penal
-tema: Teses de Defesa — Furto, Roubo, Estelionato e Receptação (Prof. Alexandre Zamboni)
-convertido_em: 2026-07-05
+tema: Teses de Defesa
+convertido_em: 2026-07-06
 ---
 
-# Teses de Defesa — Furto, Roubo, Estelionato e Receptação (Prof. Alexandre Zamboni)
+# Teses de Defesa
 
 **Área:** Penal
 **Arquivo original:** `Manual Direito Penal Zamboni.pdf`
-**Convertido em:** 2026-07-05
-**Autor:** Prof. Alexandre Zamboni (maio/2026)
-**Conteúdo:** Manual com dezenas de teses de defesa organizadas por tipo penal — Furto (art. 155, 21 teses, já com a Lei 15.397/2026), Roubo (art. 157, por blocos: atipicidade/desclassificação, iter criminis, insignificância, majorantes do §2º, arma de fogo, figuras especiais), Estelionato e Receptação. Cada tese traz fundamentação legal, doutrinária e jurisprudencial.
+**Convertido em:** 2026-07-06
 
 ---
 

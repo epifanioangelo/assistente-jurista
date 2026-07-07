@@ -2,14 +2,14 @@
 arquivo_original: 1471_Legislação,_Doutrina_e_Jurisprudência_sobre_o_Aborto_no.pdf
 area: Penal
 tema: Legislação, Doutrina e Jurisprudência sobre o
-convertido_em: 2026-06-30
+convertido_em: 2026-07-06
 ---
 
 # Legislação, Doutrina e Jurisprudência sobre o
 
 **Área:** Penal
 **Arquivo original:** `1471_Legislação,_Doutrina_e_Jurisprudência_sobre_o_Aborto_no.pdf`
-**Convertido em:** 2026-06-30
+**Convertido em:** 2026-07-06
 
 ---
 

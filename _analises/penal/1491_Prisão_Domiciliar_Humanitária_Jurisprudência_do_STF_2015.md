@@ -2,14 +2,14 @@
 arquivo_original: 1491_Prisão_Domiciliar_Humanitária_Jurisprudência_do_STF_2015.pdf
 area: Penal
 tema: Prisão Domiciliar Humanitária: Conceito,
-convertido_em: 2026-06-30
+convertido_em: 2026-07-06
 ---
 
 # Prisão Domiciliar Humanitária: Conceito,
 
 **Área:** Penal
 **Arquivo original:** `1491_Prisão_Domiciliar_Humanitária_Jurisprudência_do_STF_2015.pdf`
-**Convertido em:** 2026-06-30
+**Convertido em:** 2026-07-06
 
 ---
 

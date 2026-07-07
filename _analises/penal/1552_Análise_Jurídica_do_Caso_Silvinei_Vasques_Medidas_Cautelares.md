@@ -2,14 +2,14 @@
 arquivo_original: 1552_Análise_Jurídica_do_Caso_Silvinei_Vasques_Medidas_Cautelares.pdf
 area: Penal
 tema: Análise Jurídica do Caso Silvinei Vasques:
-convertido_em: 2026-06-30
+convertido_em: 2026-07-06
 ---
 
 # Análise Jurídica do Caso Silvinei Vasques:
 
 **Área:** Penal
 **Arquivo original:** `1552_Análise_Jurídica_do_Caso_Silvinei_Vasques_Medidas_Cautelares.pdf`
-**Convertido em:** 2026-06-30
+**Convertido em:** 2026-07-06
 
 ---
 

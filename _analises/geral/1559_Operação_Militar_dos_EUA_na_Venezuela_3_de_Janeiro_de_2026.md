@@ -2,14 +2,14 @@
 arquivo_original: 1559_Operação_Militar_dos_EUA_na_Venezuela_3_de_Janeiro_de_2026.pdf
 area: Geral
 tema: Operação Militar dos EUA na Venezuela (3 de
-convertido_em: 2026-06-30
+convertido_em: 2026-07-06
 ---
 
 # Operação Militar dos EUA na Venezuela (3 de
 
 **Área:** Geral
 **Arquivo original:** `1559_Operação_Militar_dos_EUA_na_Venezuela_3_de_Janeiro_de_2026.pdf`
-**Convertido em:** 2026-06-30
+**Convertido em:** 2026-07-06
 
 ---
 

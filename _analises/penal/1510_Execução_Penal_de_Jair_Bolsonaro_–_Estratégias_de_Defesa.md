@@ -2,14 +2,14 @@
 arquivo_original: 1510_Execução_Penal_de_Jair_Bolsonaro_–_Estratégias_de_Defesa.pdf
 area: Penal
 tema: Execução Penal de Jair Bolsonaro – Estratégias de Defesa Possíveis
-convertido_em: 2026-06-30
+convertido_em: 2026-07-06
 ---
 
 # Execução Penal de Jair Bolsonaro – Estratégias de Defesa Possíveis
 
 **Área:** Penal
 **Arquivo original:** `1510_Execução_Penal_de_Jair_Bolsonaro_–_Estratégias_de_Defesa.pdf`
-**Convertido em:** 2026-06-30
+**Convertido em:** 2026-07-06
 
 ---
 

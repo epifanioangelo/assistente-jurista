@@ -2,14 +2,14 @@
 arquivo_original: decisao-absolvicao-reus-incendio-Ninho-do-Urubu.pdf
 area: Penal
 tema: PODER JUDICIÁRIO DO ESTADO DO RIO DE JANEIRO
-convertido_em: 2026-06-30
+convertido_em: 2026-07-06
 ---
 
 # PODER JUDICIÁRIO DO ESTADO DO RIO DE JANEIRO
 
 **Área:** Penal
 **Arquivo original:** `decisao-absolvicao-reus-incendio-Ninho-do-Urubu.pdf`
-**Convertido em:** 2026-06-30
+**Convertido em:** 2026-07-06
 
 ---
 

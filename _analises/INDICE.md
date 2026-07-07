@@ -3,18 +3,18 @@
 > Arquivo gerado automaticamente por `pdf_para_md.py`.
 > Para buscar um tema: `grep -ri 'palavra-chave' _analises/`
 
-**Total de arquivos:** 66  
-**Última atualização:** 2026-07-05
+**Total de arquivos:** 71  
+**Última atualização:** 2026-07-06
 
 ---
 
 ## Direito Canábico
 
 - [O CULTIVO DE CANNABIS SATIVA L. NO ORDENAMENTO JURÍDICO BRASILEIRO](canabico/1691.md)
-- [Advocacia Canábica — Checklist de Material de Apoio](canabico/Checklist.md)
-- [Advocacia Canábica — Fundamentos Jurídicos de Apoio](canabico/Fundamentos.md)
-- [Bônus Especial — Panorama Jurídico dos Psicodélicos](canabico/Panorama_Psicodélicos.md)
-- [Imersão Direito Canábico 2026 — Resumo Jurídico Aula 1](canabico/Resumo_Juridico_Aula1.md)
+- [A D V O C A C I A  C A N Á B I C A  —  M A T E R I A L  D E  A P O I O](canabico/Checklist.md)
+- [M A T E R I A L  J U R Í D I C O  D E  A P O I O](canabico/Fundamentos.md)
+- [B Ô N U S  E S P E C I A L](canabico/Panorama_Psicodélicos.md)
+- [I M E R S Ã O  D I R E I T O  C A N Á B I C O  2 0 2 6](canabico/Resumo_Juridico_Aula1.md)
 
 ## Família
 
@@ -26,8 +26,16 @@
 - [Por que Sul e Sudeste dizem que “sustentam” o](geral/1548_Por_que_Sul_e_Sudeste_dizem_que_“sustentam”_o_Nordeste_.md)
 - [Todas as Pessoas Devem Votar? Democracia,](geral/1554_Todas_as_Pessoas_Devem_Votar_Democracia,_Benefícios_Sociais.md)
 - [Operação Militar dos EUA na Venezuela (3 de](geral/1559_Operação_Militar_dos_EUA_na_Venezuela_3_de_Janeiro_de_2026.md)
-- [Lei Estadual nº 19.722/2026 (SC) — Vedação de Ações Afirmativas Étnico-Raciais n](geral/1684.md)
+- [ANÁLISE JURÍDICA](geral/1684.md)
 - [MÊS: ABRIL/2020](geral/arquivo_890773--plantao-judiciario-mes-de-abril-2020.md)
+
+## Liberdade Religiosa
+
+- [Memorialstf26Jul18 Com Assinatura E Timbrado](religiao/MemorialSTF26Jul18 com assinatura e timbrado.md)
+- [Parecer E Decisão 20181005 172230](religiao/Parecer e decisão 20181005_172230.md)
+- [RESOLUÇÃO No 440, DE 7 DE JANEIRO DE 2022.](religiao/RESOLUÇÃO No 440, DE 7 DE JANEIRO DE 2022.md)
+- [Ementa e Acórdão](religiao/STF_RE_494601_47f7f.md)
+- [TRIBUNAL DE JUSTIÇA DO ESTADO DE SÃO PAULO](religiao/Suru Decisão Mandado 24-09-25.md)
 
 ## Penal
 
@@ -64,22 +72,22 @@
 - [Lei 15.353/2026 — Análise Jurídica](penal/1596 - Lei 15.353_26 .md)
 - [CASO POUSO ALEGRE/MG.](penal/1603.md)
 - [Lei nº 15.358/2026: O Marco Legal do Combate ao Crime Organizado](penal/1634.md)
-- [Homicídio Praticado por Motorista de Aplicativo — Caso Jonatas Francisco Leite L](penal/1662.md)
-- [Caso Áricka Cunha — Prisão em Flagrante de Advogada por Publicação em Rede Socia](penal/1673.md)
-- [Caso Delegado Christian Zilmon x Advogada Áricka Cunha — HC Criminal TJGO](penal/1680.md)
-- [Aliciamento Digital de Menores — Grooming, Tipificação Penal e Competência Inves](penal/1681.md)
+- [ANÁLISE JURÍDICA](penal/1662.md)
+- [ANÁLISE JURÍDICA](penal/1673.md)
+- [ANÁLISE JURÍDICA](penal/1680.md)
+- [ANÁLISE JURÍDICA](penal/1681.md)
 - [Análise da Lei nº 15.397, de 30 de abril de 2026](penal/1708.md)
-- [Teses de Defesa — Furto, Roubo, Estelionato e Receptação (Prof. Alexandre Zambon](penal/Manual Direito Penal Zamboni.md)
+- [Teses de Defesa](penal/Manual Direito Penal Zamboni.md)
 - [PODER JUDICIÁRIO DO ESTADO DO RIO DE JANEIRO](penal/decisao-absolvicao-reus-incendio-Ninho-do-Urubu.md)
 
 ## Previdenciário
 
-- [Direito Previdenciário — Aula 1: Material da Aula (Prof. Frederico Martins)](previdencia/Aula_Prev_1_Material.md)
-- [Modelo de Requerimento Administrativo — Salário Maternidade Sem Carência](previdencia/Aula_Prev_1_Modelo_Salario_Maternidade.md)
-- [Direito Previdenciário — Aula 2: Material da Aula (Prof. Frederico Martins)](previdencia/Aula_Prev_2_Material.md)
-- [Direito Previdenciário — Aula 3: Material da Aula (Prof. Frederico Martins)](previdencia/Aula_Prev_3_Material.md)
-- [Checklist Completo de Auxílio-Acidente (Prof. Frederico Martins)](previdencia/Checklist_Auxilio_Acidente_Frederico_Martins.md)
-- [Checklist Completo de Salário-Maternidade — Vias Administrativa e Judicial (Prof](previdencia/Checklist_Salario_Maternidade_Frederico_Martins.md)
+- [Prof. Frederico Martins](previdencia/Aula_Prev_1_Material.md)
+- [ILUSTRÍSSIMO(A)](previdencia/Aula_Prev_1_Modelo_Salario_Maternidade.md)
+- [Prof. Frederico Martins](previdencia/Aula_Prev_2_Material.md)
+- [A AULA MAIS](previdencia/Aula_Prev_3_Material.md)
+- [Tabela do Auxílio-Acidente](previdencia/Checklist_Auxilio_Acidente_Frederico_Martins.md)
+- [Guia operacional completo para concessão de salário-maternidade nas vias adminis](previdencia/Checklist_Salario_Maternidade_Frederico_Martins.md)
 - [RECURSO ESPECIAL Nº 2066882 - RS (2023/0131936-8)](previdencia/Ebook - Tema Repetitivo 1235 40 Salários Minimos.pdf.md)
 - [Modelo de Petição — Aposentadoria Especial (Motorista e Cobrador)](previdencia/Modelo_Aposentadoria_Especial_Motorista_Cobrador.md)
 - [Modelo Petição Inicial — BPC Deficiente com Superação de Renda per Capita (Decre](previdencia/Modelo_BPC_Deficiente_Superacao_Renda.md)

@@ -2,14 +2,14 @@
 arquivo_original: 1502_Coleta_Passiva_de_DNA_do_Investigado_Aspectos_Legais,_Doutrinários.pdf
 area: Penal
 tema: Coleta Passiva de DNA do Investigado: Aspectos
-convertido_em: 2026-06-30
+convertido_em: 2026-07-06
 ---
 
 # Coleta Passiva de DNA do Investigado: Aspectos
 
 **Área:** Penal
 **Arquivo original:** `1502_Coleta_Passiva_de_DNA_do_Investigado_Aspectos_Legais,_Doutrinários.pdf`
-**Convertido em:** 2026-06-30
+**Convertido em:** 2026-07-06
 
 ---
 

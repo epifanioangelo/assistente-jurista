@@ -1,15 +1,15 @@
 ---
 arquivo_original: Checklist_Salario_Maternidade_Frederico_Martins.pdf
 area: Previdenciário
-tema: Checklist Completo de Salário-Maternidade — Vias Administrativa e Judicial (Prof. Frederico Martins)
-convertido_em: 2026-06-30
+tema: Guia operacional completo para concessão de salário-maternidade nas vias administrativa e judicial, incluindo a tese da 
+convertido_em: 2026-07-06
 ---
 
-# Checklist Completo de Salário-Maternidade — Vias Administrativa e Judicial (Prof. Frederico Martins)
+# Guia operacional completo para concessão de salário-maternidade nas vias administrativa e judicial, incluindo a tese da 
 
 **Área:** Previdenciário
 **Arquivo original:** `Checklist_Salario_Maternidade_Frederico_Martins.pdf`
-**Convertido em:** 2026-06-30
+**Convertido em:** 2026-07-06
 
 ---
 

@@ -2,14 +2,14 @@
 arquivo_original: 1454 - Lesões e mortes em cirurgias.pdf
 area: Penal
 tema: Lesões e mortes decorrentes de cirurgias plásticas realizadas por dentistas no Brasil
-convertido_em: 2026-06-30
+convertido_em: 2026-07-06
 ---
 
 # Lesões e mortes decorrentes de cirurgias plásticas realizadas por dentistas no Brasil
 
 **Área:** Penal
 **Arquivo original:** `1454 - Lesões e mortes em cirurgias.pdf`
-**Convertido em:** 2026-06-30
+**Convertido em:** 2026-07-06
 
 ---
 

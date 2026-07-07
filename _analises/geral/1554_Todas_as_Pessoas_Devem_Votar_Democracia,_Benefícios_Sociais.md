@@ -2,14 +2,14 @@
 arquivo_original: 1554_Todas_as_Pessoas_Devem_Votar_Democracia,_Benefícios_Sociais.pdf
 area: Geral
 tema: Todas as Pessoas Devem Votar? Democracia,
-convertido_em: 2026-06-30
+convertido_em: 2026-07-06
 ---
 
 # Todas as Pessoas Devem Votar? Democracia,
 
 **Área:** Geral
 **Arquivo original:** `1554_Todas_as_Pessoas_Devem_Votar_Democracia,_Benefícios_Sociais.pdf`
-**Convertido em:** 2026-06-30
+**Convertido em:** 2026-07-06
 
 ---
 

@@ -2,14 +2,14 @@
 arquivo_original: 1462_Charlatanismo_Artigo_283_do_Código_Penal_Brasileiro.pdf
 area: Penal
 tema: Charlatanismo (Artigo 283 do Código Penal
-convertido_em: 2026-06-30
+convertido_em: 2026-07-06
 ---
 
 # Charlatanismo (Artigo 283 do Código Penal
 
 **Área:** Penal
 **Arquivo original:** `1462_Charlatanismo_Artigo_283_do_Código_Penal_Brasileiro.pdf`
-**Convertido em:** 2026-06-30
+**Convertido em:** 2026-07-06
 
 ---
 

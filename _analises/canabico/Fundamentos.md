@@ -1,15 +1,15 @@
 ---
 arquivo_original: Fundamentos.pdf
 area: Direito Canábico
-tema: Advocacia Canábica — Fundamentos Jurídicos de Apoio
-convertido_em: 2026-06-30
+tema: M A T E R I A L  J U R Í D I C O  D E  A P O I O
+convertido_em: 2026-07-06
 ---
 
-# Advocacia Canábica — Fundamentos Jurídicos de Apoio
+# M A T E R I A L  J U R Í D I C O  D E  A P O I O
 
 **Área:** Direito Canábico
 **Arquivo original:** `Fundamentos.pdf`
-**Convertido em:** 2026-06-30
+**Convertido em:** 2026-07-06
 
 ---
 

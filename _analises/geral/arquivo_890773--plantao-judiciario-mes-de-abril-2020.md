@@ -2,14 +2,14 @@
 arquivo_original: arquivo_890773--plantao-judiciario-mes-de-abril-2020.pdf
 area: Geral
 tema: MÊS: ABRIL/2020
-convertido_em: 2026-06-30
+convertido_em: 2026-07-06
 ---
 
 # MÊS: ABRIL/2020
 
 **Área:** Geral
 **Arquivo original:** `arquivo_890773--plantao-judiciario-mes-de-abril-2020.pdf`
-**Convertido em:** 2026-06-30
+**Convertido em:** 2026-07-06
 
 ---
 
