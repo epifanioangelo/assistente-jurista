@@ -1,0 +1,107 @@
+@CENTRO AO EXMO. SR. DR. PROMOTOR DE JUSTIÇA COM ATRIBUIÇÃO PERANTE O JUIZADO ESPECIAL CRIMINAL DA COMARCA DE [CIDADE]/[UF]
+
+*Autos de Termo Circunstanciado de Ocorrência nº [NÚMERO DO TCO]*
+*Autor do fato: [NOME DA IALORIXÁ/BABALORIXÁ]*
+
+@TITULO_PECA
+PETIÇÃO DE RESTITUIÇÃO DE OBJETOS SAGRADOS
+COM PEDIDO DE URGÊNCIA
+@FIM
+
+**[NOME COMPLETO]**, [Ialorixá/Babalorixá], [nacionalidade], [estado civil], portador(a) do RG nº [•] e CPF nº [•], residente e domiciliado(a) em [endereço completo], na qualidade de sacerdote(isa) e responsável legal pelo **Terreiro [NOME DO TERREIRO]**, situado em [endereço completo do terreiro], por seu advogado que esta subscreve (procuração anexa, doc. 1), vem, respeitosamente, à presença de Vossa Excelência, com fundamento no art. 5º, VI e XI, da Constituição Federal, no art. 24 da Lei nº 12.288/2010 (Estatuto da Igualdade Racial), nos arts. 118 e seguintes do Código de Processo Penal e no art. 69, parágrafo único, da Lei nº 9.099/95, apresentar a presente
+
+@CENTRO PETIÇÃO DE RESTITUIÇÃO DE OBJETOS SAGRADOS
+
+pelos fatos e fundamentos a seguir expostos.
+
+@TITULO I — DOS FATOS
+
+No dia [DATA], por volta das [HORÁRIO], a Requerente/o Requerido realizava culto religioso de rotina no barracão do Terreiro [NOME], localizado em [zona/bairro] de [Cidade]/[UF], quando guarnição da Polícia Militar compareceu ao local em atendimento a chamado de [vizinho(s)/número de reclamantes], que alegou(aram) "perturbação do sossego" em razão do som produzido pelos atabaques utilizados na liturgia.
+
+Os policiais militares ingressaram no terreiro **sem mandado judicial** e **sem que houvesse consentimento válido, livre e por escrito** da Requerente ou de qualquer pessoa com poderes de representação do templo. Não há, nos autos, qualquer termo de consentimento assinado antes do ingresso, tampouco registro de gravação que comprove autorização inequívoca.
+
+Na sequência, os agentes procederam à apreensão de **[QUANTIDADE E DESCRIÇÃO DOS INSTRUMENTOS — ex.: 3 atabaques consagrados, Rum, Rumpi e Lê]**, instrumentos sagrados essenciais à liturgia do culto de matriz africana, e lavraram Termo Circunstanciado de Ocorrência em desfavor da Requerente/do Requerido, capitulando a conduta como contravenção penal prevista no **art. [42 ou 65] da Lei das Contravenções Penais** (Decreto-Lei nº 3.688/1941).
+
+@SECAO_DESTAQUE Nota de uso do modelo — checar qual artigo da LCP foi imputado
+
+Não presumir automaticamente o art. 42. O precedente de Iturama/MG (citado no item 2.5) usou o **art. 65** ("molestar alguém ou perturbar-lhe a tranquilidade, por acinte ou motivo reprovável"), não o art. 42 (perturbação do sossego por ruído, que exige prova técnica de decibéis). A tese de mérito do item 2.3 abaixo foi escrita para o art. 65 — se o caso concreto usar o art. 42, adaptar a tese para a ausência de prova técnica de decibéis e de pluralidade de vítimas.
+
+Não houve, em momento algum, medição técnica de decibéis por órgão ambiental ou perícia competente, nem identificação de pluralidade de vítimas: a ocorrência se lastreia na palavra de [vítima única/poucos reclamantes].
+
+A Requerente/o Requerido, orientado(a) por esta advocacia, assinou o compromisso de comparecimento ao Juizado Especial Criminal, nos termos do art. 69, parágrafo único, da Lei nº 9.099/95, colaborando integralmente com a autoridade.
+
+Ocorre que, decorridos [Nº] dias da apreensão, os instrumentos **permanecem retidos na Delegacia de [•]**, circunstância que impede a realização regular dos cultos do terreiro, viola o exercício da liturgia e configura, para a comunidade de terreiro, verdadeiro esvaziamento ritual — os instrumentos consagrados não são bens fungíveis ou substituíveis: cada atabaque, uma vez consagrado, é irmão de axé daquela casa, e sua ausência interrompe a própria continuidade litúrgica do povo de santo.
+
+Diante disso, impõe-se a imediata restituição dos objetos apreendidos, pelas razões de direito que seguem.
+
+@TITULO II — DO DIREITO
+
+@SUBTITULO 2.1. Da ilegalidade do ingresso no terreiro sem mandado judicial (Tema 280 STF)
+
+O art. 5º, XI, da Constituição Federal, c/c o art. 150, § 4º, III, do Código Penal, estende a proteção da inviolabilidade domiciliar aos compartimentos não abertos ao público onde se exerce atividade profissional ou comunitária — o que inclui, sem qualquer dúvida, o barracão de terreiro onde se realiza o culto.
+
+O Supremo Tribunal Federal, ao fixar a tese de repercussão geral no **Tema 280**, estabeleceu que:
+
+@CITACAO
+"a entrada forçada em domicílio sem mandado judicial só é lícita, mesmo em período noturno, quando amparada em fundadas razões, devidamente justificadas a posteriori, que indiquem que dentro da casa ocorre situação de flagrante delito, sob pena de responsabilidade disciplinar, civil e penal do agente ou da autoridade, e de nulidade dos atos praticados."
+@FIM
+
+No caso concreto, não havia mandado judicial, não havia flagrante de crime (o que se imputa é mera contravenção, distinção tratada no item seguinte) e não há qualquer termo de consentimento válido, por escrito, que legitimasse o ingresso. O ônus de demonstrar a licitude do ingresso é da autoridade policial — ônus que, aqui, não foi minimamente satisfeito.
+
+@SUBTITULO 2.2. Da impossibilidade de ingresso forçado com base em mera contravenção penal
+
+Ainda que se pretendesse justificar o ingresso por "flagrante", é preciso relembrar que flagrante delito pressupõe crime, e a conduta imputada é contravenção penal — categoria normativa distinta e de gravidade sensivelmente inferior. A jurisprudência e a doutrina são uniformes em reconhecer que a mera contravenção, por si só, não autoriza a mitigação da inviolabilidade domiciliar. O ingresso, portanto, foi ilegal desde a sua origem, contaminando todos os atos dele decorrentes — inclusive a apreensão dos instrumentos.
+
+@SUBTITULO 2.3. Da atipicidade material da conduta em face do art. 65 da LCP — incompatibilidade do "acinte ou motivo reprovável" com o culto de boa-fé
+
+Cumpre observar, de início, que o Termo Circunstanciado capitulou a conduta no **art. 65 da LCP** ("molestar alguém ou perturbar-lhe a tranquilidade, por acinte ou por motivo reprovável"), e não no art. 42. A distinção é tecnicamente relevante e deve ser corretamente enfrentada: diversamente do art. 42 — cuja caracterização a jurisprudência e a doutrina consolidaram como dependente de prova técnica de ruído (medição de decibéis por órgão competente) e de pluralidade de vítimas identificadas —, o art. 65 prescinde dessa aferição técnica, mas **exige elemento subjetivo específico** — "acinte" (intenção deliberada de incomodar, de implicar) ou "motivo reprovável" (finalidade desprezível, ilícita ou imoral).
+
+Ora, o culto religioso realizado é o exercício regular de direito fundamental assegurado pelo art. 5º, VI, da Constituição Federal — livre exercício dos cultos religiosos, cláusula pétrea do texto constitucional. Não há, nem poderia haver, qualquer "acinte" (não há intenção de incomodar terceiros; há, isto sim, o cumprimento de obrigação litúrgica) nem "motivo reprovável" (a liturgia de matriz africana não é, e não pode ser tratada como, finalidade ilícita ou imoral, sob pena de o próprio Poder Judiciário chancelar preconceito religioso incompatível com a laicidade do Estado).
+
+A própria tipicidade subjetiva do art. 65 da LCP é, portanto, **estruturalmente incompatível** com a realização de culto religioso de boa-fé. Falta o dolo específico exigido pelo tipo, e sua ausência conduz à atipicidade material da conduta — circunstância que reforça, por si só, a ilegitimidade da manutenção da apreensão dos instrumentos sagrados como se fossem produto ou instrumento de infração penal relevante.
+
+Soma-se a isso a fragilidade probatória: reclamação de vítima única, sem qualquer medição técnica, em contexto onde a convivência com manifestações religiosas de matriz africana é constitucionalmente assegurada e não pode ser tratada, a priori, como incômodo objetivo a legitimar a intervenção penal.
+
+@SUBTITULO 2.4. Da natureza sagrada dos instrumentos apreendidos (CP art. 208)
+
+Os instrumentos apreendidos não são "equipamento de som" ou bem comum. São objetos de culto consagrados, elementos centrais e insubstituíveis da liturgia das religiões de matriz africana, cuja subtração da vida ritual do terreiro configura, em si, ofensa ao livre exercício do culto. O art. 208 do Código Penal tutela exatamente essa dimensão, ao punir o vilipêndio a objeto de culto e o impedimento ou perturbação de cerimônia religiosa. A manutenção da apreensão, sem necessidade probatória que a justifique, extrapola a finalidade cautelar do sequestro processual e passa a configurar, ela própria, obstáculo ao exercício do culto.
+
+@SUBTITULO 2.5. Do precedente análogo — Comarca de Iturama/MG (Autos nº 0344.18.006820-9 / 0068209-92.2018)
+
+Em caso substancialmente análogo, apreciado pela Comarca de Iturama/MG, o Ministério Público — diante de Termo Circunstanciado de Ocorrência por perturbação do sossego capitulado, tal qual no presente caso, no art. 65 da LCP — opinou pelo arquivamento do feito, destacando expressamente que a suposta perturbação se lastreava em vítima única e ponderando o horário da ocorrência. Quanto aos instrumentos apreendidos, a Promotoria de Justiça reconheceu tratar-se de
+
+@CITACAO
+"3 (três) atabaques, instrumento tido como sagrado e de grande importância nos cultos e liturgias de religiões de matriz africana"
+@FIM
+
+requerendo expressamente a sua devolução. O Juízo acolheu integralmente o parecer ministerial, determinando o arquivamento do feito e a restituição dos objetos apreendidos ao autor do fato.
+
+O paralelo com o caso presente é direto: mesma capitulação (art. 65 da LCP), mesma fragilidade probatória (vítima única, sem prova técnica), mesma natureza do bem apreendido (atabaques consagrados). O precedente de Iturama/MG ilustra que o próprio Ministério Público, quando devidamente provocado, reconhece a natureza litúrgica e sagrada desses instrumentos e requer sua pronta devolução — postura que se roga seja replicada no presente caso.
+
+@SECAO_DESTAQUE Nota de uso do modelo — sobre o precedente de Iturama/MG
+
+Trata-se de decisão de primeira instância de outra Comarca — não vincula o presente Juízo, mas serve como reforço persuasivo e ilustração de praxe ministerial. Considerar anexar cópia do parecer/decisão como documento, se o Promotor local não tiver acesso direto ao precedente. Fonte: `_analises/religiao/Parecer e decisão 20181005_172230.md` — reconferir o teor antes de cada uso real (não presumir de memória).
+
+@SUBTITULO 2.6. Do direito à restituição e da urgência
+
+Nos termos do art. 118 e seguintes do Código de Processo Penal, cessada a necessidade da apreensão para fins de prova, impõe-se a restituição do bem a quem de direito. No caso, a autoria e a materialidade do fato (existência dos instrumentos e sua apreensão) já estão integralmente documentadas no próprio TCO — nenhuma finalidade probatória subsiste que justifique a retenção continuada dos instrumentos, sobretudo diante da atipicidade material já demonstrada.
+
+A urgência decorre da própria natureza do bem: cada dia de retenção é um dia de culto impedido, de liturgia interrompida e de violação continuada ao livre exercício religioso assegurado constitucionalmente à Requerente/ao Requerido e à sua comunidade de terreiro.
+
+@TITULO III — DOS PEDIDOS
+
+@LISTA_ALFA
+a) a restituição imediata dos instrumentos sagrados apreendidos no âmbito do Termo Circunstanciado de Ocorrência nº [•], à Requerente/ao Requerido, na qualidade de sacerdote(isa) e responsável pelo Terreiro [NOME];
+b) subsidiariamente, e apenas na eventualidade de subsistir alguma finalidade probatória a ser esclarecida por Vossa Excelência, que se determine a restituição mediante termo, com registro fotográfico e descritivo detalhado dos objetos, resguardando-se a instrução do feito sem prejuízo do exercício do culto;
+c) o reconhecimento da atipicidade material da conduta capitulada no art. 65 da LCP, ante a ausência de acinte ou motivo reprovável, com o consequente arquivamento do Termo Circunstanciado de Ocorrência, à semelhança do que restou decidido no precedente da Comarca de Iturama/MG (Autos nº 0344.18.006820-9);
+d) que se determine à autoridade policial e ao órgão de custódia o tratamento dos objetos apreendidos como bens de natureza sagrada e litúrgica, e não como bens comuns ou "equipamento", em conformidade com o art. 208 do Código Penal e com a Resolução CNJ nº 440/2022;
+e) a intimação desta advocacia de todos os atos subsequentes do feito.
+@FIM
+
+Nestes termos, pede deferimento.
+
+[Cidade], [data].
+
+@ASSINATURA
+[NOME DO ADVOGADO]
+OAB/[UF] nº [•]
