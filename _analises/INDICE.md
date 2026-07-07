@@ -31,8 +31,8 @@
 
 ## Liberdade Religiosa
 
-- [Memorialstf26Jul18 Com Assinatura E Timbrado](religiao/MemorialSTF26Jul18 com assinatura e timbrado.md)
-- [Parecer E Decisão 20181005 172230](religiao/Parecer e decisão 20181005_172230.md)
+- [HÉDIO SILVA JR.](religiao/MemorialSTF26Jul18 com assinatura e timbrado.md)
+- [12 Vara da Comarca de Iturama/MG](religiao/Parecer e decisão 20181005_172230.md)
 - [RESOLUÇÃO No 440, DE 7 DE JANEIRO DE 2022.](religiao/RESOLUÇÃO No 440, DE 7 DE JANEIRO DE 2022.md)
 - [Ementa e Acórdão](religiao/STF_RE_494601_47f7f.md)
 - [TRIBUNAL DE JUSTIÇA DO ESTADO DE SÃO PAULO](religiao/Suru Decisão Mandado 24-09-25.md)

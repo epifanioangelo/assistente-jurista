@@ -12,6 +12,7 @@ Resultado:
 """
 
 import sys
+import os
 import re
 import datetime
 from pathlib import Path
@@ -41,14 +42,27 @@ AREAS = {
 
 # ── Extração de texto ─────────────────────────────────────────────────────────
 
+os.environ.setdefault("TESSDATA_PREFIX", "/opt/homebrew/share/tessdata")
+
+
 def extrair_texto(pdf_path: Path) -> str:
     doc = fitz.open(str(pdf_path))
     paginas = []
     for i, page in enumerate(doc, start=1):
-        texto = page.get_text("text")
-        texto = texto.strip()
+        ocr_usado = False
+        texto = page.get_text("text").strip()
+        if not texto:
+            # Página sem texto extraível (provável PDF escaneado) — tenta OCR
+            try:
+                tp = page.get_textpage_ocr(language="por", dpi=300, full=True)
+                texto = page.get_text(textpage=tp).strip()
+                if texto:
+                    ocr_usado = True
+            except Exception:
+                pass
         if texto:
-            paginas.append(f"<!-- página {i} -->\n{texto}")
+            marca = " (OCR)" if ocr_usado else ""
+            paginas.append(f"<!-- página {i}{marca} -->\n{texto}")
     doc.close()
     return "\n\n".join(paginas)
 
