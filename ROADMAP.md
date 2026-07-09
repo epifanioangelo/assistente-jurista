@@ -15,7 +15,9 @@
 ---
 
 ## FASE 0 — CONFIGURAÇÃO NO CLAUDE.AI PROJECTS
-**Status: EM ANDAMENTO (iniciado 28/06/2026)**
+**Status: EM ANDAMENTO (iniciado 28/06/2026, última atividade 09/07/2026)**
+
+> O objetivo original desta fase (configurar os projetos no claude.ai) ainda não foi concluído, mas o trabalho de 30/06 a 09/07 avançou bem além do escopo inicial: agentes `ae-*` e `clabs-*` instalados em `~/.claude/agents/`, base de conhecimento `_analises/` com OCR automático, primeiro caso real processado (medidas protetivas "Deborah Cunha"), e o agente original `ae-jusracial` (defesa de terreiros + injúria racial como racismo, incorporando a tese do TCC de Angelo). Detalhe sessão a sessão em `_memoria/project_status.md`.
 
 ### O que é
 Usar o Claude.ai (interface web) com o recurso Projects para criar um ambiente persistente por especialidade. Sem código — funciona hoje, imediatamente.
@@ -61,12 +63,16 @@ Usar o Claude.ai (interface web) com o recurso Projects para criar um ambiente p
 - [x] Estrutura de arquivos criada (28/06/2026)
 - [x] Git inicializado
 - [x] CLAUDE.md e ROADMAP criados
+- [x] Especialidade 06 — Violência Doméstica e Penal criada (30/06/2026)
+- [x] Repositório remoto privado no GitHub, com push funcionando (29/06 e 05/07/2026)
+- [x] Primeiro caso real processado fora do claude.ai, direto no Claude Code (05/07/2026 — medidas protetivas "Deborah Cunha")
 - [ ] Projeto Cível criado no claude.ai
 - [ ] Projeto Trabalhista criado no claude.ai
 - [ ] Projeto Público e Adm. criado no claude.ai
 - [ ] Projeto Judiciário criado no claude.ai
 - [ ] Projeto Empresarial criado no claude.ai
-- [ ] Primeiro teste real com caso concreto
+- [ ] Projeto Violência Doméstica e Penal criado no claude.ai
+- [ ] Primeiro teste real com caso concreto **dentro do claude.ai** (o teste real de 05/07 foi via Claude Code, não via Projects)
 
 ---
 
@@ -241,15 +247,23 @@ secretária       → visualizar casos + clientes + agenda
 | 28/06/2026 | Stack web: PHP + MySQL + Claude API | Consistência com XKOO; hospedagem já disponível em afrontar.com.br |
 | 28/06/2026 | Modelo Claude Opus (mais capaz) para produção de peças | Trabalho jurídico exige máxima qualidade; Sonnet para buscas e tarefas auxiliares |
 | 28/06/2026 | Anti-alucinação como regra número 1 | Peça com jurisprudência inventada pode causar dano ao cliente e processo disciplinar OAB |
+| 29/06/2026 | Template único `AGRAVO_INSTRUMENTO.docx` para todas as peças | Padronizar estilos AE (cabeçalho/rodapé navy) em vez de manter 7 templates distintos |
+| 05/07/2026 | Repositório git tratado como privado, aceita dados de caso real | Confirmado por Angelo; permite versionar peças reais sem risco de exposição pública |
+| 06/07/2026 | Pacote Clabs (32 agentes + 107 skills criminal) instalado, hook de verificação de citações movido para `~/.claude/settings.json` | Hook em `Documents/Assistente jurista/.claude/settings.json` nunca disparava — pasta pessoal é tratada como raiz de projeto neste ambiente, não a subpasta |
+| 07/07/2026 | 22 agentes `clabs-*` redundantes com `bravy-*` removidos de `~/.claude/agents/` | Descrições quase idênticas geravam ambiguidade não determinística na escolha automática do agente |
+| 08-09/07/2026 | Agente `ae-jusracial` criado e enriquecido com a Teoria da Irradiação Coletiva (tese do próprio TCC de Angelo) | Área ligada ao TCC e ao caso real de injúria racial; tese citada sempre como "em desenvolvimento do subscritor", não como doutrina publicada — TCC ainda não defendido (out/2026) |
 
 ---
 
 ## PRÓXIMA SESSÃO
 
-**Prioridade imediata:** Configurar os 5 projetos no Claude.ai (Fase 0).
+**Prioridade imediata:** Configurar os 6 projetos no Claude.ai (Fase 0 original — inclui agora a especialidade 06, Violência Doméstica e Penal).
 
 **Passos:**
 1. Abrir claude.ai → Projects
 2. Começar pelo Cível (mais usado)
-3. Testar com um caso concreto real
+3. Testar com um caso concreto real dentro do claude.ai (não confundir com o teste já feito via Claude Code em 05/07)
 4. Registrar resultado em `_memoria/project_status.md`
+
+**Pendências secundárias (ver `_memoria/project_status.md` para detalhe completo):**
+- Substituir texto "AE" do cabeçalho/rodapé do template DOCX por logo em imagem (PNG)
