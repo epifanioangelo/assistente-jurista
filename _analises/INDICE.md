@@ -3,8 +3,8 @@
 > Arquivo gerado automaticamente por `pdf_para_md.py`.
 > Para buscar um tema: `grep -ri 'palavra-chave' _analises/`
 
-**Total de arquivos:** 71  
-**Última atualização:** 2026-07-06
+**Total de arquivos:** 72  
+**Última atualização:** 2026-07-09
 
 ---
 
@@ -15,6 +15,10 @@
 - [M A T E R I A L  J U R Í D I C O  D E  A P O I O](canabico/Fundamentos.md)
 - [B Ô N U S  E S P E C I A L](canabico/Panorama_Psicodélicos.md)
 - [I M E R S Ã O  D I R E I T O  C A N Á B I C O  2 0 2 6](canabico/Resumo_Juridico_Aula1.md)
+
+## Cível
+
+- [Jurisprudência — Danos Morais por Injúria Racial e Racismo](civel/injuria_racial_dano_moral_jurisprudencia.md)
 
 ## Família
 
