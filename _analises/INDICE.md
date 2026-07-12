@@ -3,10 +3,16 @@
 > Arquivo gerado automaticamente por `pdf_para_md.py`.
 > Para buscar um tema: `grep -ri 'palavra-chave' _analises/`
 
-**Total de arquivos:** 72  
-**Última atualização:** 2026-07-09
+**Total de arquivos:** 75  
+**Última atualização:** 2026-07-12
 
 ---
+
+## Cível
+
+- [Jurisprudência — danos morais por injúria racial e racismo](civel/injuria_racial_dano_moral_jurisprudencia.md)
+- [Nome do depoente – endereço – profissão – estado civil – se casado, dados  do cô](civel/usucapiao/roteiro_entrevista_usucapiao.md)
+- [FERNANDA DORNELLAS](civel/usucapiao/usucapiao_extrajudicial_dornellas_2025.md)
 
 ## Direito Canábico
 
@@ -15,10 +21,6 @@
 - [M A T E R I A L  J U R Í D I C O  D E  A P O I O](canabico/Fundamentos.md)
 - [B Ô N U S  E S P E C I A L](canabico/Panorama_Psicodélicos.md)
 - [I M E R S Ã O  D I R E I T O  C A N Á B I C O  2 0 2 6](canabico/Resumo_Juridico_Aula1.md)
-
-## Cível
-
-- [Jurisprudência — Danos Morais por Injúria Racial e Racismo](civel/injuria_racial_dano_moral_jurisprudencia.md)
 
 ## Família
 
@@ -32,6 +34,7 @@
 - [Operação Militar dos EUA na Venezuela (3 de](geral/1559_Operação_Militar_dos_EUA_na_Venezuela_3_de_Janeiro_de_2026.md)
 - [ANÁLISE JURÍDICA](geral/1684.md)
 - [MÊS: ABRIL/2020](geral/arquivo_890773--plantao-judiciario-mes-de-abril-2020.md)
+- [palestra_audiencia_custodia_liberdade_provisoria](penal/palestra_audiencia_custodia_liberdade_provisoria.md)
 
 ## Liberdade Religiosa
 
@@ -42,8 +45,6 @@
 - [TRIBUNAL DE JUSTIÇA DO ESTADO DE SÃO PAULO](religiao/Suru Decisão Mandado 24-09-25.md)
 
 ## Penal
-
-- [Palestra — Audiência de Custódia e Liberdade Provisória (fonte arquivada, ver nota de verificação)](penal/palestra_audiencia_custodia_liberdade_provisoria.md)
 
 - [A Mente de um Feminicida: Uma Análise](penal/1348_A_Mente_de_um_Feminicida_Uma_Análise_Psicológica_do_Agressor.md)
 - [Consentimento para a Prática de Atos Sexuais:](penal/1405_Consentimento_para_a_Prática_de_Atos_Sexuais_Aspectos_Legais.md)
