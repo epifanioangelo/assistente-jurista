@@ -43,6 +43,8 @@
 
 ## Penal
 
+- [Palestra — Audiência de Custódia e Liberdade Provisória (fonte arquivada, ver nota de verificação)](penal/palestra_audiencia_custodia_liberdade_provisoria.md)
+
 - [A Mente de um Feminicida: Uma Análise](penal/1348_A_Mente_de_um_Feminicida_Uma_Análise_Psicológica_do_Agressor.md)
 - [Consentimento para a Prática de Atos Sexuais:](penal/1405_Consentimento_para_a_Prática_de_Atos_Sexuais_Aspectos_Legais.md)
 - [OPINIÃO SOBRE A ADMISSIBILIDADE DE EMBARGOS INFRINGENTES NA](penal/1420_Opinião_sobre_a_Admissibilidade_de_Embargos_Infringentes.md)
