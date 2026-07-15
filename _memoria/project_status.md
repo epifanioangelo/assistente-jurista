@@ -56,6 +56,28 @@
 - [x] Marcado explicitamente no agente como "tese em desenvolvimento do próprio subscritor" (TCC ainda não defendido — defesa prevista out/2026)
 - [x] `_memoria/project_status.md` atualizado para refletir todas as sessões acima (este arquivo)
 
+### 14-15/07/2026 — Skill tipografia-juridica + curso Tipografia Jurídica
+- [x] Skill global `tipografia-juridica` criada (`~/.claude/skills/tipografia-juridica/SKILL.md`) a partir do prompt "Organização Visual de Peças Jurídicas.pdf" — padrão obrigatório de elementos visuais (tabelas, linhas do tempo, listas) em toda peça, nova ou reformatada
+- [x] Regra registrada em `CLAUDE.md` e template AE x NPJ_BASE (contextos A/B/C) confirmado e documentado na memória do usuário
+- [x] Segundo prompt do mesmo curso ("Assistente de Síntese Estratégica de Peças Jurídicas.pdf") analisado — vira skill `sintese-estrategica` (resumo de 1ª página p/ leitura do juiz) — **ainda não construída**, aguardando decisão do Angelo
+- [x] 59 arquivos .docx do curso "Tipografia Jurídica Associados" (ChatGPT) movidos para `Modelos jus/Curso Tipografia Jurídica/` e analisados por amostragem — são exemplos trabalhados (não templates plugáveis; estilos inconsistentes entre arquivos), cobrindo praticamente todo tipo de documento do escritório
+- [x] `tipografia-juridica` ampliada para v1.1.0 com 2 modelos novos extraídos do curso: Modelo 11 (linha do tempo horizontal de tempestividade) e Modelo 12 (card de jurisprudência/precedente — com regra explícita de nunca usar citação fictícia)
+
+### 15/07/2026 — Pendências resolvidas: sintese-estrategica, procuração tabular, docs fora de peça
+- [x] Skill global `sintese-estrategica` criada (`~/.claude/skills/sintese-estrategica/SKILL.md`) a partir do prompt "Assistente de Síntese Estratégica de Peças Jurídicas.pdf" — quadro-resumo de 1ª página, padrão obrigatório junto com a `tipografia-juridica`. Formato "Quadro jurídico" (MODO A, automático) validado contra `1. RECURSO ESPECIAL.docx` e `1. MEMORIAL.docx` do curso, com linhas específicas por tipo de peça (inicial/contestação/réplica/recurso/peça objetiva). MODO B mantém o fluxo original do prompt (propor 2-4 formatos, usuário escolhe).
+- [x] `tipografia-juridica` v1.2.0: Modelo 13 (procuração tabular — 4 blocos Outorgante/Outorgado/Poderes/Finalidade, validado contra `1. PROCURAÇÃO (1).docx`, reaproveitando o marcador `@TABELA_URGENCIA` já existente no `gerar_docx.py`, sem código novo).
+- [x] `bravy-procuracao.md` (agente pré-empacotado) ganhou seção 2.1 apontando para o Modelo 13 quando a procuração for gerada dentro do pipeline `gerar_docx.py` — mesmo padrão de "exceção pontual" já usado no agente de usucapião (12/07).
+- [x] `bravy-minuta-contrato-servicos.md` ganhou nota pontual sobre quadros-resumo (dados de imóvel/pagamento em tabela) referenciando `2. CONTRATO (1).docx` / `3. CONTRATO (2).docx` do curso.
+- [x] Notificação extrajudicial: **já estava coberta** — `ae-notificacao-extrajudicial.md` já usa `@TABELA_SUMARIO`/`@TABELA_URGENCIA`, nenhuma mudança necessária.
+- [x] Decisão sobre currículo/proposta comercial/acompanhamento processual (docs fora de peça, sem agente próprio hoje): **não construir agente dedicado agora** — não são peças jurídicas, e nada na prática atual do escritório (defesa criminal, VD, injúria racial, XKOO, TCC) indica necessidade imediata. Ficam arquivados como referência em `Modelos jus/Curso Tipografia Jurídica/` para quando (se) surgir demanda real.
+- [x] `CLAUDE.md` atualizado com a regra permanente da `sintese-estrategica` ao lado da `tipografia-juridica`.
+
+### 15/07/2026 (continuação) — teste end-to-end + correção de rótulo
+- [x] `sintese-estrategica` testada pela primeira vez: peça simulada completa (petição inicial fictícia, "Roberto Carlos Almeida Santos x Banco Fictício Nacional S.A.", negativação indevida), com todos os elementos — quadro-resumo, linha do tempo, tutela de urgência, card de jurisprudência (Súmula 548/STJ, verificada de verdade), danos e valores — gerada em DOCX e convertida em PDF pronto (`docx2pdf`, via Microsoft Word instalado na máquina). Auditoria de citações: **aprovado** (após 1 ressalva textual corrigida — ver abaixo).
+- [x] Mesma peça gerada também no contexto NPJ (`NPJ_BASE.docx`, assinatura Núcleo de Prática Jurídica/Faculdade Vanguarda) — confirma que a tipografia jurídica e a síntese estratégica funcionam igual nos dois templates.
+- [x] Angelo notou que o rótulo impresso "SÍNTESE ESTRATÉGICA" soava como sinalização de tentativa de persuadir o juiz — corrigido para "QUADRO-RESUMO" (termo neutro, validado no curso). Regra travada na skill `sintese-estrategica` (v1.0.1): "estratégica" nunca aparece no texto impresso da peça, só na conversa com o usuário.
+- [x] Arquivos de teste em `Pecas geradas/Inicial_Roberto_Santos_SIMULACAO_15-07-2026.*` (AE) e `Inicial_Roberto_Santos_SIMULACAO_NPJ_15-07-2026.*` (NPJ).
+
 ---
 
 ## O que está pendente

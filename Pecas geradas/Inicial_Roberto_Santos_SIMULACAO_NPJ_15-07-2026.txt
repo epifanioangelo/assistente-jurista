@@ -1,0 +1,123 @@
+@TITULO_PECA
+AÇÃO DE OBRIGAÇÃO DE FAZER
+C/C INDENIZAÇÃO POR DANOS MORAIS E MATERIAIS
+COM PEDIDO DE TUTELA DE URGÊNCIA
+@FIM
+
+@SECAO_DESTAQUE Quadro-resumo
+
+@TABELA_LIVRE 2
+Elemento | Síntese
+Contexto | O autor quitou integralmente empréstimo pessoal junto ao réu em 10/11/2024; o banco manteve a negativação do nome do autor nos cadastros de proteção ao crédito após a quitação.
+Controvérsia | Se a manutenção da inscrição negativa após a quitação integral da dívida, e após escoado o prazo do art. 43, CDC c/c Súmula 548/STJ, gera dever de indenizar.
+Fundamento | Súmula 548/STJ; art. 43, §§ 1º e 3º, do CDC; arts. 186 e 927 do Código Civil.
+Prova relevante | Comprovante de quitação (Doc. 3); extrato SPC/Serasa com a negativação ainda ativa após a quitação (Doc. 4); e-mail de recusa de crédito comercial pelo fornecedor do autor (Doc. 6).
+Pedido | Tutela de urgência para exclusão imediata da negativação; indenização por danos morais (R$ 10.000,00) e materiais (R$ 3.200,00).
+@FIM
+
+@CENTRO Ao Juízo da 3ª Vara Cível da Comarca de São José dos Campos/SP
+
+ROBERTO CARLOS ALMEIDA SANTOS, brasileiro, casado, comerciante, portador da cédula de identidade RG nº 11.222.333-4 SSP/SP, inscrito no CPF sob o nº 111.222.333-44, residente e domiciliado na Rua das Acácias, nº 250, Jardim Aquarius, São José dos Campos/SP, CEP 12246-000, e-mail roberto.santos@exemplo.com.br, patrocinado pelo Núcleo de Prática Jurídica da Faculdade Vanguarda, que esta subscreve (procuração/termo de patrocínio anexo), vem, respeitosamente, à presença de Vossa Excelência propor a presente
+
+@CENTRO AÇÃO DE OBRIGAÇÃO DE FAZER C/C INDENIZAÇÃO POR DANOS MORAIS E MATERIAIS, COM PEDIDO DE TUTELA DE URGÊNCIA
+
+em face de BANCO FICTÍCIO NACIONAL S.A., pessoa jurídica de direito privado, inscrita no CNPJ sob o nº 00.000.000/0001-00, com sede na Avenida Central, nº 1.000, Centro, São Paulo/SP, pelos fatos e fundamentos a seguir expostos.
+
+@SUBTITULO I — DOS FATOS
+
+Em 15/01/2024, o autor contraiu empréstimo pessoal no valor de R$ 8.000,00 junto ao réu, a ser pago em 12 (doze) parcelas mensais.
+
+Em 10/11/2024, o autor quitou integralmente a última parcela do empréstimo, conforme comprovante de pagamento em anexo (Doc. 3).
+
+Nos termos do art. 43, § 3º, do Código de Defesa do Consumidor e da Súmula 548 do Superior Tribunal de Justiça, incumbia ao réu promover a baixa da inscrição negativa no prazo de 5 (cinco) dias úteis a contar do pagamento integral do débito.
+
+Ocorre que, ao tentar contratar novo financiamento para sua atividade comercial, o autor foi surpreendido, em 05/12/2024, ao constatar que seu nome permanecia inscrito nos cadastros de proteção ao crédito (SPC/Serasa) pela mesma dívida já quitada havia quase um mês (Doc. 4 — extrato SPC/Serasa).
+
+Em 06/12/2024, o autor entrou em contato com o SAC do réu (protocolo nº 445566), sem que a situação fosse resolvida (Doc. 5 — comprovante de protocolo).
+
+Em 10/12/2024, em razão da negativação indevida, o fornecedor do autor recusou a concessão de crédito para aquisição de mercadoria destinada à revenda em seu comércio, causando-lhe prejuízo material direto (Doc. 6 — e-mail de recusa do fornecedor).
+
+Para melhor visualização da sequência dos fatos, veja-se a linha do tempo abaixo.
+
+@LINHA_DO_TEMPO
+15/01/2024 | Contratação do empréstimo pessoal (R$ 8.000,00, 12x) | Doc. 2 — contrato
+10/11/2024 | Quitação integral da última parcela | Doc. 3 — comprovante de pagamento
+20/11/2024 | Vencimento do prazo do art. 43 § 3º CDC / Súmula 548 STJ (5 dias úteis) sem baixa | —
+05/12/2024 | Autor constata que a negativação permanece ativa | Doc. 4 — extrato SPC/Serasa
+06/12/2024 | Contato com o SAC do réu sem solução (protocolo 445566) | Doc. 5 — comprovante de protocolo
+10/12/2024 | Recusa de crédito comercial pelo fornecedor do autor | Doc. 6 — e-mail de recusa
+@FIM
+
+@SUBTITULO II — DA TUTELA DE URGÊNCIA
+
+Estão presentes os requisitos do art. 300 do CPC para a concessão de tutela de urgência.
+
+@TABELA_URGENCIA Requisitos da tutela de urgência (art. 300, CPC)
+Probabilidade do direito | Comprovante de quitação (Doc. 3) somado ao extrato que demonstra a negativação ainda ativa após o pagamento (Doc. 4), à vista do prazo do art. 43 § 3º CDC e da Súmula 548/STJ.
+Perigo de dano | O autor é comerciante e depende de crédito para sua atividade; a manutenção da negativação já lhe custou uma recusa concreta de crédito comercial (Doc. 6), e cada dia de manutenção agrava o prejuízo à sua atividade econômica.
+@FIM
+
+Diante do exposto, requer a concessão de tutela de urgência, inaudita altera parte, para determinar ao réu que promova a exclusão do nome do autor dos cadastros de proteção ao crédito (SPC/Serasa) no prazo de 5 (cinco) dias úteis, sob pena de multa diária a ser arbitrada por este Juízo.
+
+@SUBTITULO III — DO DIREITO
+
+O art. 43, § 3º, do Código de Defesa do Consumidor exige que a correção de informação de cadastro inexata seja comunicada em até 5 (cinco) dias úteis.
+
+O Superior Tribunal de Justiça consolidou essa exigência para a hipótese de pagamento integral do débito, conforme a súmula abaixo.
+
+@TABELA_LIVRE 2
+Súmula 548/STJ | "Incumbe ao credor a exclusão do registro da dívida em nome do devedor no cadastro de inadimplentes no prazo de cinco dias úteis, a partir do integral e efetivo pagamento do débito."
+@FIM
+
+No caso concreto, o réu ultrapassou em muito esse prazo: a quitação ocorreu em 10/11/2024 e a negativação ainda estava ativa em 05/12/2024, quase um mês depois.
+
+A manutenção indevida da inscrição, somada à ausência de solução administrativa (Doc. 5), configura ato ilícito nos termos dos arts. 186 e 927 do Código Civil, gerando o dever de indenizar.
+
+@SUBTITULO IV — DOS DANOS MORAIS E MATERIAIS
+
+A manutenção indevida da inscrição após a quitação, nos moldes da Súmula 548/STJ já citada, caracteriza dano moral in re ipsa: a lesão à honra objetiva e à credibilidade do consumidor decorre do próprio fato da manutenção indevida, dispensada a prova de prejuízo concreto quanto a esse dano.
+
+Já o dano material decorre diretamente da recusa de crédito comercial documentada no Doc. 6, consistindo em lucros cessantes pela perda da oportunidade de revenda da mercadoria.
+
+@TABELA_LIVRE 4
+Tipo de dano | Valor | Documento/Prova | Base/Observação
+Dano moral | R$ 10.000,00 | Docs. 3, 4 e 5 | Dano in re ipsa — manutenção indevida da negativação após a quitação
+Dano material (lucros cessantes) | R$ 3.200,00 | Doc. 6 | Recusa de crédito comercial documentada, valor correspondente à margem da revenda recusada
+@FIM
+
+@SUBTITULO V — DOS PEDIDOS
+
+Diante do exposto, requer:
+
+a) a concessão de tutela de urgência, inaudita altera parte, para determinar ao réu que promova a exclusão do nome do autor dos cadastros de proteção ao crédito (SPC/Serasa) no prazo de 5 (cinco) dias úteis, sob pena de multa diária;
+
+b) a citação do réu para, querendo, apresentar contestação, sob pena de revelia;
+
+c) ao final, a confirmação da tutela de urgência e a condenação do réu ao pagamento de indenização por danos morais, no valor de R$ 10.000,00 (dez mil reais);
+
+d) a condenação do réu ao pagamento de indenização por danos materiais (lucros cessantes), no valor de R$ 3.200,00 (três mil e duzentos reais);
+
+e) a condenação do réu ao pagamento das custas processuais e honorários advocatícios.
+
+Para comprovar os fatos alegados, requer-se a produção das seguintes provas:
+
+@BULLETS
+Prova documental, já anexada com esta inicial (Docs. 1 a 6);
+Depoimento pessoal do representante legal do réu;
+Prova testemunhal, se necessária, a ser oportunamente arrolada;
+Juntada de eventuais documentos supervenientes.
+@FIM
+
+@SUBTITULO VI — DO VALOR DA CAUSA
+
+Dá-se à causa o valor de R$ 13.200,00 (treze mil e duzentos reais), correspondente à soma dos danos morais e materiais postulados.
+
+Termos em que,
+Pede deferimento.
+
+São José dos Campos, 15 de janeiro de 2025.
+
+@ASSINATURA
+Núcleo de Prática Jurídica
+Faculdade Vanguarda — sob supervisão do Prof. Tális Prado Júnior
+@FIM

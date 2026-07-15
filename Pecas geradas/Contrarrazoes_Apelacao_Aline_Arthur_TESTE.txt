@@ -1,0 +1,170 @@
+@TITULO_PECA
+CONTRARRAZÕES DE APELAÇÃO
+@FIM
+
+@CENTRO EXCELENTÍSSIMO SENHOR DOUTOR JUIZ DE DIREITO DO JUIZADO DE VIOLÊNCIA DOMÉSTICA E FAMILIAR CONTRA A MULHER DA COMARCA DE FLORES – ESTADO DE CAMPO BELO
+
+Processo nº _____
+
+ALINE, já qualificada nos autos da ação penal em epígrafe, por intermédio de seu advogado infra-assinado, na qualidade de assistente de acusação, vem, respeitosamente, à presença de Vossa Excelência, com fundamento no Art. 600, § 1º, do Código de Processo Penal, apresentar
+
+@CENTRO CONTRARRAZÕES AO RECURSO DE APELAÇÃO
+
+interposto por ARTHUR, requerendo sejam as presentes razões recebidas e encaminhadas ao Egrégio Tribunal de Justiça do Estado de Campo Belo.
+
+Termos em que,
+Pede deferimento.
+
+Comarca de Flores, 09 de junho de 2025.
+
+@ASSINATURA
+Advogado(a)
+OAB/___ nº _____
+@FIM
+
+@LINHA
+
+@CENTRO EGRÉGIO TRIBUNAL DE JUSTIÇA DO ESTADO DE CAMPO BELO
+@CENTRO COLENDA CÂMARA
+@CENTRO ÍNCLITOS DESEMBARGADORES
+
+@TITULO_PECA
+CONTRARRAZÕES DE APELAÇÃO
+@FIM
+
+Apelante: Arthur
+Apelada: Aline
+
+@SUBTITULO I – DA TEMPESTIVIDADE
+
+A intimação da assistente de acusação ocorreu em 30 de maio de 2025, sexta-feira.
+
+Nos termos do Art. 600, § 1º, do Código de Processo Penal, o prazo para apresentação das contrarrazões é de 08 (oito) dias.
+
+Dessa forma, iniciando-se a contagem em 02 de junho de 2025 (segunda-feira), o termo final ocorreu em 09 de junho de 2025 (segunda-feira), razão pela qual as presentes contrarrazões são tempestivas.
+
+@LINHA_DO_TEMPO
+30/05/2025 (sexta-feira) | Intimação da assistente de acusação | — | —
+02/06/2025 (segunda-feira) | Início da contagem do prazo (Art. 600, § 1º, CPP) | — | —
+09/06/2025 (segunda-feira) | Termo final do prazo; apresentação das contrarrazões | — | Tempestiva
+@FIM
+
+@SUBTITULO II – SÍNTESE PROCESSUAL
+
+O apelante foi denunciado pela prática do crime de lesão corporal leve praticada em contexto de violência doméstica e familiar contra a mulher, previsto no Art. 129, § 13, do Código Penal, após desferir um chute em sua esposa Aline, causando-lhe lesões corporais devidamente constatadas em laudo médico.
+
+Após regular instrução criminal, foi proferida sentença condenatória, fixando-se a pena de 02 (dois) anos de reclusão, em regime aberto, concedendo-se a suspensão condicional da pena, além da condenação ao pagamento de indenização mínima pelos danos sofridos pela vítima.
+
+Irresignado, o réu interpôs recurso de apelação, o qual não merece prosperar.
+
+@SUBTITULO III – DAS PRELIMINARES SUSCITADAS PELO APELANTE
+
+@SUBTITULO2 1. Da inexistência de nulidade por ausência de representação
+
+Não merece acolhimento a alegação de nulidade do processo por ausência de representação da vítima.
+
+A ação penal relativa ao crime de lesão corporal praticado em contexto de violência doméstica e familiar contra a mulher é pública incondicionada.
+
+O Supremo Tribunal Federal, ao julgar a ADI 4.424, consolidou o entendimento de que a ação penal nos crimes de lesão corporal resultantes de violência doméstica é pública incondicionada, afastando a incidência do Art. 88 da Lei nº 9.099/95.
+
+Assim, inexigível qualquer representação da ofendida para o regular prosseguimento da persecução penal.
+
+@SUBTITULO2 2. Da inexistência de cerceamento de defesa
+
+Também não prospera a alegação de cerceamento de defesa pelo indeferimento de perguntas relativas à vida sexual da vítima.
+
+As perguntas formuladas eram manifestamente impertinentes e sem qualquer relevância para o deslinde da causa, razão pela qual corretamente indeferidas pelo magistrado, nos termos do Art. 400, § 1º, do CPP.
+
+Além disso, a proteção da dignidade da vítima e a vedação à revitimização constituem diretrizes fundamentais nos processos envolvendo violência doméstica e familiar contra a mulher.
+
+Desse modo, inexistiu qualquer prejuízo à defesa, incidindo, inclusive, o princípio pas de nullité sans grief.
+
+@SUBTITULO IV – DO MÉRITO
+
+@SUBTITULO2 1. Da comprovação da materialidade delitiva
+
+A alegação de ausência de prova da materialidade delitiva igualmente não merece prosperar.
+
+Embora o delito seja daqueles que deixam vestígios, o Art. 167 e 158 do CPP admite a realização de exame indireto quando impossível o exame de corpo de delito direto.
+
+No caso concreto, a materialidade foi devidamente demonstrada por laudo médico subscrito por profissional do hospital particular onde a vítima recebeu atendimento.
+
+O documento é plenamente idôneo para comprovar as lesões sofridas, especialmente porque elaborado por médico regularmente habilitado.
+
+A jurisprudência consolidada admite que prontuários, relatórios e laudos médicos particulares constituam meios aptos à comprovação da materialidade delitiva em crimes de lesão corporal.
+
+Além disso, a palavra da vítima possui especial relevância nos delitos praticados em âmbito doméstico e familiar, sobretudo quando harmônica com os demais elementos de prova.
+
+@SUBTITULO2 2. Da impossibilidade de reconhecimento da inimputabilidade por embriaguez voluntária
+
+Também não merece acolhimento a tese defensiva de inimputabilidade.
+
+O próprio recorrente afirmou que passou o dia ingerindo bebidas alcoólicas com amigos enquanto assistia à partida de futebol, restando evidenciada a voluntariedade da embriaguez.
+
+Nos termos do Art. 28, inciso II, do Código Penal, a embriaguez voluntária ou culposa pelo álcool não exclui a imputabilidade penal.
+
+Somente a embriaguez completa proveniente de caso fortuito ou força maior poderia excluir a culpabilidade, hipótese absolutamente inexistente nos autos.
+
+Logo, correta a condenação do apelante.
+
+@SUBTITULO2 3. Da impossibilidade de substituição da pena privativa de liberdade por restritiva de direitos
+
+Não assiste razão ao apelante quanto ao pedido subsidiário de substituição da pena privativa de liberdade por restritiva de direitos.
+
+O Art. 44, inciso I, do Código Penal veda a substituição quando o crime for cometido com violência ou grave ameaça à pessoa.
+
+Além disso, a Lei Maria da Penha expressamente proíbe a aplicação isolada de pena de prestação pecuniária nos casos de violência doméstica e familiar contra a mulher, conforme dispõe o Art. 17 da Lei nº 11.340/2006.
+
+Dessa forma, inviável a pretendida substituição da pena privativa de liberdade por duas penas de prestação pecuniária.
+
+Ademais, o magistrado já concedeu ao apelante benefício mais favorável, qual seja, a suspensão condicional da pena.
+
+@SUBTITULO2 4. Da manutenção da condenação à reparação mínima dos danos
+
+Deve ser mantida a condenação ao pagamento de indenização mínima no valor de R$ 1.000,00.
+
+O Art. 387, inciso IV, do CPP autoriza expressamente o magistrado criminal a fixar valor mínimo para reparação dos danos causados pela infração penal.
+
+No caso concreto, houve requerimento expresso do Ministério Público na denúncia, bem como juntada dos comprovantes das despesas médicas suportadas pela vítima.
+
+Foram observados o contraditório e a ampla defesa, inexistindo qualquer nulidade.
+
+A fixação do valor mínimo indenizatório na sentença penal condenatória não impede eventual complementação perante o Juízo cível.
+
+Logo, correta a sentença também nesse ponto.
+
+@TABELA_LIVRE 4
+Tipo de dano | Valor | Documento/Prova | Base/Observação
+Reparação mínima dos danos sofridos pela vítima | R$ 1.000,00 | Comprovantes das despesas médicas | Art. 387, IV, CPP; requerimento do MP na denúncia; não impede complementação no cível
+@FIM
+
+@SECAO_DESTAQUE Quadro-síntese — teses do apelante e refutação
+
+@TABELA_LIVRE 3
+Alegação do apelante | Refutação da apelada | Documento/Âncora
+Nulidade por ausência de representação da vítima | Ação penal pública incondicionada; afasta o Art. 88 da Lei 9.099/95 | Art. 88, Lei 9.099/95; ADI 4.424 STF
+Cerceamento de defesa (indeferimento de perguntas sobre vida sexual da vítima) | Perguntas impertinentes e sem relevância; indeferimento correto; proteção à dignidade da vítima e vedação à revitimização; ausência de prejuízo (pas de nullité sans grief) | Art. 400, § 1º, CPP
+Ausência de prova da materialidade delitiva | Laudo médico particular idôneo; exame indireto admitido quando inviável o direto; jurisprudência admite laudos particulares; palavra da vítima relevante | Arts. 158 e 167, CPP; laudo médico
+Inimputabilidade por embriaguez voluntária | Embriaguez voluntária ou culposa não exclui a imputabilidade; só embriaguez completa por caso fortuito/força maior excluiria a culpabilidade, hipótese inexistente nos autos | Art. 28, II, CP
+Substituição da pena privativa de liberdade por restritiva de direitos | Vedada a substituição em crime com violência/grave ameaça; vedada a prestação pecuniária isolada em violência doméstica; já concedida a suspensão condicional da pena | Art. 44, I, CP; Art. 17, Lei 11.340/2006
+Impugnação do valor da reparação mínima (R$ 1.000,00) | Fixação autorizada; houve requerimento do MP na denúncia e comprovantes das despesas médicas; contraditório e ampla defesa observados | Art. 387, IV, CPP
+@FIM
+
+@SUBTITULO V – DO PEDIDO
+
+Diante do exposto, requer a apelada sejam rejeitadas todas as preliminares suscitadas pelo apelante e, no mérito, seja NEGADO PROVIMENTO ao recurso de apelação, mantendo-se integralmente a sentença condenatória.
+
+Em síntese, requer a apelada:
+
+1. A rejeição de todas as preliminares suscitadas pelo apelante.
+2. O desprovimento do recurso de apelação, com a manutenção integral da sentença condenatória.
+
+Termos em que,
+Pede deferimento.
+
+Comarca de Flores, 09 de junho de 2025.
+
+@ASSINATURA
+Advogado(a)
+OAB/___ nº _____
+@FIM

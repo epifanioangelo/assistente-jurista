@@ -46,6 +46,8 @@ Assistente Jurista/
 - Usar sempre DADOS INSUFICIENTES quando faltar informação essencial
 - Ao criar novos arquivos de diretrizes: seguir o padrão dos existentes em `01 - Advogado Cível/`
 - Commits frequentes — nada se perde
+- **Tipografia jurídica é padrão em toda peça** (nova ou reformatada): sempre incluir os elementos visuais pertinentes — tabelas, quadros comparativos, linhas do tempo, listas numeradas, listas com marcadores — conforme a skill `tipografia-juridica`. Peça redigida do zero já nasce com os elementos embutidos nos capítulos certos; peça pronta que o usuário pedir para organizar segue o fluxo de proposição → escolha → geração dessa skill.
+- **Síntese estratégica é padrão em toda peça** (nova ou reformatada): sempre incluir um quadro-resumo de primeira página — pensado para o julgador que não lê a peça inteira — conforme a skill `sintese-estrategica`. Peça redigida do zero já nasce com o quadro-resumo logo após o título (formato "Quadro jurídico" por padrão); peça pronta que o usuário pedir para resumir segue o fluxo de proposta de 2-4 formatos dessa skill. Atua junto com a `tipografia-juridica`, não em vez dela.
 
 ## Antes de redigir qualquer peça ou dar parecer sobre um caso concreto
 
