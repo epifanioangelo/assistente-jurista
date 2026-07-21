@@ -78,6 +78,12 @@
 - [x] Angelo notou que o rótulo impresso "SÍNTESE ESTRATÉGICA" soava como sinalização de tentativa de persuadir o juiz — corrigido para "QUADRO-RESUMO" (termo neutro, validado no curso). Regra travada na skill `sintese-estrategica` (v1.0.1): "estratégica" nunca aparece no texto impresso da peça, só na conversa com o usuário.
 - [x] Arquivos de teste em `Pecas geradas/Inicial_Roberto_Santos_SIMULACAO_15-07-2026.*` (AE) e `Inicial_Roberto_Santos_SIMULACAO_NPJ_15-07-2026.*` (NPJ).
 
+### 21/07/2026 — teses defensivas Lei de Drogas (Mário Guarnieri)
+- [x] Angelo deixou um PDF solto na raiz do projeto ("As Teses Defensivas Mais Usadas na Lei de Drogas") — movido para `_analises/penal/`, convertido via `pdf_para_md.py`, campo `tema` do frontmatter corrigido manualmente (heurística de extração pegou um subtítulo estilizado).
+- [x] 10 teses cobertas: nulidade de busca domiciliar/pessoal, mandado de prisão, associação pro tráfico, desclassificação pra uso próprio, tráfico privilegiado (art. 33 §4º), local de facção, quantidade/variedade da droga, condenação anterior por uso próprio, bis in idem na dosimetria.
+- [x] **Verificação de citações (amostra de 3 dos 11 acórdãos citados):** números específicos não confirmados via busca (decisões de 2025, ainda pouco indexadas fora do STJ), mas as teses jurídicas batem com jurisprudência real verificada por outras fontes. Tema Repetitivo 1139/STJ confirmado correto. **Ressalva de conteúdo registrada:** a Tese 6 trata "ação penal em curso" e "ato infracional antigo" como igualmente protegidos pelo Tema 1139, mas ato infracional tem exceção real (EREsp 1.916.596/SP permite uso se bem fundamentado). Nota de verificação completa no topo do `.md` convertido.
+- [x] Commitado (`ef2b424`) e enviado ao GitHub.
+
 ---
 
 ## O que está pendente
