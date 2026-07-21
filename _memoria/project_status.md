@@ -84,6 +84,14 @@
 - [x] **Verificação de citações (amostra de 3 dos 11 acórdãos citados):** números específicos não confirmados via busca (decisões de 2025, ainda pouco indexadas fora do STJ), mas as teses jurídicas batem com jurisprudência real verificada por outras fontes. Tema Repetitivo 1139/STJ confirmado correto. **Ressalva de conteúdo registrada:** a Tese 6 trata "ação penal em curso" e "ato infracional antigo" como igualmente protegidos pelo Tema 1139, mas ato infracional tem exceção real (EREsp 1.916.596/SP permite uso se bem fundamentado). Nota de verificação completa no topo do `.md` convertido.
 - [x] Commitado (`ef2b424`) e enviado ao GitHub.
 
+### 21/07/2026 (continuação) — agente ae-trafico-drogas criado
+- [x] Angelo pediu análise de viabilidade de um agente dedicado a partir do material do Guarnieri, mantendo a ressalva da Tese 6. Análise: viável e recomendável — não há agente cobrindo tráfico/posse de drogas em geral (só `ae-canabico`, cannabis-específico, e `ae-defesa-penal`, genérico de fase processual).
+- [x] **Correção própria antes de construir:** minha primeira extração de citações (sessão anterior) usou regex com bug que não lidava com números de acórdão quebrados em várias linhas pelo PDF — subestimei a cobertura do material. Na real, **todas as 10 teses têm acórdão específico citado** (13 no total: Tese 1 tem 3, Tese 2 tem 2, as demais 1 cada). Nota de verificação em `_analises/penal/teses_defensivas_lei_de_drogas.md` corrigida com a lista completa dos 13 números antes de construir o agente.
+- [x] Criado `~/.claude/agents/ae-trafico-drogas.md` (padrão idêntico ao `ae-jusracial`: regra anti-alucinação no topo com protocolo de verificação obrigatório dos 13 acórdãos [nenhum confirmado além dos 3 amostrados], marco legal em 8 seções A-H mapeando as 10 teses, estrutura de peça em marcadores, pipeline gerar_docx.py, delegação, checklist, anti-padrões). Escopo deliberadamente recortado (nulidades de busca + tráfico privilegiado + bis in idem dosimetria) — não promete cobertura total da Lei 11.343/06 (faltam associação/financiamento arts. 35-36 em profundidade, causas de aumento art. 40, tráfico internacional).
+- [x] Ressalva da Tese 6 incorporada como regra permanente (seção F.1 + checklist + anti-padrões): ação penal em curso (Tema 1139, protegido) ≠ ato infracional antigo (EREsp 1.916.596/SP, pode ser usado contra o réu se bem fundamentado) — nunca tratar como igualmente blindados.
+- [x] Referências de delegação atualizadas: `ae-defesa-penal.md` (description + texto + árvore de delegação), `ae-gerador.md` (árvore de decisão + tabela de agentes), `CATALOGO.md`. `ae-canabico.md` não precisou de edição (cannabis continua 100% dentro dele, sem cruzamento).
+- [x] **Nota: `~/.claude/agents/` não é repositório git** (confirmado, mesmo padrão já sabido de `~/.claude/skills/`) — o agente novo e as edições de delegação existem só localmente, não foram commitados/enviados a nenhum repo.
+
 ---
 
 ## O que está pendente

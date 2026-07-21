@@ -15,13 +15,27 @@ convertido_em: 2026-07-21
 
 > **Nota de verificação (21/07/2026):** o material se autodeclara "apenas precedentes expressamente listados, com dados completos e verificados", mas isso **não deve ser presumido** — segue o padrão do projeto de sempre checar antes de usar em peça real.
 >
-> Foram amostrados 3 dos 11 acórdãos citados no texto: `REsp n. 2.029.625/SP` (Tese 1, busca domiciliar), `AgRg no HC n. 976.575/SP` (Tese 6, Tema 1139/tráfico privilegiado) e `AgRg no REsp n. 2.048.549/MG` (Tese 10, bis in idem na dosimetria). **Não foi possível confirmar independentemente esses números específicos via busca** — decisões do STJ de 2025 (as datas de julgamento citadas são de maio e outubro/2025) muitas vezes ainda não estão bem indexadas fora do próprio portal do STJ (scon.stj.jus.br).
+> **Correção (21/07/2026, mesmo dia):** a primeira extração de números de acórdão usou uma regex com bug que não lidava com números quebrados em várias linhas pelo PDF, e por isso subestimou a cobertura do documento. Na verdade **todas as 10 teses têm pelo menos 1 acórdão específico citado** (13 no total, distribuídos: Tese 1 tem 3; Teses 2 têm 2; Teses 3-10 têm 1 cada), sempre com relator, turma e data. Não é um documento de afirmações vagas — a cobertura de citação é real, só não confirmada por mim ainda.
+>
+> Foram amostrados 3 dos 13: `REsp n. 2.029.625/SP` (Tese 1, busca domiciliar), `AgRg no HC n. 976.575/SP` (Tese 6, Tema 1139/tráfico privilegiado) e `AgRg no REsp n. 2.048.549/MG` (Tese 10, bis in idem na dosimetria). **Não foi possível confirmar independentemente esses 3 números específicos via busca** — decisões do STJ de 2025 (as datas de julgamento citadas são de maio a outubro/2025) muitas vezes ainda não estão bem indexadas fora do próprio portal do STJ (scon.stj.jus.br). Os outros 10 números (Teses 2, 3, 4, 5, 7, 8, 9 e as 2 citações extras da Tese 1) ainda não foram checados.
 >
 > Isso **não é o mesmo** que citação inventada: a **tese jurídica de cada uma bate com jurisprudência real e verificável** por outras fontes independentes — inclusive foi localizado um acórdão real (`AgRg no HC 838.769/SP`, número diferente do citado aqui) sustentando exatamente a mesma tese do bis in idem quantidade/natureza da droga. O Tema Repetitivo 1139/STJ (citado várias vezes no documento) foi confirmado como real e corretamente descrito.
 >
 > **Ressalva de conteúdo (não é problema de citação):** a Tese 6 (p. 10) trata "ação penal em curso" e "ato infracional relativamente antigo" como se tivessem a mesma proteção do Tema 1139. Não é bem assim — o Tema 1139 cobre especificamente ações penais em andamento; para o histórico de ato infracional (Vara da Infância), o STJ já decidiu em sentido diverso no **EREsp 1.916.596/SP**: registro infracional pode sim ser usado para afastar o tráfico privilegiado, desde que fundamentado na gravidade e proximidade temporal com o fato investigado. Não presumir blindagem automática do ato infracional antigo ao usar essa tese numa peça real.
 >
-> **Conclusão prática:** usar este material como guia estratégico (quais teses levantar, em que ordem, com que argumentação) é seguro. **Antes de citar qualquer um dos 11 números de acórdão específicos numa peça real, confirmar o número exato no site do STJ** (ou rodar `bravy-jurisprudencia-stj-stf`/WebSearch de novo mais perto da data de uso, já que são decisões recentes que vão ficar mais indexadas com o tempo).
+> **Conclusão prática:** usar este material como guia estratégico (quais teses levantar, em que ordem, com que argumentação) é seguro. **Antes de citar qualquer um dos 13 números de acórdão específicos numa peça real, confirmar o número exato no site do STJ** (ou rodar `bravy-jurisprudencia-stj-stf`/WebSearch de novo mais perto da data de uso, já que são decisões recentes que vão ficar mais indexadas com o tempo).
+>
+> **Lista completa dos 13 acórdãos citados (nenhum confirmado além dos 3 amostrados acima):**
+> - Tese 1 (busca domiciliar): `REsp n. 2.029.625/SP`, `AgRg no REsp n. 2.196.191/AL`, `AgRg no HC n. 1.010.854/GO`
+> - Tese 2 (busca pessoal/veicular): `AREsp n. 2.678.778/SP`, `AgRg no HC n. 939.245/BA`
+> - Tese 3 (mandado de prisão): `AgRg no HC n. 946.738/SP`
+> - Tese 4 (associação art. 35): `AgRg no HC n. 884.412/RJ`
+> - Tese 5 (desclassificação uso próprio): `AREsp n. 3.008.548/SE`
+> - Tese 6 (ação penal em curso/ato infracional): `AgRg no HC n. 976.575/SP`
+> - Tese 7 (local de facção): `AgRg no HC n. 983.271/RJ`
+> - Tese 8 (quantidade/variedade da droga): `AgRg no HC n. 891.784/SP`
+> - Tese 9 (condenação anterior por uso próprio): `AgRg no HC n. 801.995/SP`
+> - Tese 10 (bis in idem na dosimetria): `AgRg no REsp n. 2.048.549/MG`
 
 ---
 
