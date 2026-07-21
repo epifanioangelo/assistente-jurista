@@ -3,8 +3,8 @@
 > Arquivo gerado automaticamente por `pdf_para_md.py`.
 > Para buscar um tema: `grep -ri 'palavra-chave' _analises/`
 
-**Total de arquivos:** 75  
-**Última atualização:** 2026-07-12
+**Total de arquivos:** 76  
+**Última atualização:** 2026-07-21
 
 ---
 
@@ -86,6 +86,7 @@
 - [Análise da Lei nº 15.397, de 30 de abril de 2026](penal/1708.md)
 - [Teses de Defesa](penal/Manual Direito Penal Zamboni.md)
 - [PODER JUDICIÁRIO DO ESTADO DO RIO DE JANEIRO](penal/decisao-absolvicao-reus-incendio-Ninho-do-Urubu.md)
+- [As 10 Teses Defensivas Mais Usadas na Lei de Drogas (Lei 11.343/2006) — Mário Guarnieri](penal/teses_defensivas_lei_de_drogas.md)
 
 ## Previdenciário
 
