@@ -92,6 +92,19 @@
 - [x] Referências de delegação atualizadas: `ae-defesa-penal.md` (description + texto + árvore de delegação), `ae-gerador.md` (árvore de decisão + tabela de agentes), `CATALOGO.md`. `ae-canabico.md` não precisou de edição (cannabis continua 100% dentro dele, sem cruzamento).
 - [x] **Nota: `~/.claude/agents/` não é repositório git** (confirmado, mesmo padrão já sabido de `~/.claude/skills/`) — o agente novo e as edições de delegação existem só localmente, não foram commitados/enviados a nenhum repo.
 
+### 21/07/2026 (continuação 2) — 39 modelos reais de peças (Guarnieri) integrados
+- [x] Angelo incluiu 8 pastas com 39 `.docx` reais já redigidos (mesmo autor do material anterior, Mário Angelo Guarnieri Martins): Fase policial, Liberdade Provisória, Relaxamento de prisão, Revogação Medida Protetiva, Habeas Corpus, Queixa Crime, Resposta à acusação, Apelação. Pediu avaliação: usar como base de **conteúdo**, sempre mantendo nossa tipografia jurídica como base **visual**.
+- [x] **Avaliação confirmada com inspeção real** (`python-docx`): mesmo autor, formatação em estilos genéricos do Word (`Normal`/`Heading 1`/`No Spacing`) — nenhuma sobreposição com nossos estilos AE. Confirma a estratégia do Angelo: conteúdo sim, visual não.
+- [x] Arquivos movidos para `Modelos jus/Guarnieri - Penal/` (mantendo as 8 subpastas originais), `.DS_Store` removidos.
+- [x] **Escopo maior do que só tráfico de drogas** — mapeado por área e integrado em cada lugar certo, sem duplicar conteúdo já existente:
+  - `ae-trafico-drogas.md`: nova seção "Templates Prontos" mapeando ~20 arquivos direto às 8 seções do marco legal (busca domiciliar, tráfico privilegiado, bis in idem etc.)
+  - `06 - Violência Doméstica e Penal/01 - Diretrizes Permanentes da IA.md`: nova entrada de "Material de referência disponível" apontando os 2 arquivos de Revogação de Medida Protetiva + o de quebra de medida protetiva
+  - Skill `posse-porte-arma`: apontador pro arquivo de insignificância de munição (achei que a skill já existia e já tratava essa tese corretamente como "exceção casuística" — não dupliquei, só referenciei)
+  - Skill `queixa-crime`: apontador pro modelo real (também já existia, evitei duplicar)
+  - Skills `restituicao-coisas-apreendidas`, `impugnacao-cadeia-custodia`, `anpp`: apontadores pros arquivos de restituição de bens, quebra de cadeia de custódia e ANPP sem confissão, respectivamente
+- [x] **Disciplina aplicada em todos os pontos:** nenhum acórdão desses arquivos foi tratado como confirmado — cada referência nova registra a citação como não verificada, mesmo protocolo do `ae-trafico-drogas`.
+- [x] **Nota:** as edições em `~/.claude/agents/` e `~/.claude/skills/` não são versionadas (mesma observação da entrada anterior) — só o que vive dentro da pasta do projeto (`Modelos jus/`, `06 - Violência Doméstica e Penal/`) foi commitado.
+
 ---
 
 ## O que está pendente

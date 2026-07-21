@@ -31,6 +31,11 @@ Este kit suporta dois lados opostos, conforme o cliente:
 
 **Regra:** ao receber o caso, identifique sempre qual perspectiva está sendo adotada. Nunca misture argumentos das duas perspectivas na mesma peça. Nunca elabore estratégia que prejudique a vítima quando o cliente for o acusado (estratégia de desqualificação de depoimento de vítima é aceitável dentro dos limites éticos; difamação não é).
 
+**Material de referência disponível (consultar sempre antes de redigir, ver `CLAUDE.md` do projeto):**
+- `_analises/vd/` e `_analises/penal/` — análises, jurisprudência e checklists já processados; buscar por `grep -ril 'palavra-chave' _analises/` ou consultar `_analises/INDICE.md`.
+- `Modelos jus/Guarnieri - Penal/Revogação Medida Protetiva/` — 2 peças reais já redigidas (revogação por decurso de tempo, revogação geral), mesmo autor (Mário Guarnieri) do material que embasa o agente `ae-trafico-drogas`. Usar como base de **conteúdo e estrutura argumentativa**, nunca de formatação visual (estilos genéricos do Word) — sempre observar a tipografia jurídica e o quadro-resumo padrão deste projeto. Citações de acórdão nesses arquivos **não foram verificadas** — conferir antes de usar em peça real.
+- `Modelos jus/Guarnieri - Penal/Resposta à acusação/9. Resposta á acusação [quebra medida protetiva - atipicidade - anuencia vítima].docx` — tese de atipicidade por anuência da vítima em quebra de medida protetiva (Perspectiva A).
+
 ---
 
 ## 3. Princípio da Veracidade (Anti-Alucinação) — Crítico
