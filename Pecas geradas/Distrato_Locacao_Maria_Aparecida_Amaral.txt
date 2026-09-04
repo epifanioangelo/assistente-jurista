@@ -1,0 +1,77 @@
+@TITULO_PECA
+INSTRUMENTO PARTICULAR DE DISTRATO
+DE CONTRATO DE LOCAÇÃO DE IMÓVEL URBANO
+@FIM
+
+@TABELA_SUMARIO LOCATÁRIA | LOCADORA
+Maria Aparecida do Amaral
+Brasileira, viúva, pensionista militar
+RG nº 23.899.785-6 — CPF nº 201.845.808-62
+Filiação: Sebastião Cícero do Amaral e Ana Gomes do Amaral
+Av. Salinas, nº 1.795, Bosque dos Eucaliptos, São José dos Campos/SP
+@COLUNA
+Silvana das Neves Alves Pinto
+RG nº 20.652.162-5
+CPF nº [A CONFIRMAR — não constava no contrato original]
+Rua Raimundo Monte Régia, nº 713, Jardim Santa Maria, São José dos Campos/SP, CEP 12.225-172
+@FIM
+
+Pelo presente instrumento particular, as partes acima qualificadas — doravante denominadas, respectivamente, LOCATÁRIA e LOCADORA, e em conjunto PARTES — têm entre si, justo e contratado o presente DISTRATO DE CONTRATO DE LOCAÇÃO DE IMÓVEL URBANO, que se regerá pelas cláusulas seguintes.
+
+@TITULO CLÁUSULA PRIMEIRA — DO CONTRATO ORIGINAL E DE SUA RESCISÃO CONSENSUAL
+
+As PARTES celebraram, anteriormente, contrato de locação residencial referente ao imóvel situado na Rua Benedicta Maria da Conceição, nº 62, Jardim São José I, São José dos Campos/SP ("Imóvel"), no qual a LOCATÁRIA figurava como locatária e a LOCADORA como locadora.
+
+Por iniciativa da LOCADORA, as PARTES ajustaram, de comum acordo, a rescisão antecipada da locação, distratando, na forma deste instrumento, o vínculo contratual que as unia, sem que subsista qualquer infração contratual a ser imputada a qualquer das PARTES.
+
+@TITULO CLÁUSULA SEGUNDA — DA DEVOLUÇÃO DO IMÓVEL
+
+As PARTES declaram que a posse do Imóvel já foi restituída pela LOCATÁRIA à LOCADORA, com a entrega das respectivas chaves, não havendo qualquer pendência quanto à desocupação ou ao estado de conservação do bem.
+
+@TITULO CLÁUSULA TERCEIRA — DA RESTITUIÇÃO DA GARANTIA LOCATÍCIA
+
+As PARTES declaram que o valor pago pela LOCATÁRIA a título de garantia locatícia (caução) já foi integralmente restituído pela LOCADORA à LOCATÁRIA, nada mais havendo a restituir, compensar ou reter a esse título.
+
+@TITULO CLÁUSULA QUARTA — DA QUITAÇÃO RECÍPROCA GERAL
+
+Diante do quanto acima declarado, as PARTES outorgam, uma à outra, plena, geral, irrevogável e irretratável quitação quanto a todas as obrigações decorrentes do contrato de locação ora distratado, sejam elas relativas a aluguéis, encargos, multas, garantias, reparos ou danos ao Imóvel, ou a qualquer outra verba, nada mais tendo a reclamar, judicial ou extrajudicialmente, uma da outra, a qualquer título relacionado à locação em questão.
+
+@TITULO CLÁUSULA QUINTA — DA FINALIDADE E DO CONTEXTO DESTE INSTRUMENTO
+
+O presente instrumento é firmado por iniciativa da LOCATÁRIA, diante da omissão da LOCADORA em lhe restituir a via assinada do contrato de locação original, apesar de regularmente notificada para tanto. Este instrumento tem por finalidade formalizar, de modo autônomo e autossuficiente, a rescisão consensual da locação já consumada de fato, servindo de prova documental alternativa do distrato e da quitação recíproca entre as PARTES, nos termos do art. 472 do Código Civil, segundo o qual o distrato faz-se pela mesma forma exigida para o contrato.
+
+@TITULO CLÁUSULA SEXTA — DO FORO
+
+Fica eleito o foro da Comarca de São José dos Campos/SP para dirimir quaisquer dúvidas ou controvérsias oriundas deste instrumento, com renúncia a qualquer outro, por mais privilegiado que seja.
+
+E por estarem assim justas e contratadas, firmam as PARTES o presente instrumento em 2 (duas) vias de igual teor e forma, juntamente com 2 (duas) testemunhas, para que produza seus regulares efeitos jurídicos.
+
+@ESPACO 1
+
+São José dos Campos, 21 de agosto de 2026.
+
+@ASSINATURA
+_______________________________________________
+MARIA APARECIDA DO AMARAL
+LOCATÁRIA
+
+_______________________________________________
+SILVANA DAS NEVES ALVES PINTO
+LOCADORA
+@FIM
+
+@ESPACO 1
+
+Testemunhas:
+
+@ASSINATURA
+1) _______________________________________________
+Nome:
+RG:
+CPF:
+
+2) _______________________________________________
+Nome:
+RG:
+CPF:
+@FIM

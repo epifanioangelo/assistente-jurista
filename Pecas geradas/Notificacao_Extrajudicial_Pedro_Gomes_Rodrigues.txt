@@ -1,0 +1,137 @@
+@CENTRO À
+@CENTRO CERVONI IMÓVEIS LTDA.
+@CENTRO CNPJ nº 26.085.222/0001-48
+@CENTRO Rua Euclides Miragaia, nº 433, sala 704, Jardim São Dimas, São José dos Campos/SP, CEP 12.245-902
+
+@TITULO_PECA
+NOTIFICAÇÃO EXTRAJUDICIAL
+COBRANÇA APARENTEMENTE INCOMPATÍVEL COM A COBERTURA DE SEGURO-FIANÇA VIGENTE — PEDIDO DE ESCLARECIMENTO, COMPROVAÇÃO DOCUMENTAL E CESSAÇÃO DA COBRANÇA
+@FIM
+
+@TABELA_SUMARIO NOTIFICANTE | NOTIFICADA
+Pedro Gomes Rodrigues
+Brasileiro, solteiro, administrador de fazenda
+CPF nº 047.047.838-12
+Estrada Pedro Moacir de Almeida, nº 6.522, Alto da Ponte, São José dos Campos/SP, CEP 12.212-452
+Telefone: (12) 98189-3989 | E-mail: 30pedrorodrigues@gmail.com
+@COLUNA
+Cervoni Imóveis Ltda.
+CNPJ nº 26.085.222/0001-48
+Rua Euclides Miragaia, nº 433, sala 704, Jardim São Dimas, São José dos Campos/SP, CEP 12.245-902
+Administradora do contrato de locação em referência
+@FIM
+
+@TABELA_URGENCIA SÍNTESE DA NOTIFICAÇÃO
+Objeto | Esclarecimento sobre cobrança que aparenta estar coberta por apólice de seguro-fiança vigente, e cessação das cobranças até a devida comprovação em sentido contrário
+Valor total cobrado do Notificante | R$ 9.147,91
+Cobertura da apólice para "custos de saída" (5x o valor do pacote locatício de R$ 2.300,00) | Até R$ 11.500,00
+Cobertura máxima geral da apólice | R$ 80.500,00
+Prazo concedido | 5 (cinco) dias úteis, contados do recebimento desta Notificação
+Consequência do descumprimento | Medidas judiciais cabíveis, inclusive repetição de indébito e reparação por danos, sem prejuízo da mora já constituída a partir do recebimento
+@FIM
+
+Prezados Senhores,
+
+O Notificante acima qualificado, por meio da presente Notificação Extrajudicial, vem respeitosamente expor e requerer o quanto segue, com fundamento nos arts. 186, 397, parágrafo único, 422 e 940 do Código Civil.
+
+@TITULO I — DOS FATOS
+
+@SUBTITULO 1.1 Da locação e da garantia por seguro-fiança
+O Notificante figurou como locatário de imóvel residencial situado na Rua Synésio Luiz Paiva Sapucahy, nº 242, Jardim do Céu, São José dos Campos/SP, CEP 12.236-360, de propriedade de Valtencir Rodrigues da Silva, mediante contrato de locação regularmente firmado, no qual figurou também como corresponsável sua filha, Adriana de Oliveira Rodrigues, que residia efetivamente no imóvel.
+
+A locação foi garantida por seguro-fiança contratado junto à Loft Soluções Financeiras S.A., CNPJ nº 25.027.928/0001-90, com sede na Rua Emiliano Perneta, nº 480, Centro, Curitiba/PR, CEP 80.420-080, cuja apólice prevê cobertura máxima de R$ 80.500,00, incluindo verba específica de "custos de saída" — destinada a despesas com reparos (pintura, manutenção etc.) e a multas ou taxas de desligamento — no valor correspondente a 5 (cinco) vezes o pacote locatício contratado, de R$ 2.300,00, perfazendo o sublimite de R$ 11.500,00 para essa rubrica.
+
+@SUBTITULO 1.2 Do inadimplemento de aluguéis já coberto pelo seguro
+No curso da locação, houve inadimplemento de 3 (três) aluguéis mensais, os quais foram cobertos pela própria seguradora, conforme já reconhecido pela Notificada — o que demonstra que o mecanismo de acionamento da apólice já se encontrava, até então, operante e efetivamente utilizado para a finalidade a que se destina.
+
+@SUBTITULO 1.3 Da rescisão, desocupação e das cobranças promovidas pela Notificada
+Com a rescisão do contrato e a desocupação do imóvel, a Notificada passou a cobrar diretamente do Notificante os seguintes valores:
+
+@TABELA_LIVRE 3
+Rubrica | Descrição | Valor
+Acerto de aluguel | Período de 20/07/2026 a 03/08/2026 (15 dias) | R$ 1.150,00
+IPTU/repasse | Proporcional ao exercício de 2026 | R$ 147,20
+Despesas bancárias | Tarifas de repasse | R$ 2,50
+Multa rescisória contratual | 3x o valor do aluguel, proporcional aos 776 dias restantes de um total de 914 dias de contrato | R$ 5.858,21
+Manutenção/reparos de saída | Pintura de sala, dormitório e área de serviço; troca de válvula da pia | R$ 1.990,00
+@FIM
+
+O somatório das rubricas acima cobradas do Notificante totaliza R$ 9.147,91, valor que vem sendo reiteradamente cobrado por telefone e por e-mail, nos contatos pessoais do Notificante acima indicados.
+
+@SUBTITULO 1.4 Da aparente incompatibilidade entre a cobrança e a cobertura contratada
+Da leitura dos termos da apólice tal como comunicados ao Notificante, observa-se que as rubricas "Multa Rescisória Contratual" (R$ 5.858,21) e "Manutenção/repasse — pintura e reparos" (R$ 1.990,00), somadas, totalizam R$ 7.848,21 — quantia que, a princípio e salvo melhor juízo, parece se enquadrar precisamente na definição contratual de "custos de saída" (reparos e multa ou taxa de desligamento), permanecendo dentro do sublimite de R$ 11.500,00 previsto para essa cobertura.
+
+Da mesma forma, as demais rubricas cobradas — acerto de aluguel proporcional, IPTU e despesas bancárias, no total de R$ 1.299,70 — aparentam se relacionar à garantia locatícia ordinária (aluguel e encargos), cobertura essa já efetivamente utilizada em três ocasiões anteriores sem que se tenha notícia de esgotamento do limite máximo de R$ 80.500,00 da apólice.
+
+Diante desse quadro, e sem que se pretenda, com isso, atribuir má-fé à Notificada, a cobrança direcionada diretamente ao Notificante — sem qualquer esclarecimento sobre por que tais valores não estariam sendo, no todo ou em parte, cobertos ou compensados pela apólice de seguro-fiança vigente — revela-se, ao menos aparentemente, precipitada ou indevida, podendo configurar dupla exigência de valores já garantidos por terceiro.
+
+@TITULO II — DOS FUNDAMENTOS JURÍDICOS
+
+@SUBTITULO 2.1 Da boa-fé objetiva e do dever de informação (CC, art. 422)
+@CITACAO
+"Art. 422. Os contratantes são obrigados a guardar, assim na conclusão do contrato, como em sua execução, os princípios de probidade e boa-fé."
+(Código Civil)
+@FIM
+
+A boa-fé objetiva impõe à Notificada, na qualidade de administradora do contrato e gestora da relação com a seguradora, o dever de esclarecer, de forma transparente e documentada, por que os valores ora cobrados não estariam cobertos pela apólice vigente — antes de dirigir a cobrança diretamente ao Notificante.
+
+@SUBTITULO 2.2 Da cautela quanto à cobrança de valor eventualmente já garantido (CC, art. 940)
+@CITACAO
+"Art. 940. Aquele que demandar por dívida já paga, no todo ou em parte, sem ressalvar as quantias recebidas ou pedir mais do que for devido, ficará obrigado a pagar ao devedor, no caso de dívida não reclamada, o dobro do que houver cobrado e, no de dívida reclamada, o equivalente do que dela exceder, salvo se houver prescrição."
+(Código Civil)
+@FIM
+
+Caso se confirme, após a resposta a esta Notificação, que os valores cobrados já estavam cobertos pela apólice contratada, e ainda assim a cobrança direta ao Notificante seja mantida ou reiterada, poderá configurar-se, em tese, cobrança indevida, com as consequências previstas no dispositivo acima, sem prejuízo de eventual reparação por danos.
+
+@SUBTITULO 2.3 Da constituição em mora para resguardo de direitos (CC, art. 397, parágrafo único)
+@CITACAO
+"Art. 397 [...] Parágrafo único. Não havendo termo, a mora se constitui mediante interpelação judicial ou extrajudicial."
+(Código Civil)
+@FIM
+
+A presente Notificação formaliza, para todos os fins de direito, a mora da Notificada quanto ao dever de esclarecimento e de cessação da cobrança ora questionada, a contar do respectivo recebimento.
+
+@SUBTITULO 2.4 Da responsabilidade civil por eventual manutenção da cobrança após esta Notificação (CC, arts. 186 e 927)
+@CITACAO
+"Art. 186. Aquele que, por ação ou omissão voluntária, negligência ou imprudência, violar direito e causar dano a outrem, ainda que exclusivamente moral, comete ato ilícito."
+"Art. 927. Aquele que, por ato ilícito (arts. 186 e 187), causar dano a outrem, fica obrigado a repará-lo."
+(Código Civil)
+@FIM
+
+@TITULO III — DA EXIGÊNCIA
+
+Diante de todo o exposto, o Notificante REQUER da Notificada:
+
+@LISTA_ALFA
+a) esclarecimento por escrito, acompanhado de comprovação documental, sobre se e em que medida os valores cobrados do Notificante (R$ 9.147,91) estão, total ou parcialmente, cobertos pela apólice de seguro-fiança contratada junto à Loft Soluções Financeiras S.A. em garantia da locação;
+b) a suspensão imediata de qualquer cobrança dirigida ao Notificante, por telefone, e-mail ou qualquer outro meio, relativa às rubricas acima especificadas, até a apresentação do esclarecimento e da documentação referidos no item anterior;
+c) sendo o caso, o direcionamento da cobrança dos valores eventualmente devidos e não cobertos diretamente à seguradora garantidora, nos limites e termos da apólice vigente.
+@FIM
+
+@TITULO IV — DO PRAZO
+
+Fica a Notificada cientificada do prazo de 5 (cinco) dias úteis, contados do recebimento desta Notificação, para apresentar o esclarecimento e a comprovação documental ora exigidos, bem como para suspender as cobranças questionadas — prazo reputado suficiente e razoável, tratando-se de providência de natureza documental junto à própria seguradora com a qual a Notificada já mantém relação contratual ativa.
+
+@TITULO V — DA ADVERTÊNCIA
+
+Fica desde já constituída a mora da Notificada, para todos os fins de direito, a partir do recebimento desta Notificação, sem prejuízo do prazo de cortesia acima concedido para a apresentação de esclarecimentos. A manutenção das cobranças questionadas, sem a devida comprovação, ou o descumprimento da presente Notificação, ensejará a adoção das medidas judiciais cabíveis perante o Juízo competente desta Comarca, com os seguintes pedidos, entre outros que se fizerem necessários:
+
+@BULLETS
+Declaração judicial de inexistência, total ou parcial, do débito cobrado, na medida em que se comprove sua cobertura pela apólice de seguro-fiança vigente;
+Repetição do indébito, em dobro, nos termos do art. 940 do Código Civil, quanto a valores eventualmente pagos ou cobrados de forma indevida e reiterada após esta Notificação;
+Indenização por danos morais, na hipótese de cobrança vexatória ou reiterada de valores indevidos;
+Condenação da parte sucumbente ao pagamento de custas e honorários advocatícios.
+@FIM
+
+A presente Notificação é enviada para fins de prova e de constituição em mora da Notificada, resguardando os direitos do Notificante em qualquer esfera, administrativa ou judicial, sem prejuízo de solução amigável e mais célere que a Notificada entenda por bem apresentar dentro do prazo assinalado.
+
+@ESPACO 2
+
+Termos em que aguarda atendimento.
+
+@ASSINATURA
+São José dos Campos, 4 de setembro de 2026.
+
+Pedro Gomes Rodrigues
+CPF nº 047.047.838-12
+@FIM
