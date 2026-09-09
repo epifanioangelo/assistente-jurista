@@ -105,6 +105,16 @@
 - [x] **Disciplina aplicada em todos os pontos:** nenhum acórdão desses arquivos foi tratado como confirmado — cada referência nova registra a citação como não verificada, mesmo protocolo do `ae-trafico-drogas`.
 - [x] **Nota:** as edições em `~/.claude/agents/` e `~/.claude/skills/` não são versionadas (mesma observação da entrada anterior) — só o que vive dentro da pasta do projeto (`Modelos jus/`, `06 - Violência Doméstica e Penal/`) foi commitado.
 
+### 21/08 e 04/09/2026 — peças de notificação/distrato (não registradas na época)
+- [x] Sessão ~21/08: `Distrato_Locacao` + `Notificacao_Extrajudicial` de Maria Aparecida Amaral. Sessão 04/09: `Notificacao_Extrajudicial` de Pedro Gomes Rodrigues (cobrança de rescisão x cobertura de seguro-fiança) + regra `~$*` no `.gitignore` para lock files do Word. Ambas commitadas juntas em `60534bb` (04/09), sem entrada aqui — registrada agora retroativamente.
+
+### 08/09/2026 — organização de `Pecas geradas/` por data
+- [x] Nova regra permanente: toda peça gerada vai em subpasta `Pecas geradas/DD-MM-2026/` (formato igual ao dos nomes de arquivo). Vale para os dois contextos, AE e NPJ, que já compartilham a mesma pasta. Registrada em `CLAUDE.md` (estrutura de pastas + regras permanentes) e no "Fluxo de uso diário" acima.
+- [x] Todas as 32 peças que já estavam soltas em `Pecas geradas/` movidas para 9 pastas de data (`28-06` a `04-09-2026`) via `git mv` (histórico preservado). Chave da data: data no nome do arquivo quando havia; senão, `mtime` (= data real da sessão). Pares `.txt`/`.docx`/`.pdf` da mesma peça ficaram juntos.
+- [x] `.gitignore`: regra do caso sensível `Peticao_Manifestacao_IP_1510060-81_v2_09-07-2026.*` ampliada para `Pecas geradas/**/...` — segue fora do git após ir para `09-07-2026/` (movido com `mv` comum, não `git mv`).
+- [x] Os 7 agentes `ae-*` (`~/.claude/agents/`, não versionados) tiveram a linha `SAIDA=` trocada para `"$BASE/Pecas geradas/$(date +%d-%m-%Y)"` + `mkdir -p` — geração já cai na pasta do dia automaticamente.
+- [x] Os 3 PDFs de prova digital soltos na raiz (desde 30/07) continuam **não processados** — fora do escopo desta sessão.
+
 ---
 
 ## O que está pendente
@@ -132,8 +142,8 @@ O trabalho de 30/06 a 09/07 foi consideravelmente além do escopo original da Fa
 2. Iniciar **conversa nova** → fazer upload dos documentos do caso (PDF, Word, fotos)
 3. Colar Prompt Mestre (arquivo 04) ou Fluxo Guiado (arquivo 05)
 4. IA extrai fatos e gera o texto da peça com marcadores de formatação
-5. Salvar o texto em `Pecas geradas/nome_do_caso.txt`
-6. `python3 _tools/gerar_docx.py entrada.txt saida.docx` → abre no Word
+5. Salvar o texto em `Pecas geradas/DD-MM-2026/nome_do_caso.txt` (sempre em subpasta com a data do dia — criar se não existir)
+6. `python3 _tools/gerar_docx.py entrada.txt saida.docx` → abre no Word (saída na mesma pasta do dia)
 7. Revisar, preencher placeholders, ajustar → imprimir / salvar como PDF
 
 ## Fase seguinte (quando ativar)

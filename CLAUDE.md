@@ -15,6 +15,8 @@ Assistente Jurista/
 ├── 05 - Advogado Empresarial/        ← diretrizes + prompts área empresarial
 ├── 06 - Violência Doméstica e Penal/ ← diretrizes + prompts criminal/VD (criado 30/06/2026)
 ├── Modelos jus/                       ← templates .docx das peças
+├── Pecas geradas/                     ← saída de toda peça, SEMPRE em subpasta DD-MM-2026/
+│   └── DD-MM-2026/                    ← uma pasta por dia (AE e NPJ juntos)
 ├── _memoria/                          ← memória do projeto (ler sempre ao iniciar)
 ├── ROADMAP.md                         ← algoritmo completo de desenvolvimento
 └── CLAUDE.md                          ← este arquivo
@@ -46,6 +48,7 @@ Assistente Jurista/
 - Usar sempre DADOS INSUFICIENTES quando faltar informação essencial
 - Ao criar novos arquivos de diretrizes: seguir o padrão dos existentes em `01 - Advogado Cível/`
 - Commits frequentes — nada se perde
+- **Toda peça gerada vai em `Pecas geradas/DD-MM-2026/`** (subpasta com a data do dia; formato `DD-MM-2026`, igual ao usado nos nomes de arquivo). Criar a pasta se não existir. Vale para os dois contextos — escritório AE e NPJ/Vanguarda —, que compartilham a mesma pasta. `.txt`, `.docx` e `.pdf` da mesma peça ficam juntos na pasta do dia.
 - **Tipografia jurídica é padrão em toda peça** (nova ou reformatada): sempre incluir os elementos visuais pertinentes — tabelas, quadros comparativos, linhas do tempo, listas numeradas, listas com marcadores — conforme a skill `tipografia-juridica`. Peça redigida do zero já nasce com os elementos embutidos nos capítulos certos; peça pronta que o usuário pedir para organizar segue o fluxo de proposição → escolha → geração dessa skill.
 - **Síntese estratégica é padrão em toda peça** (nova ou reformatada): sempre incluir um quadro-resumo de primeira página — pensado para o julgador que não lê a peça inteira — conforme a skill `sintese-estrategica`. Peça redigida do zero já nasce com o quadro-resumo logo após o título (formato "Quadro jurídico" por padrão); peça pronta que o usuário pedir para resumir segue o fluxo de proposta de 2-4 formatos dessa skill. Atua junto com a `tipografia-juridica`, não em vez dela.
 
