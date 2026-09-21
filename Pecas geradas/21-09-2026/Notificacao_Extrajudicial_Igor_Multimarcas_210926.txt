@@ -1,0 +1,188 @@
+@CENTRO Ao Ilmo. Sr. Representante Legal de
+@CENTRO IGOR MULTIMARCAS EIRELI
+@CENTRO CNPJ nº 08.573.690/0001-80
+@CENTRO Av. Princesa Isabel, nº 1.200, Santana, São José dos Campos/SP, CEP 12.211-620
+
+@TITULO_PECA
+NOTIFICAÇÃO EXTRAJUDICIAL
+RESSARCIMENTO DE DESPESAS COM REPARO DE VEÍCULO — VÍCIO DE QUALIDADE DO PRODUTO (CDC, ART. 18)
+@FIM
+
+@TABELA_SUMARIO NOTIFICANTE | NOTIFICADA
+Marco Antonio de Paula
+Brasileiro, viúvo
+RG e CPF nº 026.003.328-63, SSP/SP
+Nascido em 18/12/1963
+Rua Serra Dourada, nº 285, Jardim Altos de Santana, São José dos Campos/SP, CEP 12.214-130
+Telefone: (12) 99790-0333 | E-mail: depaula.marcoantonio@yahoo.com.br
+@COLUNA
+Igor Multimarcas Eireli
+CNPJ nº 08.573.690/0001-80
+Av. Princesa Isabel, nº 1.200, Santana, São José dos Campos/SP, CEP 12.211-620
+Telefone: (12) 3923-7298
+@FIM
+
+@TABELA_URGENCIA SÍNTESE DA NOTIFICAÇÃO
+Objeto | Ressarcimento integral das despesas de reparo do veículo, decorrentes de vício de qualidade coberto pela garantia legal e contratual
+Veículo | Renault Kwid Zen 1.0 Flex 12V 5P MEC, 2018/2018, placa GFF7H72
+Data da entrega do veículo | 05/08/2026
+Data em que o vício foi levado à oficina | 11/09/2026 (37 dias após a entrega — dentro do prazo de garantia contratual de 3 meses e do prazo decadencial de 90 dias do art. 26, II, do CDC)
+Valor cobrado nesta Notificação | R$ 1.830,00 (mil, oitocentos e trinta reais) — NF nº 225 (peças, R$ 1.290,00) e NF nº 261 (mão de obra, R$ 540,00), ambas de 11/09/2026
+Prazo concedido | 10 (dez) dias úteis, contados do recebimento desta Notificação
+Consequência do descumprimento | Ação judicial de indenização por vício do produto, cumulada com o que mais couber
+@FIM
+
+O Notificante acima qualificado, por meio da presente Notificação Extrajudicial, vem respeitosamente expor e requerer o quanto segue, com fundamento nos arts. 6º, inciso VI, 18, 26 e 50 do Código de Defesa do Consumidor (Lei nº 8.078/1990), bem como no art. 397, parágrafo único, do Código Civil.
+
+@TITULO I — DOS FATOS
+
+@SUBTITULO 1.1 Da aquisição do veículo e das garantias oferecidas
+Em 05/08/2026, o Notificante adquiriu da Notificada — concessionária de veículos usados — o automóvel Renault Kwid Zen 1.0 Flex 12V 5P MEC, ano/modelo 2018/2018, cor prata, placa GFF7H72, chassi 93YRBB002JJ378300, Renavam 01150905562, com 49.319 km rodados na data da entrega.
+
+@TABELA_LIVRE 2
+Dado | Especificação
+Veículo | Renault Kwid Zen 1.0 Flex 12V 5P MEC
+Ano/modelo | 2018/2018
+Cor | Prata
+Placa | GFF7H72
+Chassi | 93YRBB002JJ378300
+Renavam | 01150905562
+Quilometragem na entrega | 49.319 km
+Data da aquisição | 05/08/2026
+Valor total da compra | R$ 41.900,00 (R$ 20.000,00 via Pix + R$ 21.900,00 financiados em 36x de R$ 889,41 junto ao BBC)
+@FIM
+
+A negociação foi conduzida pelo vendedor Carlos Augusto Moreira, "Guto", CPF nº 214.192.478-24, RG nº 300407907 SSP/SP, que garantiu verbalmente ao Notificante, como condição determinante para a compra, que o veículo "estava em perfeitas condições", sem qualquer problema mecânico. Tal garantia verbal foi presenciada por Carlos Eduardo de Aquino Borges, amigo do Notificante e conhecido do próprio vendedor, que acompanhou a negociação e pode confirmar, inclusive em juízo, os termos da promessa então feita.
+
+Essa garantia verbal foi reforçada pelas cláusulas do próprio Contrato de Compra e Venda firmado entre as partes em 05/08/2026, cuja Cláusula Quinta assim dispõe:
+
+@CITACAO
+"O VENDEDOR se responsabiliza pelo bom estado e perfeito funcionamento do veículo pelo prazo de 03 (três) meses ou 3000 (três mil) quilômetros de câmbio e motor do veículo."
+(Cláusula Quinta do Contrato de Compra e Venda)
+@FIM
+
+A Cláusula Sétima do mesmo instrumento, por sua vez, impõe ao comprador apenas o dever de realizar as revisões periódicas indicadas pelo fabricante enquanto viger o prazo de responsabilidade do vendedor, sem repetir qualquer limitação de alcance da garantia:
+
+@CITACAO
+"Enquanto durar o prazo em que o VENDEDOR se responsabiliza pelo perfeito funcionamento do veículo, o COMPRADOR deverá realizar as revisões no mesmo com a peridicidade [sic] indicada pelo fabricante do veículo."
+(Cláusula Sétima do Contrato de Compra e Venda)
+@FIM
+
+@SUBTITULO 1.2 Do vício de funcionamento constatado dentro do prazo de garantia
+Em 11/09/2026 — 37 (trinta e sete) dias após a entrega do veículo — o Notificante constatou defeito de funcionamento do veículo, o que o obrigou a levá-lo à oficina para reparo, às suas expensas.
+
+@LINHA_DO_TEMPO
+Etapa | Descrição | Situação
+1. Compra e entrega do veículo | Entrega do Kwid Zen com 49.319 km, mediante garantia verbal de "perfeitas condições" e garantia contratual de 3 meses/3.000 km (Cláusula Quinta) | Concluída — 05/08/2026
+2. Constatação do vício de funcionamento | Veículo apresenta defeito de funcionamento, 37 dias após a entrega | Concluída — 11/09/2026
+3. Reparo às expensas do Notificante | Notificante arca com o conserto, dentro do prazo de garantia contratual e do prazo decadencial do art. 26, II, do CDC | Concluída, pendente de ressarcimento
+4. Notificação extrajudicial à Notificada | Exigência de ressarcimento integral do valor despendido | Em curso
+@FIM
+
+A data do reparo (11/09/2026) está integralmente compreendida tanto no prazo de garantia contratual de 3 (três) meses previsto na Cláusula Quinta do contrato quanto no prazo decadencial de 90 (noventa) dias do art. 26, inciso II, do Código de Defesa do Consumidor, contado da entrega do bem durável — ou, se considerado vício oculto, contado da data em que o defeito se evidenciou, o que também se dá dentro do prazo legal.
+
+@SUBTITULO 1.3 Do impacto pessoal do episódio
+O episódio ocorreu em período de especial sensibilidade pessoal do Notificante, que atravessa processo de luto recente pela perda de sua esposa, tendo o defeito do veículo e a necessidade de providenciar o reparo às pressas o obrigado a cancelar compromissos e a despender tempo e recursos adicionais não planejados.
+
+@TITULO II — DOS FUNDAMENTOS JURÍDICOS
+
+@SUBTITULO 2.1 Da relação de consumo e da responsabilidade solidária da fornecedora por vício de qualidade (CDC, art. 18)
+A aquisição do veículo configura relação de consumo, tendo a Notificada figurado como fornecedora, na condição de concessionária que comercializa veículos a consumidores finais. O Código de Defesa do Consumidor estabelece a responsabilidade da fornecedora pelos vícios de qualidade que tornem o produto impróprio ou inadequado ao uso a que se destina:
+
+@CITACAO
+"Art. 18. Os fornecedores de produtos de consumo duráveis ou não duráveis respondem solidariamente pelos vícios de qualidade ou quantidade que os tornem impróprios ou inadequados ao consumo a que se destinam ou lhes diminuam o valor, assim como por aqueles decorrentes da disparidade, com as indicações constantes do recipiente, da embalagem, rotulagem ou mensagem publicitária, respeitadas as variações decorrentes de sua natureza, podendo o consumidor exigir a substituição das partes viciadas."
+(Código de Defesa do Consumidor, Lei nº 8.078/1990)
+@FIM
+
+O defeito de funcionamento constatado 37 dias após a entrega do veículo — bem durável, cuja garantia verbal de "perfeitas condições" foi expressamente oferecida pelo preposto da Notificada no ato da venda — caracteriza vício de qualidade nos termos do dispositivo transcrito, do qual decorre o dever da Notificada de ressarcir os gastos que o Notificante já suportou para saná-lo por conta própria.
+
+@SUBTITULO 2.2 Do prazo decadencial ainda vigente (CDC, art. 26, II e §3º)
+@CITACAO
+"Art. 26. O direito de reclamar pelos vícios aparentes ou de fácil constatação caduca em: [...] II - noventa dias, tratando-se de fornecimento de serviço e de produtos duráveis."
+"§ 3° Tratando-se de vício oculto, o prazo decadencial inicia-se no momento em que ficar evidenciado o defeito."
+(Código de Defesa do Consumidor, Lei nº 8.078/1990)
+@FIM
+
+Tratando-se de veículo — bem durável — o prazo decadencial de 90 dias, contado da entrega (05/08/2026) ou, se vício oculto, da data em que o defeito se evidenciou (11/09/2026), permanece integralmente vigente na presente data, o que assegura ao Notificante o pleno exercício de seu direito de reclamar.
+
+@SUBTITULO 2.3 Da interpretação mais favorável ao consumidor quanto à cláusula de garantia contratual (CDC, art. 47)
+A Cláusula Quinta do contrato, tal como redigida, comporta ambiguidade quanto à extensão da garantia contratual: pode ser lida (i) restritivamente, como limitada a "câmbio e motor", ou (ii) amplamente, como abrangente do "bom estado e perfeito funcionamento do veículo" em geral, sendo a menção a "câmbio e motor" meramente exemplificativa. A Cláusula Sétima reforça a leitura ampla, ao impor ao comprador o dever de revisão "enquanto durar o prazo em que o VENDEDOR se responsabiliza pelo perfeito funcionamento do veículo" — sem repetir qualquer restrição a câmbio e motor.
+
+@CITACAO
+"Art. 47. As cláusulas contratuais serão interpretadas de maneira mais favorável ao consumidor."
+(Código de Defesa do Consumidor, Lei nº 8.078/1990)
+@FIM
+
+Nos termos do dispositivo transcrito, a ambiguidade da Cláusula Quinta deve ser resolvida em favor do Notificante, na condição de consumidor — impondo-se a leitura ampla, que estende a garantia contratual de 3 meses/3.000 km ao veículo como um todo, e não apenas a câmbio e motor.
+
+@SUBTITULO 2.4 Da garantia contratual como mera complementação da garantia legal (CDC, art. 50)
+@CITACAO
+"Art. 50. A garantia contratual é complementar à legal e será conferida mediante termo escrito."
+(Código de Defesa do Consumidor, Lei nº 8.078/1990)
+@FIM
+
+Ainda que se adotasse — por mera argumentação, e sem conceder — a leitura restritiva da Cláusula Quinta, tal circunstância em nada afastaria o dever de ressarcimento ora exigido, na medida em que a garantia contratual é complementar, e não substitutiva, da garantia legal do art. 18 do CDC, a qual, como visto, abrange qualquer vício de qualidade que torne o veículo impróprio ou inadequado ao uso, independentemente da peça especificamente afetada.
+
+@SUBTITULO 2.5 Do direito à efetiva reparação de danos (CDC, art. 6º, VI)
+@CITACAO
+"Art. 6º São direitos básicos do consumidor: [...] VI - a efetiva prevenção e reparação de danos patrimoniais e morais, individuais, coletivos e difusos;"
+(Código de Defesa do Consumidor, Lei nº 8.078/1990)
+@FIM
+
+O ressarcimento integral do valor despendido pelo Notificante para o reparo do vício é decorrência direta desse direito básico, que impõe à fornecedora a reparação efetiva — e não apenas parcial ou condicionada — do dano patrimonial suportado pelo consumidor.
+
+@SUBTITULO 2.6 Da constituição em mora da Notificada (CC, art. 397, parágrafo único)
+@CITACAO
+"Art. 397 [...] Parágrafo único. Não havendo termo, a mora se constitui mediante interpelação judicial ou extrajudicial."
+(Código Civil)
+@FIM
+
+A presente Notificação formaliza, para todos os fins de direito, a mora da Notificada quanto ao dever de ressarcimento ora exigido, a contar do respectivo recebimento, com os efeitos próprios da mora — juros, correção monetária e eventuais perdas e danos.
+
+@SUBTITULO 2.7 Da reserva de direito quanto a eventuais danos extrapatrimoniais
+Registra-se que o episódio ocorreu em período de especial sensibilidade pessoal do Notificante, conforme relatado no item 1.3. O Notificante reserva-se o direito de, caso entenda cabível após avaliação mais detida, pleitear em ação judicial própria a reparação por eventuais danos extrapatrimoniais decorrentes do episódio, sem que a presente Notificação implique renúncia, transação ou reconhecimento de que tal pretensão seja, desde logo, líquida ou certa. O objeto central desta Notificação permanece sendo o ressarcimento do dano patrimonial já sofrido e comprovado.
+
+@TITULO III — DA EXIGÊNCIA
+
+Diante de todo o exposto, o Notificante EXIGE da Notificada:
+
+@LISTA_ALFA
+a) o ressarcimento integral do valor despendido com o reparo do veículo, no montante de R$ 1.830,00 (mil, oitocentos e trinta reais) — correspondente à soma da Nota Fiscal nº 225, de 11/09/2026, no valor de R$ 1.290,00 (referente a peças), com a Nota Fiscal nº 261, de 11/09/2026, no valor de R$ 540,00 (referente a mão de obra) —, mediante depósito ou transferência bancária em conta de titularidade do Notificante, cujos dados serão fornecidos em resposta a esta Notificação;
+b) o envio, no mesmo prazo, do respectivo comprovante de pagamento ao endereço de e-mail do Notificante (depaula.marcoantonio@yahoo.com.br);
+c) manifestação escrita confirmando o integral cumprimento das exigências acima, no mesmo prazo.
+@FIM
+
+@TITULO IV — DO PRAZO
+
+Fica a Notificada INTIMADA a cumprir integralmente as exigências acima no prazo de 10 (dez) dias úteis, contados do recebimento desta Notificação — prazo reputado suficiente e razoável, tratando-se de providência de natureza pecuniária, de valor certo e comprovado por documento fiscal.
+
+@TITULO V — DA ADVERTÊNCIA
+
+O descumprimento da presente Notificação ensejará a adoção das medidas judiciais cabíveis perante o Juízo competente desta Comarca, mediante ação de indenização por vício do produto, com fundamento no Código de Defesa do Consumidor, com os seguintes pedidos, entre outros que se fizerem necessários:
+
+@BULLETS
+Condenação da Notificada ao ressarcimento integral do valor gasto com o reparo do veículo, devidamente atualizado monetariamente e acrescido de juros de mora desde o recebimento desta Notificação;
+Eventual pedido de reparação por danos extrapatrimoniais, caso presentes seus pressupostos, nos termos da reserva de direito formulada no item 2.7 desta Notificação;
+Condenação da parte sucumbente ao pagamento de custas processuais e honorários advocatícios.
+@FIM
+
+A presente Notificação é enviada para fins de prova e de constituição em mora da Notificada, resguardando os direitos do Notificante em qualquer esfera, administrativa ou judicial, sem prejuízo de solução amigável e mais célere que a Notificada entenda por bem apresentar dentro do prazo assinalado.
+
+@TITULO VI — DOS DOCUMENTOS ANEXOS
+
+@BULLETS
+Cópia do Contrato de Compra e Venda firmado em 05/08/2026;
+Nota Fiscal nº 225, de 11/09/2026, no valor de R$ 1.290,00 (peças);
+Nota Fiscal nº 261, de 11/09/2026, no valor de R$ 540,00 (mão de obra).
+@FIM
+
+@ESPACO 2
+
+Termos em que aguarda atendimento.
+
+@ASSINATURA
+São José dos Campos, 21 de setembro de 2026.
+
+Marco Antonio de Paula
+CPF nº 026.003.328-63
+@FIM
