@@ -11,6 +11,7 @@ Variáveis de ambiente esperadas:
     EMAIL_USER       endereço completo (ex.: a.epifanio@advogado.sjc.br)
     EMAIL_PASS       senha em texto puro (decodificada do base64 antes de chamar)
     EMAIL_HOST       servidor de e-mail (ex.: mail.advogado.sjc.br)
+    EMAIL_FROM_NAME  opcional, nome de exibição do remetente (padrão: "Angelo Epifanio")
     EMAIL_SMTP_PORT  opcional, padrão 465 (SSL)
     EMAIL_IMAP_PORT  opcional, padrão 993 (SSL)
 
@@ -29,6 +30,7 @@ import smtplib
 import sys
 from email.header import decode_header
 from email.message import EmailMessage
+from email.utils import formataddr
 from pathlib import Path
 from typing import Optional
 
@@ -41,14 +43,15 @@ def _config():
         sys.exit("Faltam EMAIL_USER, EMAIL_PASS ou EMAIL_HOST no ambiente.")
     smtp_port = int(os.environ.get("EMAIL_SMTP_PORT", "465"))
     imap_port = int(os.environ.get("EMAIL_IMAP_PORT", "993"))
-    return user, pwd, host, smtp_port, imap_port
+    from_name = os.environ.get("EMAIL_FROM_NAME", "Angelo Epifanio")
+    return user, pwd, host, smtp_port, imap_port, from_name
 
 
 def enviar(destinatario: str, assunto: str, corpo: str, anexos: Optional[list] = None):
-    user, pwd, host, smtp_port, _ = _config()
+    user, pwd, host, smtp_port, _, from_name = _config()
 
     msg = EmailMessage()
-    msg["From"] = user
+    msg["From"] = formataddr((from_name, user))
     msg["To"] = destinatario
     msg["Subject"] = assunto
     msg.set_content(corpo)
@@ -90,7 +93,7 @@ def _decode(valor) -> str:
 
 
 def listar(limite: int = 10, so_nao_lidas: bool = False):
-    user, pwd, host, _, imap_port = _config()
+    user, pwd, host, _, imap_port, _from_name = _config()
 
     imap = imaplib.IMAP4_SSL(host, imap_port, timeout=20)
     imap.login(user, pwd)
