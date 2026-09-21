@@ -1,4 +1,10 @@
-# Criminal Lab — Kit 73 Skills Execução Penal — pacote arquivado, instalação pendente
+# Criminal Lab — Kit 73 Skills Execução Penal — instalado em 21/09/2026
+
+**Status:** as 73 skills foram copiadas para `~/.claude/skills/` (prefixo `ep-*`) em 21/09/2026, após análise das 9 sobreposições abaixo. Nenhuma skill existente foi removida ou sobrescrita — convivem lado a lado. `~/.claude/skills/` não é versionado em git (fica só neste projeto o registro de proveniência).
+
+**Achado da análise das 9 sobreposições:** não são duplicatas reais — são duas arquiteturas diferentes. As skills `execucao-*` já instaladas são referência narrativa autocontida (lei + tabela + template de petição pronto pra preencher + citações de julgados específicos embutidas). As novas `ep-*` são um par diagnóstico→peça, com saída em JSON, integração de orquestrador (`case_id`/`task_id`), pontuação de risco/confiança, e regra explícita de **nunca** embutir número de julgado não verificado — desenho mais rígido contra alucinação, mas sem tabela/template prontos. Mantidas as duas por serem complementares (rascunho rápido × pipeline rigoroso), sem colisão de nome (`ep-` prefixo vs. nome simples).
+
+**Correção aplicada nas 6 skills `execucao-*`/`agravo-em-execucao` que citavam julgados específicos (HC/REsp/AgRg/Informativo/Tema) sem nenhuma ressalva:** adicionada a mesma cautela de vigência já usada em outras skills do projeto — tratar cada julgado citado por número como `[NÃO VERIFICADO]` até confirmação via `jurisprudencia-stj-stf` + `verificador-citacoes`. Afetadas: `execucao-indulto-comutacao` (não tinha ressalva alguma, era a mais exposta), `execucao-progressao-regime` (tinha ressalva fraca, reforçada), `execucao-remicao`, `execucao-saida-temporaria`, `execucao-unificacao-penas`, `agravo-em-execucao`. `execucao-livramento-condicional` e `execucao-provisoria-pena` já tinham a ressalva completa — não mexidas.
 
 **Origem:** zip `d59caf80-3995-41fe-9488-c12fe08dadc0.zip` (nome de download genérico), encontrado solto na raiz do projeto em 21/09/2026 — apareceu **durante** esta sessão (timestamp 12:31, no meio do trabalho de reorganização), não fazia parte do levantamento inicial. Mesmo vendor ("Criminal Lab") dos agentes `clabs-*` já instalados em `~/.claude/agents/`.
 
