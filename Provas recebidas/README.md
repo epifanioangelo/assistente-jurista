@@ -2,6 +2,16 @@
 
 Pasta pra organizar provas que o cliente manda direto (print, PDF, foto, documento escaneado) — fora do fluxo do Veredata (análise forense de celular/disco, que fica em `../Análises Forenses/`).
 
+## Conversa de WhatsApp exportada (não é extração forense)
+
+Quando o cliente (dono do celular) usa o recurso nativo "Exportar conversa" do próprio WhatsApp (`.txt` ou `.zip` com mídia), não precisa de perícia nem de Veredata — o conteúdo já chega legível. Usar `_tools/visualizar_whatsapp.py`:
+
+```
+python3 _tools/visualizar_whatsapp.py --arquivo conversa.zip --caso "<caso>" --descricao "<descrição>" [--meu-nome "Nome do cliente, como aparece nas mensagens dele"]
+```
+
+Isso cataloga o arquivo original (hash, como qualquer prova — ver acima) e gera `visualizador_conversa.html` na pasta do caso: mensagens em balão (como no WhatsApp de verdade), busca por palavra-chave, estrela pra marcar as relevantes, e um botão "Exportar seleção" que baixa um `.json` com o que foi marcado — pra citar na peça com data/hora/remetente exatos.
+
 ## Convenção
 
 Cada caso tem sua própria subpasta, dentro da pasta do dia em que a primeira prova chegou:

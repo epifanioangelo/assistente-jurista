@@ -91,6 +91,8 @@ def catalogar(arquivo: str, caso: str, descricao: str, data_exibida: str):
     print(f"Hash SHA-256: {hash_sha256}")
     print(f"Catálogo: {catalogo}")
 
+    return {"doc_id": doc_id, "destino": destino, "hash": hash_sha256, "pasta_caso": pasta_caso}
+
 
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
