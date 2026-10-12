@@ -17,6 +17,10 @@ Assistente Jurista/
 ├── Modelos jus/                       ← templates .docx das peças
 ├── Pecas geradas/                     ← saída de toda peça, SEMPRE em subpasta DD-MM-2026/
 │   └── DD-MM-2026/                    ← uma pasta por dia (AE e NPJ juntos)
+├── Provas recebidas/                  ← catálogo de provas enviadas pelo cliente (prints, PDFs, fotos), por caso
+│   └── DD-MM-2026/<caso>/             ← arquivos originais + catalogo.md com ID sequencial de cada um
+├── Análises Forenses/                 ← exports do Veredata (achados/relatório), quando o caso tiver extração processada
+│   └── DD-MM-2026/<caso>/
 ├── _memoria/                          ← memória do projeto (ler sempre ao iniciar)
 ├── ROADMAP.md                         ← algoritmo completo de desenvolvimento
 └── CLAUDE.md                          ← este arquivo
@@ -51,6 +55,7 @@ Assistente Jurista/
 - **Toda peça gerada vai em `Pecas geradas/DD-MM-2026/`** (subpasta com a data do dia; formato `DD-MM-2026`, igual ao usado nos nomes de arquivo). Criar a pasta se não existir. Vale para os dois contextos — escritório AE e NPJ/Vanguarda —, que compartilham a mesma pasta. `.txt`, `.docx` e `.pdf` da mesma peça ficam juntos na pasta do dia.
 - **Tipografia jurídica é padrão em toda peça** (nova ou reformatada): sempre incluir os elementos visuais pertinentes — tabelas, quadros comparativos, linhas do tempo, listas numeradas, listas com marcadores — conforme a skill `tipografia-juridica`. Peça redigida do zero já nasce com os elementos embutidos nos capítulos certos; peça pronta que o usuário pedir para organizar segue o fluxo de proposição → escolha → geração dessa skill.
 - **Síntese estratégica é padrão em toda peça** (nova ou reformatada): sempre incluir um quadro-resumo de primeira página — pensado para o julgador que não lê a peça inteira — conforme a skill `sintese-estrategica`. Peça redigida do zero já nasce com o quadro-resumo logo após o título (formato "Quadro jurídico" por padrão); peça pronta que o usuário pedir para resumir segue o fluxo de proposta de 2-4 formatos dessa skill. Atua junto com a `tipografia-juridica`, não em vez dela.
+- **Toda prova recebida do cliente (print, PDF, foto) entra no catálogo antes de ser citada na peça.** Salvar o arquivo original em `Provas recebidas/DD-MM-2026/<caso>/` e registrar no `catalogo.md` daquela pasta: ID sequencial (Doc. 1, Doc. 2...), nome do arquivo, data em que foi recebido, descrição breve, e a data/hora que **aparece na própria prova** — sempre marcada como "conforme exibido na captura, não verificado tecnicamente" (ver seção de integração com o Veredata abaixo, pra distinguir do padrão verificado). As tabelas da `tipografia-juridica` (colunas "Documento/Prova") citam esse mesmo ID — nunca uma referência solta e inconsistente entre peças do mesmo caso. Pra inserir a imagem de verdade na peça, usar `@IMAGEM caminho/do/arquivo` do `gerar_docx.py`.
 
 ## Antes de redigir qualquer peça ou dar parecer sobre um caso concreto
 
@@ -62,3 +67,11 @@ Skills e agentes disparam sozinhos pela descrição do caso, mas o material de r
 4. Se nada relevante for encontrado, seguir normalmente — mas não pular esta etapa silenciosamente.
 
 Isso vale tanto para peças penais quanto cíveis, trabalhistas, previdenciárias etc. — qualquer área em que exista (ou venha a existir) material salvo em `_analises/`.
+
+## Integração com o Veredata (análise forense de celular/disco)
+
+O Veredata (`~/Documents/VisualizadorIPED`, produto separado baseado no IPED — ver [[project-visualizador-iped]] na memória) processa extração forense de celular/computador de forma independente, quando o caso tiver esse tipo de prova. Dois pontos de integração com este projeto:
+
+1. **Antes de redigir peça de caso com extração forense** (defesa criminal, violência doméstica, qualquer caso com celular/computador apreendido/extraído): checar se existe análise em `Análises Forenses/DD-MM-2026/<caso>/` antes de redigir — mesma lógica da consulta a `_analises/`, não pular silenciosamente. Se houver achados relevantes (mensagens, documentos) exportados do Veredata, incorporar à peça com a formatação da `tipografia-juridica`, citando a origem forense.
+2. **Diferença de rigor de metadado**: achado do Veredata carrega data/hora/remetente **verificados tecnicamente**, direto do processamento forense — diferente de prova manual (`Provas recebidas/`), que só tem a data **visível na captura**, não verificada. Nunca tratar os dois como equivalentes em força probatória na peça — distinguir explicitamente quando relevante (ex.: "conforme extração forense processada" vs. "conforme captura de tela fornecida pelo cliente").
+3. **Publicar relatório de achados forenses**: usar o mesmo `_tools/publicar_peca.py` já existente pra esse projeto, com `--tipo-peca "Relatório de Análise Forense"` — não é preciso nenhuma ferramenta nova, o pipeline de publicação já serve pra isso.
