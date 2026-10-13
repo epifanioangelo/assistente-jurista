@@ -21,6 +21,17 @@ Uso:
 --transcrever-audio transcreve cada mensagem de voz (faster-whisper, local,
 modelo "small") pra texto buscável — opcional porque é mais lento (processa
 tudo antes de gerar a página) e exige `pip3 install faster-whisper` à parte.
+Por padrão transcreve tudo (ou --limite-audios N mais recentes); pra escolher
+exatamente quais, marque com ★ no visualizador, clique "Exportar seleção" e
+rode de novo com --arquivo-selecao mensagens_selecionadas.json.
+
+Transcrições ficam num cache (transcricoes.json, na pasta do caso) — rodar o
+script de novo não retranscreve o que já foi feito. Pra corrigir um erro de
+transcrição sem mexer no áudio original: edite direto no visualizador (ícone
+✏️ ao lado da transcrição), clique "Exportar correções de transcrição", e
+rode de novo com --importar-correcoes correcoes_transcricao.json — a versão
+automática original fica preservada no cache, só a exibição passa a mostrar
+a corrigida, sempre rotulada "(revisado manualmente)".
 
 Formato do .txt esperado (ambos reconhecidos):
     14/03/2026 23:41 - Roberto: Precisa terminar o relatório hoje
@@ -37,6 +48,7 @@ import shutil
 import subprocess
 import sys
 import zipfile
+from datetime import datetime
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
@@ -150,7 +162,66 @@ def _chave_data_hora(msg: dict):
         return (0, 0, 0, 0, 0, 0)
 
 
-def transcrever_audios(mensagens: list[dict], pasta_caso: Path, limite: int = 0):
+def _caminho_cache_transcricoes(pasta_caso: Path) -> Path:
+    return pasta_caso / "transcricoes.json"
+
+
+def carregar_cache_transcricoes(pasta_caso: Path) -> dict:
+    caminho = _caminho_cache_transcricoes(pasta_caso)
+    if caminho.exists():
+        return json.loads(caminho.read_text(encoding="utf-8"))
+    return {}
+
+
+def salvar_cache_transcricoes(pasta_caso: Path, cache: dict):
+    _caminho_cache_transcricoes(pasta_caso).write_text(
+        json.dumps(cache, ensure_ascii=False, indent=2), encoding="utf-8"
+    )
+
+
+def aplicar_transcricoes_em_mensagens(mensagens: list[dict], pasta_caso: Path) -> dict:
+    """Preenche msg['transcricao'/'transcricaoAuto'/'transcricaoEditada'/'editadoEm']
+    a partir do cache persistente — roda sempre, mesmo sem --transcrever-audio,
+    pra não perder transcrições/correções já feitas em rodadas anteriores."""
+    cache = carregar_cache_transcricoes(pasta_caso)
+    for msg in mensagens:
+        entrada = cache.get(msg.get("midia") or "")
+        if not entrada:
+            msg["transcricao"] = msg.get("transcricao", "")
+            msg["transcricaoAuto"] = ""
+            msg["transcricaoEditada"] = None
+            msg["editadoEm"] = None
+            continue
+        msg["transcricaoAuto"] = entrada.get("transcricao_automatica", "")
+        msg["transcricaoEditada"] = entrada.get("transcricao_editada")
+        msg["editadoEm"] = entrada.get("editado_em")
+        msg["transcricao"] = entrada.get("transcricao_editada") or entrada.get("transcricao_automatica", "")
+    return cache
+
+
+def carregar_filenames_da_selecao(caminho_json: str) -> set:
+    """Lê o .json baixado pelo botão 'Exportar seleção' do visualizador e
+    devolve o conjunto de nomes de arquivo de áudio marcados — pra transcrever
+    só o que o advogado escolheu, não a conversa inteira."""
+    dados = json.loads(Path(caminho_json).expanduser().read_text(encoding="utf-8"))
+    return {d["nomeMidia"] for d in dados if d.get("tipoMidia") == "audio" and d.get("nomeMidia")}
+
+
+def importar_correcoes_transcricao(caminho_json: str, pasta_caso: Path):
+    """Lê o .json baixado pelo botão 'Exportar correções' (texto editado à mão
+    pelo advogado) e grava no cache, sem nunca tocar no áudio original."""
+    correcoes = json.loads(Path(caminho_json).expanduser().read_text(encoding="utf-8"))
+    cache = carregar_cache_transcricoes(pasta_caso)
+    agora = datetime.now().strftime("%d/%m/%Y %H:%M")
+    for nome_arquivo, texto in correcoes.items():
+        cache.setdefault(nome_arquivo, {})
+        cache[nome_arquivo]["transcricao_editada"] = texto
+        cache[nome_arquivo]["editado_em"] = agora
+    salvar_cache_transcricoes(pasta_caso, cache)
+    print(f"{len(correcoes)} correção(ões) de transcrição importada(s).")
+
+
+def transcrever_audios(mensagens: list[dict], pasta_caso: Path, cache: dict, limite: int = 0, arquivos_alvo: set = None):
     import warnings
     # RuntimeWarning (divide by zero/overflow) do numpy no cálculo do espectro
     # mel, no feature_extractor do faster-whisper — testado com áudios reais
@@ -162,31 +233,46 @@ def transcrever_audios(mensagens: list[dict], pasta_caso: Path, limite: int = 0)
     except ImportError:
         sys.exit("faster-whisper não instalado. Rode: pip3 install faster-whisper")
 
-    alvos = [m for m in mensagens if m["midia"] and m["midia"] != "__OCULTA__"
-             and Path(m["midia"]).suffix.lower() in EXT_AUDIO
-             and (pasta_caso / "midia" / m["midia"]).exists()]
-    if not alvos:
-        print("Nenhum áudio encontrado pra transcrever.")
+    candidatos = [m for m in mensagens if m["midia"] and m["midia"] != "__OCULTA__"
+                  and Path(m["midia"]).suffix.lower() in EXT_AUDIO
+                  and (pasta_caso / "midia" / m["midia"]).exists()]
+
+    if arquivos_alvo is not None:
+        candidatos = [m for m in candidatos if m["midia"] in arquivos_alvo]
+        print(f"Transcrevendo só os {len(candidatos)} áudio(s) selecionado(s) no visualizador.")
+
+    # nunca retranscreve o que já está no cache (economiza tempo em reexecuções)
+    pendentes = [m for m in candidatos if not cache.get(m["midia"], {}).get("transcricao_automatica")]
+
+    if not candidatos:
+        print("Nenhum áudio encontrado pra transcrever (confira a seleção/arquivo).")
+        return
+    if not pendentes:
+        print("Todos os áudios dessa seleção já tinham transcrição em cache — nada novo a fazer.")
         return
 
-    if limite:
-        alvos = sorted(alvos, key=_chave_data_hora, reverse=True)[:limite]
-        print(f"Limitado às {len(alvos)} mensagens de áudio mais recentes.")
+    if limite and arquivos_alvo is None:
+        pendentes = sorted(pendentes, key=_chave_data_hora, reverse=True)[:limite]
+        print(f"Limitado às {len(pendentes)} mensagens de áudio mais recentes.")
 
     print(f"Carregando modelo de transcrição (1ª vez pode levar um pouco)...")
     model = WhisperModel("small", device="cpu", compute_type="int8")
 
-    for i, msg in enumerate(alvos, 1):
+    for i, msg in enumerate(pendentes, 1):
         caminho = pasta_caso / "midia" / msg["midia"]
         try:
             segments, _info = model.transcribe(str(caminho), language="pt")
-            msg["transcricao"] = " ".join(s.text.strip() for s in segments).strip()
+            texto = " ".join(s.text.strip() for s in segments).strip()
         except Exception as e:
-            msg["transcricao"] = ""
-            print(f"  [{i}/{len(alvos)}] falhou ({msg['midia']}): {e}")
+            print(f"  [{i}/{len(pendentes)}] falhou ({msg['midia']}): {e}")
             continue
-        if i % 20 == 0 or i == len(alvos):
-            print(f"  [{i}/{len(alvos)}] transcritos...")
+        cache.setdefault(msg["midia"], {})["transcricao_automatica"] = texto
+        msg["transcricao"] = cache[msg["midia"]].get("transcricao_editada") or texto
+        msg["transcricaoAuto"] = texto
+        if i % 20 == 0 or i == len(pendentes):
+            print(f"  [{i}/{len(pendentes)}] transcritos...")
+
+    salvar_cache_transcricoes(pasta_caso, cache)
 
 
 def gerar_html(mensagens: list[dict], caso: str, meu_nome: str, doc_ref: dict, pasta_destino: Path) -> Path:
@@ -222,6 +308,9 @@ def gerar_html(mensagens: list[dict], caso: str, meu_nome: str, doc_ref: dict, p
             "texto": msg["texto"], "eu": msg["remetente"].strip().lower() == meu_nome.strip().lower() if meu_nome else False,
             "tipoMidia": tipo_midia, "nomeMidia": nome_midia, "arquivoAudio": arquivo_audio,
             "transcricao": msg.get("transcricao", ""),
+            "transcricaoAuto": msg.get("transcricaoAuto", ""),
+            "transcricaoEditada": msg.get("transcricaoEditada"),
+            "editadoEm": msg.get("editadoEm"),
         })
 
     html = HTML_TEMPLATE.replace("__CASO__", caso.replace("</", "<\\/")) \
@@ -279,6 +368,12 @@ HTML_TEMPLATE = r"""<!DOCTYPE html>
   .btn-audio{background:var(--accent);color:var(--accent-fg);border:none;padding:8px 16px;border-radius:20px;font-size:.84rem;font-weight:600;cursor:pointer}
   .transcricao{font-size:.86rem;margin-top:5px;color:var(--fg)}
   .transcricao .rotulo-auto{font-size:.68rem;color:var(--fg-muted);font-style:italic}
+  .btn-editar-transc{background:none;border:none;cursor:pointer;font-size:.8rem;opacity:.7;padding:0 0 0 4px}
+  .btn-editar-transc:hover{opacity:1}
+  .edit-transcricao{width:100%;min-height:60px;font-size:.86rem;font-family:inherit;padding:6px;border-radius:6px;border:1px solid var(--border);background:var(--surface);color:var(--fg);box-sizing:border-box}
+  .acoes-edit-transc{display:flex;gap:8px;margin-top:4px}
+  .acoes-edit-transc button{font-size:.76rem;padding:4px 10px;border-radius:6px;border:1px solid var(--border);background:var(--surface-2);cursor:pointer}
+  .btn-salvar-transc{background:var(--accent) !important;color:var(--accent-fg) !important;border:none !important}
   .separador-dia{text-align:center;margin:18px 0 10px;font-size:.74rem;color:var(--fg-muted)}
   .oculta{display:none !important}
 
@@ -302,18 +397,35 @@ HTML_TEMPLATE = r"""<!DOCTYPE html>
 
 <div class="barra-inferior">
   <b id="contador">0 marcadas</b>
-  <button class="btn" id="btnExportar">Exportar seleção (.json)</button>
+  <div style="display:flex;gap:8px;flex-wrap:wrap">
+    <button class="btn secundario" id="btnExportarCorrecoes">Exportar correções de transcrição (.json)</button>
+    <button class="btn" id="btnExportar">Exportar seleção (.json)</button>
+  </div>
 </div>
 
 <script>
 const MENSAGENS = __DADOS_JSON__;
 const marcadas = new Set();
+const correcoes = {}; // nomeMidia -> texto corrigido à mão, só nesta sessão até exportar
+
+function blocoTranscricao(m){
+  if (!m.transcricaoAuto && !m.transcricaoEditada && !(m.nomeMidia in correcoes)) return '';
+  const corrigidoNaSessao = m.nomeMidia in correcoes;
+  const textoAtual = corrigidoNaSessao ? correcoes[m.nomeMidia] : (m.transcricaoEditada || m.transcricaoAuto);
+  const foiRevisado = corrigidoNaSessao || !!m.transcricaoEditada;
+  const rotulo = foiRevisado ? `(revisado manualmente${m.editadoEm ? ' em ' + m.editadoEm : ''})` : '(transcrição automática)';
+  return `<div class="transcricao" data-id="${m.id}">
+    <span class="texto-transcricao">🗣 ${(textoAtual || '').replace(/</g,'&lt;')}</span>
+    <span class="rotulo-auto">${rotulo}</span>
+    <button class="btn-editar-transc" data-editar="${m.id}" title="Editar transcrição">✏️</button>
+  </div>`;
+}
 
 function bolhaHtml(m){
   let midiaHtml = '';
   if (m.tipoMidia === 'imagem') midiaHtml = `<div class="midia"><img src="midia/${encodeURIComponent(m.nomeMidia)}" loading="lazy"></div>`;
   else if (m.tipoMidia === 'video') midiaHtml = `<div class="midia"><video src="midia/${encodeURIComponent(m.nomeMidia)}" controls></video></div>`;
-  else if (m.tipoMidia === 'audio') midiaHtml = `<div class="midia"><button class="btn-audio" data-tocar="midia/${encodeURIComponent(m.arquivoAudio)}">▶ Tocar áudio</button>${m.transcricao ? `<div class="transcricao">🗣 ${m.transcricao.replace(/</g,'&lt;')} <span class="rotulo-auto">(transcrição automática)</span></div>` : ''}</div>`;
+  else if (m.tipoMidia === 'audio') midiaHtml = `<div class="midia"><button class="btn-audio" data-tocar="midia/${encodeURIComponent(m.arquivoAudio)}">▶ Tocar áudio</button>${blocoTranscricao(m)}</div>`;
   else if (m.tipoMidia === 'ausente') midiaHtml = `<div class="midia ausente">📎 ${m.nomeMidia} (arquivo não encontrado na pasta midia/)</div>`;
   else if (m.tipoMidia === 'oculta_sem_arquivo') midiaHtml = `<div class="midia ausente">🎞️ Mídia não incluída nesta exportação</div>`;
   else if (m.tipoMidia === 'arquivo') midiaHtml = `<div class="midia"><span class="arquivo-generico">📎 ${m.nomeMidia}</span></div>`;
@@ -349,14 +461,49 @@ render();
 // players do Chrome (erro real: "too many WebMediaPlayers already in
 // existence"), e os áudios mais embaixo na conversa simplesmente não tocam.
 document.getElementById('lista').addEventListener('click', (e) => {
-  const btn = e.target.closest('.btn-audio');
-  if (!btn) return;
-  const audio = document.createElement('audio');
-  audio.src = btn.dataset.tocar;
-  audio.controls = true;
-  audio.autoplay = true;
-  audio.style.width = '100%';
-  btn.replaceWith(audio);
+  const btnAudio = e.target.closest('.btn-audio');
+  if (btnAudio) {
+    const audio = document.createElement('audio');
+    audio.src = btnAudio.dataset.tocar;
+    audio.controls = true;
+    audio.autoplay = true;
+    audio.style.width = '100%';
+    btnAudio.replaceWith(audio);
+    return;
+  }
+
+  const btnEditar = e.target.closest('.btn-editar-transc');
+  if (btnEditar) {
+    const bloco = btnEditar.closest('.transcricao');
+    const m = MENSAGENS[parseInt(btnEditar.dataset.editar)];
+    const textoAtual = (m.nomeMidia in correcoes) ? correcoes[m.nomeMidia] : (m.transcricaoEditada || m.transcricaoAuto || '');
+    bloco.innerHTML = `<textarea class="edit-transcricao">${textoAtual}</textarea>
+      <div class="acoes-edit-transc">
+        <button class="btn-cancelar-transc" data-cancelar="${m.id}">Cancelar</button>
+        <button class="btn-salvar-transc" data-salvar="${m.id}">Salvar correção</button>
+      </div>`;
+    return;
+  }
+
+  const btnCancelar = e.target.closest('.btn-cancelar-transc');
+  if (btnCancelar) {
+    const m = MENSAGENS[parseInt(btnCancelar.dataset.cancelar)];
+    btnCancelar.closest('.transcricao').outerHTML = blocoTranscricao(m);
+    return;
+  }
+
+  const btnSalvar = e.target.closest('.btn-salvar-transc');
+  if (btnSalvar) {
+    const bloco = btnSalvar.closest('.transcricao');
+    const m = MENSAGENS[parseInt(btnSalvar.dataset.salvar)];
+    const novoTexto = bloco.querySelector('textarea').value.trim();
+    correcoes[m.nomeMidia] = novoTexto;
+    m.transcricao = novoTexto;
+    const msgEl = bloco.closest('.msg');
+    if (msgEl) msgEl.dataset.busca = (m.texto + ' ' + m.remetente + ' ' + novoTexto).toLowerCase().replace(/"/g, '');
+    bloco.outerHTML = blocoTranscricao(m);
+    return;
+  }
 });
 
 document.getElementById('busca').addEventListener('input', (e) => {
@@ -374,6 +521,18 @@ document.getElementById('btnExportar').addEventListener('click', () => {
   a.download = 'mensagens_selecionadas.json';
   a.click();
 });
+
+document.getElementById('btnExportarCorrecoes').addEventListener('click', () => {
+  if (Object.keys(correcoes).length === 0) {
+    alert('Nenhuma correção de transcrição feita nesta sessão ainda.');
+    return;
+  }
+  const blob = new Blob([JSON.stringify(correcoes, null, 2)], {type: 'application/json'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'correcoes_transcricao.json';
+  a.click();
+});
 </script>
 </body>
 </html>
@@ -387,7 +546,9 @@ def main():
     ap.add_argument("--descricao", required=True, help="Descrição breve (vai pro catálogo do arquivo original)")
     ap.add_argument("--meu-nome", default="", dest="meu_nome", help="Nome exibido pro dono do celular, pra alinhar as mensagens dele à direita (opcional)")
     ap.add_argument("--transcrever-audio", action="store_true", dest="transcrever_audio", help="Transcreve cada mensagem de voz com faster-whisper (local), deixando-as buscáveis (opcional, mais lento)")
-    ap.add_argument("--limite-audios", type=int, default=0, dest="limite_audios", help="Transcreve só as N mensagens de áudio mais recentes, em vez de todas (opcional, útil pra testar antes de rodar tudo)")
+    ap.add_argument("--limite-audios", type=int, default=0, dest="limite_audios", help="Transcreve só as N mensagens de áudio mais recentes, em vez de todas (ignorado se --arquivo-selecao for usado)")
+    ap.add_argument("--arquivo-selecao", default="", dest="arquivo_selecao", help="Transcreve só os áudios marcados com ★ e exportados pelo botão 'Exportar seleção' do visualizador (um mensagens_selecionadas.json)")
+    ap.add_argument("--importar-correcoes", default="", dest="importar_correcoes", help="Importa o .json baixado pelo botão 'Exportar correções de transcrição' — grava as correções no cache sem alterar o áudio original")
 
     args = ap.parse_args()
     origem = Path(args.arquivo).expanduser()
@@ -411,9 +572,15 @@ def main():
 
     converter_audios_mp3(pasta_caso / "midia")
 
+    if args.importar_correcoes:
+        importar_correcoes_transcricao(args.importar_correcoes, pasta_caso)
+
+    cache_transcricoes = aplicar_transcricoes_em_mensagens(mensagens, pasta_caso)
+
     if args.transcrever_audio:
         print("\n== 2.5. Transcrevendo áudios ==")
-        transcrever_audios(mensagens, pasta_caso, limite=args.limite_audios)
+        arquivos_alvo = carregar_filenames_da_selecao(args.arquivo_selecao) if args.arquivo_selecao else None
+        transcrever_audios(mensagens, pasta_caso, cache_transcricoes, limite=args.limite_audios, arquivos_alvo=arquivos_alvo)
 
     print("\n== 3. Gerando o visualizador ==")
     destino_html = gerar_html(mensagens, args.caso, args.meu_nome, doc_ref, pasta_caso)
