@@ -16,7 +16,11 @@ Uso:
     python3 visualizar_whatsapp.py --arquivo ~/Downloads/conversa.zip \
         --caso "Maria Aparecida Amaral" \
         --descricao "Exportação da conversa com o locador, enviada pelo cliente" \
-        [--meu-nome "Maria Aparecida"]
+        [--meu-nome "Maria Aparecida"] [--transcrever-audio]
+
+--transcrever-audio transcreve cada mensagem de voz (faster-whisper, local,
+modelo "small") pra texto buscável — opcional porque é mais lento (processa
+tudo antes de gerar a página) e exige `pip3 install faster-whisper` à parte.
 
 Formato do .txt esperado (ambos reconhecidos):
     14/03/2026 23:41 - Roberto: Precisa terminar o relatório hoje
@@ -44,7 +48,9 @@ PADRAO_TRACO = re.compile(
     r"^(\d{1,2}/\d{1,2}/\d{2,4}),?\s+(\d{1,2}:\d{2}(?::\d{2})?)\s*-\s*(?:([^:]+?):\s*)?(.*)$"
 )
 PADRAO_ANEXO = re.compile(r"<anexado:\s*(.+?)>", re.IGNORECASE)
+PADRAO_ANEXO_ANTIGO = re.compile(r"[‎‏]*([\w,\.\-]+\.\w{2,5})\s*\(arquivo anexado\)", re.IGNORECASE)
 PADRAO_OCULTA = re.compile(r"<?\s*(?:mídia oculta|media omitted|arquivo de mídia oculto)\s*>?", re.IGNORECASE)
+MARCAS_INVISIVEIS = re.compile(r"[‎‏﻿]")
 
 EXT_IMAGEM = {".jpg", ".jpeg", ".png", ".gif", ".webp"}
 EXT_VIDEO = {".mp4", ".mov", ".avi"}
@@ -62,18 +68,18 @@ def parsear_mensagens(texto: str) -> list[dict]:
             data, hora, remetente, texto_msg = m.groups()
             mensagens.append({
                 "data": data, "hora": hora,
-                "remetente": (remetente or "Sistema").strip(),
-                "texto": texto_msg.strip(),
+                "remetente": MARCAS_INVISIVEIS.sub("", (remetente or "Sistema")).strip(),
+                "texto": MARCAS_INVISIVEIS.sub("", texto_msg).strip(),
                 "midia": None,
             })
         elif mensagens:
-            mensagens[-1]["texto"] += "\n" + linha
+            mensagens[-1]["texto"] += "\n" + MARCAS_INVISIVEIS.sub("", linha)
 
     for msg in mensagens:
-        m_anexo = PADRAO_ANEXO.search(msg["texto"])
+        m_anexo = PADRAO_ANEXO.search(msg["texto"]) or PADRAO_ANEXO_ANTIGO.search(msg["texto"])
         if m_anexo:
             msg["midia"] = m_anexo.group(1).strip()
-            msg["texto"] = PADRAO_ANEXO.sub("", msg["texto"]).strip()
+            msg["texto"] = (PADRAO_ANEXO.sub("", msg["texto"]) if PADRAO_ANEXO.search(msg["texto"]) else PADRAO_ANEXO_ANTIGO.sub("", msg["texto"])).strip()
         elif PADRAO_OCULTA.search(msg["texto"]):
             msg["midia"] = "__OCULTA__"
             msg["texto"] = PADRAO_OCULTA.sub("", msg["texto"]).strip()
@@ -94,6 +100,41 @@ def extrair_zip(caminho_zip: Path, destino_midia: Path) -> str:
     if not texto_chat:
         sys.exit("Não encontrei um arquivo .txt dentro do .zip.")
     return texto_chat
+
+
+def transcrever_audios(mensagens: list[dict], pasta_caso: Path):
+    import warnings
+    # RuntimeWarning (divide by zero/overflow) do numpy no cálculo do espectro
+    # mel, no feature_extractor do faster-whisper — testado com áudios reais
+    # (até 4min) sem efeito na qualidade da transcrição; só polui o terminal.
+    warnings.filterwarnings("ignore", category=RuntimeWarning, module="faster_whisper")
+
+    try:
+        from faster_whisper import WhisperModel
+    except ImportError:
+        sys.exit("faster-whisper não instalado. Rode: pip3 install faster-whisper")
+
+    alvos = [m for m in mensagens if m["midia"] and m["midia"] != "__OCULTA__"
+             and Path(m["midia"]).suffix.lower() in EXT_AUDIO
+             and (pasta_caso / "midia" / m["midia"]).exists()]
+    if not alvos:
+        print("Nenhum áudio encontrado pra transcrever.")
+        return
+
+    print(f"Carregando modelo de transcrição (1ª vez pode levar um pouco)...")
+    model = WhisperModel("small", device="cpu", compute_type="int8")
+
+    for i, msg in enumerate(alvos, 1):
+        caminho = pasta_caso / "midia" / msg["midia"]
+        try:
+            segments, _info = model.transcribe(str(caminho), language="pt")
+            msg["transcricao"] = " ".join(s.text.strip() for s in segments).strip()
+        except Exception as e:
+            msg["transcricao"] = ""
+            print(f"  [{i}/{len(alvos)}] falhou ({msg['midia']}): {e}")
+            continue
+        if i % 20 == 0 or i == len(alvos):
+            print(f"  [{i}/{len(alvos)}] transcritos...")
 
 
 def gerar_html(mensagens: list[dict], caso: str, meu_nome: str, doc_ref: dict, pasta_destino: Path) -> Path:
@@ -124,6 +165,7 @@ def gerar_html(mensagens: list[dict], caso: str, meu_nome: str, doc_ref: dict, p
             "data": msg["data"], "hora": msg["hora"], "remetente": msg["remetente"],
             "texto": msg["texto"], "eu": msg["remetente"].strip().lower() == meu_nome.strip().lower() if meu_nome else False,
             "tipoMidia": tipo_midia, "nomeMidia": nome_midia,
+            "transcricao": msg.get("transcricao", ""),
         })
 
     html = HTML_TEMPLATE.replace("__CASO__", caso.replace("</", "<\\/")) \
@@ -178,6 +220,8 @@ HTML_TEMPLATE = r"""<!DOCTYPE html>
   .midia video{max-width:100%;border-radius:6px}
   .midia .arquivo-generico{font-size:.8rem;background:var(--surface-2);padding:6px 10px;border-radius:6px;display:inline-block}
   .midia .ausente{font-size:.78rem;color:var(--fg-muted);font-style:italic}
+  .transcricao{font-size:.86rem;margin-top:5px;color:var(--fg)}
+  .transcricao .rotulo-auto{font-size:.68rem;color:var(--fg-muted);font-style:italic}
   .separador-dia{text-align:center;margin:18px 0 10px;font-size:.74rem;color:var(--fg-muted)}
   .oculta{display:none !important}
 
@@ -212,12 +256,12 @@ function bolhaHtml(m){
   let midiaHtml = '';
   if (m.tipoMidia === 'imagem') midiaHtml = `<div class="midia"><img src="midia/${encodeURIComponent(m.nomeMidia)}" loading="lazy"></div>`;
   else if (m.tipoMidia === 'video') midiaHtml = `<div class="midia"><video src="midia/${encodeURIComponent(m.nomeMidia)}" controls></video></div>`;
-  else if (m.tipoMidia === 'audio') midiaHtml = `<div class="midia"><audio src="midia/${encodeURIComponent(m.nomeMidia)}" controls style="width:100%"></audio></div>`;
+  else if (m.tipoMidia === 'audio') midiaHtml = `<div class="midia"><audio src="midia/${encodeURIComponent(m.nomeMidia)}" controls style="width:100%"></audio>${m.transcricao ? `<div class="transcricao">🗣 ${m.transcricao.replace(/</g,'&lt;')} <span class="rotulo-auto">(transcrição automática)</span></div>` : ''}</div>`;
   else if (m.tipoMidia === 'ausente') midiaHtml = `<div class="midia ausente">📎 ${m.nomeMidia} (arquivo não encontrado na pasta midia/)</div>`;
   else if (m.tipoMidia === 'oculta_sem_arquivo') midiaHtml = `<div class="midia ausente">🎞️ Mídia não incluída nesta exportação</div>`;
   else if (m.tipoMidia === 'arquivo') midiaHtml = `<div class="midia"><span class="arquivo-generico">📎 ${m.nomeMidia}</span></div>`;
 
-  return `<div class="msg ${m.eu ? 'eu' : ''}" data-id="${m.id}" data-busca="${(m.texto + ' ' + m.remetente).toLowerCase().replace(/"/g,'')}">
+  return `<div class="msg ${m.eu ? 'eu' : ''}" data-id="${m.id}" data-busca="${(m.texto + ' ' + m.remetente + ' ' + m.transcricao).toLowerCase().replace(/"/g,'')}">
     <div class="bolha">
       ${m.eu ? '' : `<div class="remetente">${m.remetente}</div>`}
       ${midiaHtml}
@@ -270,6 +314,7 @@ def main():
     ap.add_argument("--caso", required=True, help="Nome ou nº do caso")
     ap.add_argument("--descricao", required=True, help="Descrição breve (vai pro catálogo do arquivo original)")
     ap.add_argument("--meu-nome", default="", dest="meu_nome", help="Nome exibido pro dono do celular, pra alinhar as mensagens dele à direita (opcional)")
+    ap.add_argument("--transcrever-audio", action="store_true", dest="transcrever_audio", help="Transcreve cada mensagem de voz com faster-whisper (local), deixando-as buscáveis (opcional, mais lento)")
 
     args = ap.parse_args()
     origem = Path(args.arquivo).expanduser()
@@ -290,6 +335,10 @@ def main():
     if not mensagens:
         sys.exit("Não consegui reconhecer nenhuma mensagem no arquivo — confira o formato do .txt exportado.")
     print(f"{len(mensagens)} mensagens reconhecidas.")
+
+    if args.transcrever_audio:
+        print("\n== 2.5. Transcrevendo áudios ==")
+        transcrever_audios(mensagens, pasta_caso)
 
     print("\n== 3. Gerando o visualizador ==")
     destino_html = gerar_html(mensagens, args.caso, args.meu_nome, doc_ref, pasta_caso)

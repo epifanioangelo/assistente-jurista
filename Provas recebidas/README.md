@@ -12,6 +12,8 @@ python3 _tools/visualizar_whatsapp.py --arquivo conversa.zip --caso "<caso>" --d
 
 Isso cataloga o arquivo original (hash, como qualquer prova — ver acima) e gera `visualizador_conversa.html` na pasta do caso: mensagens em balão (como no WhatsApp de verdade), busca por palavra-chave, estrela pra marcar as relevantes, e um botão "Exportar seleção" que baixa um `.json` com o que foi marcado — pra citar na peça com data/hora/remetente exatos.
 
+**Mensagens de voz buscáveis (opcional)**: adicionar `--transcrever-audio` transcreve cada áudio com `faster-whisper` (local, modelo "small", precisa de `pip3 install faster-whisper` à parte — testado: ~9x mais rápido que o tempo real do áudio, boa qualidade em português coloquial). O texto transcrito entra na busca e aparece sob o player de áudio, sempre marcado como "(transcrição automática)" — é gerado por IA, nunca tratar como o texto literal/garantido do que foi dito.
+
 ## Convenção
 
 Cada caso tem sua própria subpasta, dentro da pasta do dia em que a primeira prova chegou:
