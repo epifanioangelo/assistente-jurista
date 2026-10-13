@@ -53,6 +53,7 @@ import re
 import shutil
 import subprocess
 import sys
+import unicodedata
 import zipfile
 from datetime import datetime
 from pathlib import Path
@@ -571,6 +572,17 @@ def _tamanho_legivel(caminho: Path) -> str:
     return f"{n / 1024 / 1024:.1f} MB"
 
 
+def _nome_arquivo_seguro(nome: str) -> str:
+    """O Veredata só serve/recebe nomes de arquivo 100% ASCII (allowlist
+    contra path traversal em midia_caso.php/sincronizar_midia.php) — nome
+    de anexo do WhatsApp com acento (ex: "...serviço.pdf") travava nos dois
+    lados sem erro visível (achado real, 13/10/2026: documento sumia do
+    Veredata e a sincronização remota falhava silenciosa pra esse arquivo)."""
+    base = unicodedata.normalize("NFKD", nome).encode("ascii", "ignore").decode("ascii")
+    base = re.sub(r"[^A-Za-z0-9_.\-]", "_", base)
+    return base or "arquivo"
+
+
 def exportar_para_veredata(mensagens: list[dict], caso: str, meu_nome: str, doc_ref: dict, pasta_caso: Path, pasta_veredata: Path):
     """
     Escreve a conversa direto no formato de dados do Veredata (casos.json +
@@ -638,10 +650,10 @@ def exportar_para_veredata(mensagens: list[dict], caso: str, meu_nome: str, doc_
         origem_arquivo = pasta_midia_origem / midia_nome
         arquivo_a_servir = None
         if origem_arquivo.exists():
-            nome_servido = midia_nome
+            nome_servido = _nome_arquivo_seguro(midia_nome)
             if ext in EXT_AUDIO and ext != ".mp3" and origem_arquivo.with_suffix(".mp3").exists():
                 origem_arquivo = origem_arquivo.with_suffix(".mp3")
-                nome_servido = origem_arquivo.name
+                nome_servido = _nome_arquivo_seguro(origem_arquivo.name)
             destino_arquivo = pasta_midia_destino / nome_servido
             if not destino_arquivo.exists():
                 shutil.copy2(origem_arquivo, destino_arquivo)

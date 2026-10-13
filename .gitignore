@@ -19,3 +19,4 @@ Pecas geradas/**/Peticao_Manifestacao_IP_1510060-81_v2_09-07-2026.*
 # mesmo em repo privado. README.md e _modelo_catalogo.md (convenção, sem
 # dado de caso nenhum) continuam versionados normalmente.
 Provas recebidas/*/
+__pycache__/
