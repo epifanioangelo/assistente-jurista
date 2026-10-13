@@ -22,6 +22,10 @@ Isso cataloga o arquivo original (hash, como qualquer prova — ver acima) e ger
 
 **Levar também pro Veredata remoto** (acessível de qualquer lugar, não só nessa máquina): juntar `--sincronizar-remoto` ao comando acima — sincroniza os dados (via `sincronizar.php`) e sobe os arquivos de mídia (via `sincronizar_midia.php`, novo), mesmo `SEGREDO_SYNC` já usado pelo Painel de Ingestão. Só funciona se essa cópia local já tiver `visualizador_remoto_url` configurado em `_config_local.php`.
 
+**Sem terminal nenhum**: dentro do próprio Veredata (Ingestão → "Importar conversa do WhatsApp"), é só escolher o arquivo e clicar — por trás, chama esse mesmo script. Só aparece na máquina que tem Python + este projeto instalados.
+
+**Conversão de áudio pra mp3 é opcional** (`--converter-audio-mp3`), **desligada por padrão**: Chrome e Firefox já tocam `.opus` nativamente — só ligue essa opção se for usar Safari, e exige `ffmpeg` instalado (`brew install ffmpeg`).
+
 ## Convenção
 
 Cada caso tem sua própria subpasta, dentro da pasta do dia em que a primeira prova chegou:
