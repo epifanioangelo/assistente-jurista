@@ -774,6 +774,7 @@ def main():
     ap.add_argument("--meu-nome", default="", dest="meu_nome", help="Nome exibido pro dono do celular, pra alinhar as mensagens dele à direita (opcional)")
     ap.add_argument("--transcrever-audio", action="store_true", dest="transcrever_audio", help="Transcreve cada mensagem de voz com faster-whisper (local), deixando-as buscáveis (opcional, mais lento)")
     ap.add_argument("--limite-audios", type=int, default=0, dest="limite_audios", help="Transcreve só as N mensagens de áudio mais recentes, em vez de todas (ignorado se --arquivo-selecao for usado)")
+    ap.add_argument("--converter-audio-mp3", action="store_true", dest="converter_audio_mp3", help="Gera cópia .mp3 de cada áudio (opcional — Chrome/Firefox já tocam .opus nativamente; só precisa disso pra garantir compatibilidade com Safari, e exige ffmpeg instalado)")
     ap.add_argument("--arquivo-selecao", default="", dest="arquivo_selecao", help="Transcreve só os áudios marcados com ★ e exportados pelo botão 'Exportar seleção' do visualizador (um mensagens_selecionadas.json)")
     ap.add_argument("--importar-correcoes", default="", dest="importar_correcoes", help="Importa o .json baixado pelo botão 'Exportar correções de transcrição' — grava as correções no cache sem alterar o áudio original")
     ap.add_argument("--exportar-veredata", nargs="?", const="~/Documents/VisualizadorIPED", default="", dest="exportar_veredata", help="Escreve a conversa direto no Veredata (casos.json/casos_itens.json), pra abrir lá com login/busca/★ — caminho opcional, padrão ~/Documents/VisualizadorIPED")
@@ -799,7 +800,8 @@ def main():
         sys.exit("Não consegui reconhecer nenhuma mensagem no arquivo — confira o formato do .txt exportado.")
     print(f"{len(mensagens)} mensagens reconhecidas.")
 
-    converter_audios_mp3(pasta_caso / "midia")
+    if args.converter_audio_mp3:
+        converter_audios_mp3(pasta_caso / "midia")
 
     if args.importar_correcoes:
         importar_correcoes_transcricao(args.importar_correcoes, pasta_caso)

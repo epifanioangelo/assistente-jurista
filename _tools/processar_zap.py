@@ -65,6 +65,7 @@ def main():
     ap.add_argument("--so-local", action="store_true", dest="so_local", help="Não sincroniza com o Veredata remoto, só com a cópia local")
     ap.add_argument("--transcrever-audio", action="store_true", dest="transcrever_audio")
     ap.add_argument("--limite-audios", type=int, default=0, dest="limite_audios")
+    ap.add_argument("--converter-audio-mp3", action="store_true", dest="converter_audio_mp3", help="Gera cópia .mp3 de cada áudio (opcional — Chrome/Firefox já tocam .opus nativamente; só precisa pra Safari, e exige ffmpeg)")
     ap.add_argument("--veredata", default=PASTA_VEREDATA_PADRAO, help=f"Caminho do Veredata local (padrão: {PASTA_VEREDATA_PADRAO})")
 
     args = ap.parse_args()
@@ -96,7 +97,8 @@ def main():
         sys.exit("Não consegui reconhecer nenhuma mensagem no arquivo.")
     print(f"{len(mensagens)} mensagens reconhecidas.")
 
-    converter_audios_mp3(pasta_caso / "midia")
+    if args.converter_audio_mp3:
+        converter_audios_mp3(pasta_caso / "midia")
     cache_transcricoes = aplicar_transcricoes_em_mensagens(mensagens, pasta_caso)
 
     if args.transcrever_audio:
