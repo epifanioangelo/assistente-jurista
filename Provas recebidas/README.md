@@ -18,6 +18,8 @@ Isso cataloga o arquivo original (hash, como qualquer prova — ver acima) e ger
 
 **Corrigir erro de transcrição sem mexer no áudio**: clique no ✏️ ao lado de qualquer transcrição no visualizador, edite o texto, salve. No fim, clique "Exportar correções de transcrição (.json)" e rode de novo com `--importar-correcoes correcoes_transcricao.json`. A transcrição automática original fica preservada no cache (nunca sobrescrita) — só a exibição passa a mostrar a corrigida, sempre rotulada "(revisado manualmente)". O arquivo de áudio em si nunca é alterado, continua disponível pra qualquer um reconferir ouvindo.
 
+**Ver a conversa dentro do Veredata** (em vez do HTML avulso): adicionar `--exportar-veredata` (ou `--exportar-veredata /caminho/pro/VisualizadorIPED`, padrão `~/Documents/VisualizadorIPED`) escreve a conversa direto nos dados do Veredata — aparece lá com login, busca, ★ e relatório, no mesmo padrão de uma conversa de celular processada pelo IPED. Reexecutar substitui os itens dessa fonte (nunca duplica).
+
 ## Convenção
 
 Cada caso tem sua própria subpasta, dentro da pasta do dia em que a primeira prova chegou:
