@@ -34,6 +34,7 @@ import argparse
 import json
 import re
 import shutil
+import subprocess
 import sys
 import zipfile
 from pathlib import Path
@@ -102,6 +103,40 @@ def extrair_zip(caminho_zip: Path, destino_midia: Path) -> str:
     return texto_chat
 
 
+def converter_audios_mp3(pasta_midia: Path):
+    """
+    Gera uma cópia em .mp3 de cada áudio (.opus etc.) pra tocar no navegador.
+    O Safari não toca Opus/Ogg de forma confiável em <audio>, mesmo com o
+    arquivo original perfeito — a cópia .mp3 resolve isso sem mexer no
+    arquivo original (que continua sendo o que foi catalogado/hasheado).
+    """
+    if not pasta_midia.exists():
+        return
+    arquivos = [f for f in pasta_midia.iterdir() if f.suffix.lower() in EXT_AUDIO and f.suffix.lower() != ".mp3"]
+    pendentes = [f for f in arquivos if not f.with_suffix(".mp3").exists()]
+    if not pendentes:
+        return
+
+    try:
+        subprocess.run(["ffmpeg", "-version"], capture_output=True, check=True)
+    except (FileNotFoundError, subprocess.CalledProcessError):
+        print("ffmpeg não encontrado — pulando conversão pra .mp3 (áudio pode não tocar em todos os navegadores).")
+        return
+
+    print(f"Convertendo {len(pendentes)} áudio(s) pra .mp3 (compatibilidade de navegador)...")
+    falhas = 0
+    for arq in pendentes:
+        destino = arq.with_suffix(".mp3")
+        r = subprocess.run(
+            ["ffmpeg", "-y", "-loglevel", "error", "-i", str(arq), "-codec:a", "libmp3lame", "-qscale:a", "4", str(destino)],
+            capture_output=True,
+        )
+        if r.returncode != 0:
+            falhas += 1
+    if falhas:
+        print(f"  {falhas} arquivo(s) não converteram — tocam só se o navegador suportar o formato original.")
+
+
 def _chave_data_hora(msg: dict):
     try:
         dia, mes, ano = (int(p) for p in msg["data"].split("/"))
@@ -159,29 +194,33 @@ def gerar_html(mensagens: list[dict], caso: str, meu_nome: str, doc_ref: dict, p
 
     def classificar_midia(nome):
         if not nome:
-            return "", ""
+            return "", "", ""
         if nome == "__OCULTA__":
-            return "oculta_sem_arquivo", ""
+            return "oculta_sem_arquivo", "", ""
         caminho = pasta_destino / "midia" / nome
         if not caminho.exists():
-            return "ausente", nome
+            return "ausente", nome, nome
         ext = caminho.suffix.lower()
         if ext in EXT_IMAGEM:
-            return "imagem", nome
+            return "imagem", nome, nome
         if ext in EXT_VIDEO:
-            return "video", nome
+            return "video", nome, nome
         if ext in EXT_AUDIO:
-            return "audio", nome
-        return "arquivo", nome
+            # cópia .mp3 (gerada por converter_audios_mp3) toca em qualquer
+            # navegador; o .opus original continua sendo o arquivo catalogado
+            caminho_mp3 = caminho.with_suffix(".mp3")
+            tocavel = caminho_mp3.name if caminho_mp3.exists() else nome
+            return "audio", nome, tocavel
+        return "arquivo", nome, nome
 
     dados_js = []
     for i, msg in enumerate(mensagens):
-        tipo_midia, nome_midia = classificar_midia(msg["midia"])
+        tipo_midia, nome_midia, arquivo_audio = classificar_midia(msg["midia"])
         dados_js.append({
             "id": i,
             "data": msg["data"], "hora": msg["hora"], "remetente": msg["remetente"],
             "texto": msg["texto"], "eu": msg["remetente"].strip().lower() == meu_nome.strip().lower() if meu_nome else False,
-            "tipoMidia": tipo_midia, "nomeMidia": nome_midia,
+            "tipoMidia": tipo_midia, "nomeMidia": nome_midia, "arquivoAudio": arquivo_audio,
             "transcricao": msg.get("transcricao", ""),
         })
 
@@ -273,7 +312,7 @@ function bolhaHtml(m){
   let midiaHtml = '';
   if (m.tipoMidia === 'imagem') midiaHtml = `<div class="midia"><img src="midia/${encodeURIComponent(m.nomeMidia)}" loading="lazy"></div>`;
   else if (m.tipoMidia === 'video') midiaHtml = `<div class="midia"><video src="midia/${encodeURIComponent(m.nomeMidia)}" controls></video></div>`;
-  else if (m.tipoMidia === 'audio') midiaHtml = `<div class="midia"><audio src="midia/${encodeURIComponent(m.nomeMidia)}" controls style="width:100%"></audio>${m.transcricao ? `<div class="transcricao">🗣 ${m.transcricao.replace(/</g,'&lt;')} <span class="rotulo-auto">(transcrição automática)</span></div>` : ''}</div>`;
+  else if (m.tipoMidia === 'audio') midiaHtml = `<div class="midia"><audio src="midia/${encodeURIComponent(m.arquivoAudio)}" controls style="width:100%"></audio>${m.transcricao ? `<div class="transcricao">🗣 ${m.transcricao.replace(/</g,'&lt;')} <span class="rotulo-auto">(transcrição automática)</span></div>` : ''}</div>`;
   else if (m.tipoMidia === 'ausente') midiaHtml = `<div class="midia ausente">📎 ${m.nomeMidia} (arquivo não encontrado na pasta midia/)</div>`;
   else if (m.tipoMidia === 'oculta_sem_arquivo') midiaHtml = `<div class="midia ausente">🎞️ Mídia não incluída nesta exportação</div>`;
   else if (m.tipoMidia === 'arquivo') midiaHtml = `<div class="midia"><span class="arquivo-generico">📎 ${m.nomeMidia}</span></div>`;
@@ -353,6 +392,8 @@ def main():
     if not mensagens:
         sys.exit("Não consegui reconhecer nenhuma mensagem no arquivo — confira o formato do .txt exportado.")
     print(f"{len(mensagens)} mensagens reconhecidas.")
+
+    converter_audios_mp3(pasta_caso / "midia")
 
     if args.transcrever_audio:
         print("\n== 2.5. Transcrevendo áudios ==")
