@@ -50,6 +50,18 @@ def proximo_id_e_linhas(catalogo: Path) -> tuple[int, list[str]]:
     return proximo, linhas
 
 
+def _procurar_hash_existente(catalogo: Path, hash_sha256: str):
+    if not catalogo.exists():
+        return None
+    for linha in catalogo.read_text(encoding="utf-8").splitlines():
+        if hash_sha256 in linha:
+            m_id = re.search(r"\|\s*Doc\.\s*(\d+)\s*\|", linha)
+            m_arq = re.search(r"\|\s*(doc\d+_[^\|]+?)\s*\|", linha)
+            if m_id and m_arq:
+                return {"doc_id": int(m_id.group(1)), "nome_destino": m_arq.group(1).strip()}
+    return None
+
+
 def catalogar(arquivo: str, caso: str, descricao: str, data_exibida: str):
     origem = Path(arquivo).expanduser()
     if not origem.exists():
@@ -60,6 +72,18 @@ def catalogar(arquivo: str, caso: str, descricao: str, data_exibida: str):
     pasta_caso.mkdir(parents=True, exist_ok=True)
 
     catalogo = pasta_caso / "catalogo.md"
+    hash_sha256 = sha256_de(origem)
+
+    existente = _procurar_hash_existente(catalogo, hash_sha256)
+    if existente:
+        print(f"Arquivo já catalogado antes (mesmo hash) — reaproveitando Doc. {existente['doc_id']}, sem copiar de novo.")
+        return {
+            "doc_id": existente["doc_id"],
+            "destino": pasta_caso / existente["nome_destino"],
+            "hash": hash_sha256,
+            "pasta_caso": pasta_caso,
+        }
+
     doc_id, linhas = proximo_id_e_linhas(catalogo)
 
     extensao = origem.suffix
@@ -68,7 +92,6 @@ def catalogar(arquivo: str, caso: str, descricao: str, data_exibida: str):
     if destino.exists():
         sys.exit(f"Já existe um arquivo com esse nome no destino: {destino}")
 
-    hash_sha256 = sha256_de(origem)
     shutil.copy2(origem, destino)
 
     recebido_em = date.today().strftime("%d/%m/%Y")

@@ -102,7 +102,20 @@ def extrair_zip(caminho_zip: Path, destino_midia: Path) -> str:
     return texto_chat
 
 
-def transcrever_audios(mensagens: list[dict], pasta_caso: Path):
+def _chave_data_hora(msg: dict):
+    try:
+        dia, mes, ano = (int(p) for p in msg["data"].split("/"))
+        if ano < 100:
+            ano += 2000
+        partes_hora = msg["hora"].split(":")
+        h, mi = int(partes_hora[0]), int(partes_hora[1])
+        s = int(partes_hora[2]) if len(partes_hora) > 2 else 0
+        return (ano, mes, dia, h, mi, s)
+    except (ValueError, IndexError):
+        return (0, 0, 0, 0, 0, 0)
+
+
+def transcrever_audios(mensagens: list[dict], pasta_caso: Path, limite: int = 0):
     import warnings
     # RuntimeWarning (divide by zero/overflow) do numpy no cálculo do espectro
     # mel, no feature_extractor do faster-whisper — testado com áudios reais
@@ -120,6 +133,10 @@ def transcrever_audios(mensagens: list[dict], pasta_caso: Path):
     if not alvos:
         print("Nenhum áudio encontrado pra transcrever.")
         return
+
+    if limite:
+        alvos = sorted(alvos, key=_chave_data_hora, reverse=True)[:limite]
+        print(f"Limitado às {len(alvos)} mensagens de áudio mais recentes.")
 
     print(f"Carregando modelo de transcrição (1ª vez pode levar um pouco)...")
     model = WhisperModel("small", device="cpu", compute_type="int8")
@@ -315,6 +332,7 @@ def main():
     ap.add_argument("--descricao", required=True, help="Descrição breve (vai pro catálogo do arquivo original)")
     ap.add_argument("--meu-nome", default="", dest="meu_nome", help="Nome exibido pro dono do celular, pra alinhar as mensagens dele à direita (opcional)")
     ap.add_argument("--transcrever-audio", action="store_true", dest="transcrever_audio", help="Transcreve cada mensagem de voz com faster-whisper (local), deixando-as buscáveis (opcional, mais lento)")
+    ap.add_argument("--limite-audios", type=int, default=0, dest="limite_audios", help="Transcreve só as N mensagens de áudio mais recentes, em vez de todas (opcional, útil pra testar antes de rodar tudo)")
 
     args = ap.parse_args()
     origem = Path(args.arquivo).expanduser()
@@ -338,7 +356,7 @@ def main():
 
     if args.transcrever_audio:
         print("\n== 2.5. Transcrevendo áudios ==")
-        transcrever_audios(mensagens, pasta_caso)
+        transcrever_audios(mensagens, pasta_caso, limite=args.limite_audios)
 
     print("\n== 3. Gerando o visualizador ==")
     destino_html = gerar_html(mensagens, args.caso, args.meu_nome, doc_ref, pasta_caso)
