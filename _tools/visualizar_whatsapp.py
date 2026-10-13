@@ -33,6 +33,12 @@ rode de novo com --importar-correcoes correcoes_transcricao.json — a versão
 automática original fica preservada no cache, só a exibição passa a mostrar
 a corrigida, sempre rotulada "(revisado manualmente)".
 
+--exportar-veredata [caminho] escreve a conversa direto no Veredata (mesmo
+padrão de visualização do IPED — login, busca, ★, Conversas/Galeria/
+Documentos), em vez do HTML avulso. Caminho opcional, padrão
+~/Documents/VisualizadorIPED. Reexecutar substitui os itens dessa mesma
+fonte (nunca duplica).
+
 Formato do .txt esperado (ambos reconhecidos):
     14/03/2026 23:41 - Roberto: Precisa terminar o relatório hoje
     [14/03/2026, 23:41:00] Roberto: Precisa terminar o relatório hoje
@@ -539,6 +545,138 @@ document.getElementById('btnExportarCorrecoes').addEventListener('click', () => 
 """
 
 
+def _slug_fonte(caso: str, doc_id: int) -> str:
+    base = re.sub(r"[^a-z0-9]+", "_", caso.lower()).strip("_")
+    return f"wa_{base}_{doc_id}"
+
+
+def _duracao_audio(caminho: Path) -> str:
+    try:
+        r = subprocess.run(
+            ["ffprobe", "-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0", str(caminho)],
+            capture_output=True, text=True, timeout=10,
+        )
+        seg = float(r.stdout.strip())
+        return f"{int(seg // 60)}:{int(seg % 60):02d}"
+    except (ValueError, subprocess.SubprocessError, FileNotFoundError):
+        return ""
+
+
+def _tamanho_legivel(caminho: Path) -> str:
+    n = caminho.stat().st_size
+    if n < 1024:
+        return f"{n} B"
+    if n < 1024 * 1024:
+        return f"{n / 1024:.0f} KB"
+    return f"{n / 1024 / 1024:.1f} MB"
+
+
+def exportar_para_veredata(mensagens: list[dict], caso: str, meu_nome: str, doc_ref: dict, pasta_caso: Path, pasta_veredata: Path):
+    """
+    Escreve a conversa direto no formato de dados do Veredata (casos.json +
+    casos_itens.json) e copia a mídia pra _casos_midia/<fonte>/ de lá — a
+    conversa passa a aparecer dentro do Veredata (Conversas/Galeria/
+    Documentos), com login, busca e marcação ★, igual um caso forense do
+    IPED. Mesma máquina, cópia de arquivo local — nenhuma rede envolvida.
+    """
+    pasta_dados = pasta_veredata / "_dados"
+    if not pasta_dados.is_dir():
+        sys.exit(f"Não encontrei {pasta_dados} — confira o caminho do Veredata (--exportar-veredata).")
+
+    fonte_id = _slug_fonte(caso, doc_ref["doc_id"])
+    pasta_midia_destino = pasta_veredata / "_casos_midia" / fonte_id
+    pasta_midia_destino.mkdir(parents=True, exist_ok=True)
+    pasta_midia_origem = pasta_caso / "midia"
+
+    def caminho_json(nome):
+        c = pasta_dados / nome
+        if c.exists():
+            return json.loads(c.read_text(encoding="utf-8"))
+        return []
+
+    def salvar_json(nome, dados):
+        (pasta_dados / nome).write_text(json.dumps(dados, ensure_ascii=False, indent=2), encoding="utf-8")
+
+    casos = caminho_json("casos.json")
+    casos = [c for c in casos if c.get("id") != fonte_id]
+    casos.append({"id": fonte_id, "nome": caso})
+    salvar_json("casos.json", casos)
+
+    itens_existentes = caminho_json("casos_itens.json")
+    itens_existentes = [i for i in itens_existentes if i.get("fonte") != fonte_id]
+    proximo_id = max([10] + [int(i.get("id", 0)) for i in itens_existentes]) + 1
+
+    novos_itens = []
+    copiados = 0
+    for msg in mensagens:
+        quando_iso = ""
+        try:
+            d, m_, a = (int(p) for p in msg["data"].split("/"))
+            if a < 100:
+                a += 2000
+            partes = msg["hora"].split(":")
+            h, mi = partes[0], partes[1]
+            s = partes[2] if len(partes) > 2 else "00"
+            quando_iso = f"{a:04d}-{m_:02d}-{d:02d}T{h.zfill(2)}:{mi.zfill(2)}:{s.zfill(2)}"
+        except (ValueError, IndexError):
+            pass
+
+        base = {
+            "id": proximo_id, "fonte": fonte_id, "de": msg["remetente"],
+            "eu": bool(meu_nome) and msg["remetente"].strip().lower() == meu_nome.strip().lower(),
+            "quando": quando_iso, "hash": doc_ref["hash"],
+        }
+
+        midia_nome = msg.get("midia")
+        if not midia_nome or midia_nome == "__OCULTA__":
+            if msg["texto"]:
+                novos_itens.append({**base, "categoria": "mensagens", "tipo": "whatsapp", "texto": msg["texto"]})
+                proximo_id += 1
+            continue
+
+        ext = Path(midia_nome).suffix.lower()
+        origem_arquivo = pasta_midia_origem / midia_nome
+        arquivo_a_servir = None
+        if origem_arquivo.exists():
+            nome_servido = midia_nome
+            if ext in EXT_AUDIO and ext != ".mp3" and origem_arquivo.with_suffix(".mp3").exists():
+                origem_arquivo = origem_arquivo.with_suffix(".mp3")
+                nome_servido = origem_arquivo.name
+            destino_arquivo = pasta_midia_destino / nome_servido
+            if not destino_arquivo.exists():
+                shutil.copy2(origem_arquivo, destino_arquivo)
+                copiados += 1
+            arquivo_a_servir = nome_servido
+
+        if ext in EXT_AUDIO:
+            item = {**base, "categoria": "mensagens", "tipo": "audio", "texto": msg.get("transcricao", "")}
+            if arquivo_a_servir:
+                item["arquivo"] = arquivo_a_servir
+                item["duracao"] = _duracao_audio(pasta_midia_destino / arquivo_a_servir)
+        elif ext in EXT_IMAGEM:
+            item = {**base, "categoria": "fotos", "tipo": "foto", "titulo": midia_nome}
+            if arquivo_a_servir:
+                item["arquivo"] = arquivo_a_servir
+        elif ext in EXT_VIDEO:
+            item = {**base, "categoria": "fotos", "tipo": "video", "titulo": midia_nome}
+            if arquivo_a_servir:
+                item["arquivo"] = arquivo_a_servir
+        else:
+            item = {**base, "categoria": "documentos", "tipo": ext.lstrip(".") or "arquivo", "titulo": midia_nome}
+            if arquivo_a_servir:
+                item["arquivo"] = arquivo_a_servir
+                item["tamanho"] = _tamanho_legivel(pasta_midia_destino / arquivo_a_servir)
+
+        novos_itens.append(item)
+        proximo_id += 1
+
+    itens_existentes.extend(novos_itens)
+    salvar_json("casos_itens.json", itens_existentes)
+
+    print(f"Exportado pro Veredata como fonte '{fonte_id}': {len(novos_itens)} item(ns), {copiados} arquivo(s) de mídia copiado(s).")
+    print(f"Abra o Veredata (index.php) e selecione essa fonte no menu — a conversa aparece em Conversas/Galeria/Documentos.")
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--arquivo", required=True, help="Caminho do .txt ou .zip exportado do WhatsApp")
@@ -549,6 +687,7 @@ def main():
     ap.add_argument("--limite-audios", type=int, default=0, dest="limite_audios", help="Transcreve só as N mensagens de áudio mais recentes, em vez de todas (ignorado se --arquivo-selecao for usado)")
     ap.add_argument("--arquivo-selecao", default="", dest="arquivo_selecao", help="Transcreve só os áudios marcados com ★ e exportados pelo botão 'Exportar seleção' do visualizador (um mensagens_selecionadas.json)")
     ap.add_argument("--importar-correcoes", default="", dest="importar_correcoes", help="Importa o .json baixado pelo botão 'Exportar correções de transcrição' — grava as correções no cache sem alterar o áudio original")
+    ap.add_argument("--exportar-veredata", nargs="?", const="~/Documents/VisualizadorIPED", default="", dest="exportar_veredata", help="Escreve a conversa direto no Veredata (casos.json/casos_itens.json), pra abrir lá com login/busca/★ — caminho opcional, padrão ~/Documents/VisualizadorIPED")
 
     args = ap.parse_args()
     origem = Path(args.arquivo).expanduser()
@@ -586,6 +725,11 @@ def main():
     destino_html = gerar_html(mensagens, args.caso, args.meu_nome, doc_ref, pasta_caso)
     print(f"Visualizador: {destino_html}")
     print("Abra esse arquivo no navegador pra ler, buscar e marcar as mensagens relevantes.")
+
+    if args.exportar_veredata:
+        print("\n== 4. Exportando pro Veredata ==")
+        pasta_veredata = Path(args.exportar_veredata).expanduser()
+        exportar_para_veredata(mensagens, args.caso, args.meu_nome, doc_ref, pasta_caso, pasta_veredata)
 
 
 if __name__ == "__main__":

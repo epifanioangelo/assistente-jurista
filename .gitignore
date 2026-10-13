@@ -13,3 +13,9 @@ foto-homem-com-facao.png
 foto-lesao-cabeca.png
 homem-com-facao-2.png
 Pecas geradas/**/Peticao_Manifestacao_IP_1510060-81_v2_09-07-2026.*
+
+# Provas recebidas: dado de caso real (prints, áudio, vídeo, conversas
+# inteiras de WhatsApp — pode chegar a centenas de MB) — nunca versionar,
+# mesmo em repo privado. README.md e _modelo_catalogo.md (convenção, sem
+# dado de caso nenhum) continuam versionados normalmente.
+Provas recebidas/*/
