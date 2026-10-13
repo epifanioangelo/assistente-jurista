@@ -676,6 +676,95 @@ def exportar_para_veredata(mensagens: list[dict], caso: str, meu_nome: str, doc_
     print(f"Exportado pro Veredata como fonte '{fonte_id}': {len(novos_itens)} item(ns), {copiados} arquivo(s) de mídia copiado(s).")
     print(f"Abra o Veredata (index.php) e selecione essa fonte no menu — a conversa aparece em Conversas/Galeria/Documentos.")
 
+    return {"id": fonte_id, "nome": caso}, novos_itens, pasta_midia_destino
+
+
+def _ler_config_local_veredata(pasta_veredata: Path) -> dict:
+    """Lê SEGREDO_SYNC/NOME_INSTALACAO/VISUALIZADOR_REMOTO_URL direto dos
+    arquivos de config do Veredata local — nunca duplica a credencial em
+    código Python, só lê o que já está configurado lá (mesmo princípio do
+    FTP/e-mail: credencial só existe num lugar, nunca copiada)."""
+    config_php = (pasta_veredata / "config.php").read_text(encoding="utf-8")
+    m_segredo = re.search(r"define\('SEGREDO_SYNC',\s*'([^']+)'\)", config_php)
+    segredo_sync = m_segredo.group(1) if m_segredo else None
+
+    config_local_path = pasta_veredata / "_config_local.php"
+    url_remoto = None
+    nome_instalacao = "Assistente Jurista"
+    if config_local_path.exists():
+        conteudo = config_local_path.read_text(encoding="utf-8")
+        m_url = re.search(r"'visualizador_remoto_url'\s*=>\s*'([^']+)'", conteudo)
+        if m_url:
+            url_remoto = m_url.group(1)
+        m_nome = re.search(r"'nome_instalacao'\s*=>\s*'([^']+)'", conteudo)
+        if m_nome:
+            nome_instalacao = m_nome.group(1)
+
+    return {"segredo_sync": segredo_sync, "url_remoto": url_remoto, "nome_instalacao": nome_instalacao}
+
+
+def sincronizar_veredata_remoto(fonte: dict, itens: list, pasta_midia_local: Path, pasta_veredata: Path):
+    """
+    Envia a fonte + itens já gravados localmente pro advogado.sjc.br — reaproveita
+    o mesmo sincronizar.php que o Painel de Ingestão já usa (JSON leve, nunca
+    a extração bruta). sincronizar.php não lida com arquivo nenhum, só dados —
+    por isso a mídia (mp3/foto/doc) sobe à parte, num segundo endpoint novo
+    (sincronizar_midia.php), com o mesmo SEGREDO_SYNC.
+    """
+    try:
+        import requests
+    except ImportError:
+        sys.exit("requests não instalado. Rode: pip3 install requests")
+
+    cfg = _ler_config_local_veredata(pasta_veredata)
+    if not cfg["segredo_sync"]:
+        sys.exit("Não encontrei SEGREDO_SYNC em config.php — confira o caminho do Veredata.")
+    if not cfg["url_remoto"]:
+        sys.exit("Essa cópia local não tem 'visualizador_remoto_url' em _config_local.php — não dá pra sincronizar com nenhum remoto.")
+
+    # O WAF do hosting bloqueia o User-Agent padrão do requests (406) — mesmo
+    # fix já usado no publicar_peca.py.
+    cabecalhos = {"User-Agent": "AssistenteJurista-SincronizarVeredata/1.0"}
+    base_url = cfg["url_remoto"].rstrip("/")
+
+    print(f"Sincronizando dados com {base_url}...")
+    resp = requests.post(
+        f"{base_url}/sincronizar.php",
+        data={
+            "segredo": cfg["segredo_sync"], "maquina": cfg["nome_instalacao"],
+            "fonte": json.dumps(fonte, ensure_ascii=False), "itens": json.dumps(itens, ensure_ascii=False),
+        },
+        headers=cabecalhos, timeout=30,
+    )
+    resp.raise_for_status()
+    corpo = resp.json()
+    if not corpo.get("ok"):
+        sys.exit(f"Falha ao sincronizar dados: {corpo.get('erro')}")
+    print(f"  {corpo.get('itens_recebidos', 0)} item(ns) recebidos pelo remoto.")
+
+    arquivos = [f for f in pasta_midia_local.iterdir() if f.is_file()] if pasta_midia_local.is_dir() else []
+    if not arquivos:
+        return
+    print(f"Enviando {len(arquivos)} arquivo(s) de mídia...")
+    falhas = 0
+    for arq in arquivos:
+        with arq.open("rb") as fh:
+            r = requests.post(
+                f"{base_url}/sincronizar_midia.php",
+                data={"segredo": cfg["segredo_sync"], "fonte": fonte["id"]},
+                files={"arquivo": (arq.name, fh)},
+                headers=cabecalhos, timeout=60,
+            )
+        ok = False
+        try:
+            ok = r.ok and r.json().get("ok")
+        except ValueError:
+            pass
+        if not ok:
+            falhas += 1
+            print(f"  falhou: {arq.name}")
+    print(f"Mídia sincronizada: {len(arquivos) - falhas}/{len(arquivos)} arquivo(s) com {base_url}.")
+
 
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
@@ -688,6 +777,7 @@ def main():
     ap.add_argument("--arquivo-selecao", default="", dest="arquivo_selecao", help="Transcreve só os áudios marcados com ★ e exportados pelo botão 'Exportar seleção' do visualizador (um mensagens_selecionadas.json)")
     ap.add_argument("--importar-correcoes", default="", dest="importar_correcoes", help="Importa o .json baixado pelo botão 'Exportar correções de transcrição' — grava as correções no cache sem alterar o áudio original")
     ap.add_argument("--exportar-veredata", nargs="?", const="~/Documents/VisualizadorIPED", default="", dest="exportar_veredata", help="Escreve a conversa direto no Veredata (casos.json/casos_itens.json), pra abrir lá com login/busca/★ — caminho opcional, padrão ~/Documents/VisualizadorIPED")
+    ap.add_argument("--sincronizar-remoto", action="store_true", dest="sincronizar_remoto", help="Junto com --exportar-veredata, também envia pro Veredata remoto (advogado.sjc.br ou outro configurado em _config_local.php) — dados via sincronizar.php, mídia via sincronizar_midia.php, mesmo SEGREDO_SYNC já usado pelo Painel de Ingestão")
 
     args = ap.parse_args()
     origem = Path(args.arquivo).expanduser()
@@ -729,7 +819,12 @@ def main():
     if args.exportar_veredata:
         print("\n== 4. Exportando pro Veredata ==")
         pasta_veredata = Path(args.exportar_veredata).expanduser()
-        exportar_para_veredata(mensagens, args.caso, args.meu_nome, doc_ref, pasta_caso, pasta_veredata)
+        fonte, itens_exportados, pasta_midia_destino = exportar_para_veredata(
+            mensagens, args.caso, args.meu_nome, doc_ref, pasta_caso, pasta_veredata
+        )
+        if args.sincronizar_remoto:
+            print("\n== 5. Sincronizando com o Veredata remoto ==")
+            sincronizar_veredata_remoto(fonte, itens_exportados, pasta_midia_destino, pasta_veredata)
 
 
 if __name__ == "__main__":
