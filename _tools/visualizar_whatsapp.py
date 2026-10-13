@@ -276,6 +276,7 @@ HTML_TEMPLATE = r"""<!DOCTYPE html>
   .midia video{max-width:100%;border-radius:6px}
   .midia .arquivo-generico{font-size:.8rem;background:var(--surface-2);padding:6px 10px;border-radius:6px;display:inline-block}
   .midia .ausente{font-size:.78rem;color:var(--fg-muted);font-style:italic}
+  .btn-audio{background:var(--accent);color:var(--accent-fg);border:none;padding:8px 16px;border-radius:20px;font-size:.84rem;font-weight:600;cursor:pointer}
   .transcricao{font-size:.86rem;margin-top:5px;color:var(--fg)}
   .transcricao .rotulo-auto{font-size:.68rem;color:var(--fg-muted);font-style:italic}
   .separador-dia{text-align:center;margin:18px 0 10px;font-size:.74rem;color:var(--fg-muted)}
@@ -312,7 +313,7 @@ function bolhaHtml(m){
   let midiaHtml = '';
   if (m.tipoMidia === 'imagem') midiaHtml = `<div class="midia"><img src="midia/${encodeURIComponent(m.nomeMidia)}" loading="lazy"></div>`;
   else if (m.tipoMidia === 'video') midiaHtml = `<div class="midia"><video src="midia/${encodeURIComponent(m.nomeMidia)}" controls></video></div>`;
-  else if (m.tipoMidia === 'audio') midiaHtml = `<div class="midia"><audio src="midia/${encodeURIComponent(m.arquivoAudio)}" controls style="width:100%"></audio>${m.transcricao ? `<div class="transcricao">🗣 ${m.transcricao.replace(/</g,'&lt;')} <span class="rotulo-auto">(transcrição automática)</span></div>` : ''}</div>`;
+  else if (m.tipoMidia === 'audio') midiaHtml = `<div class="midia"><button class="btn-audio" data-tocar="midia/${encodeURIComponent(m.arquivoAudio)}">▶ Tocar áudio</button>${m.transcricao ? `<div class="transcricao">🗣 ${m.transcricao.replace(/</g,'&lt;')} <span class="rotulo-auto">(transcrição automática)</span></div>` : ''}</div>`;
   else if (m.tipoMidia === 'ausente') midiaHtml = `<div class="midia ausente">📎 ${m.nomeMidia} (arquivo não encontrado na pasta midia/)</div>`;
   else if (m.tipoMidia === 'oculta_sem_arquivo') midiaHtml = `<div class="midia ausente">🎞️ Mídia não incluída nesta exportação</div>`;
   else if (m.tipoMidia === 'arquivo') midiaHtml = `<div class="midia"><span class="arquivo-generico">📎 ${m.nomeMidia}</span></div>`;
@@ -342,6 +343,21 @@ function render(){
   });
 }
 render();
+
+// Áudio só vira <audio> de verdade quando clicado — com milhares de
+// mensagens de áudio na página, criar todos de uma vez estoura o limite de
+// players do Chrome (erro real: "too many WebMediaPlayers already in
+// existence"), e os áudios mais embaixo na conversa simplesmente não tocam.
+document.getElementById('lista').addEventListener('click', (e) => {
+  const btn = e.target.closest('.btn-audio');
+  if (!btn) return;
+  const audio = document.createElement('audio');
+  audio.src = btn.dataset.tocar;
+  audio.controls = true;
+  audio.autoplay = true;
+  audio.style.width = '100%';
+  btn.replaceWith(audio);
+});
 
 document.getElementById('busca').addEventListener('input', (e) => {
   const termo = e.target.value.toLowerCase();
